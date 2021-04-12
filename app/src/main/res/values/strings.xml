@@ -3,6 +3,7 @@
     <string name="app_name">Political Preparedness</string>
     <string name="upcoming_elections_text">Upcoming Elections</string>
     <string name="find_my_reps_text">Find My Representatives</string>
+    <string name="saved_elections_text">Saved Elections</string>
 
     <!-- TODO: Add necessary string values -->
 
