@@ -16,6 +16,7 @@ android {
         targetSdkVersion 30
         versionCode 1
         versionName "1.0"
+        vectorDrawables.useSupportLibrary = true
     }
     buildTypes {
         release {
@@ -83,4 +84,6 @@ dependencies {
 
     //Logging
     implementation 'com.jakewharton.timber:timber:4.7.1'
+
+
 }
