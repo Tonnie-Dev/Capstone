@@ -5,6 +5,11 @@
 
     <!-- TODO: Add data binding node -->
 
+    <data>
+
+
+    </data>
+
     <!-- TODO: Add motion scene to hide form on vertical scroll. -->
     <androidx.constraintlayout.motion.widget.MotionLayout
         android:layout_height="match_parent"
