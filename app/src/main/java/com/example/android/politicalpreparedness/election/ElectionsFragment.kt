@@ -12,6 +12,8 @@ class ElectionsFragment: Fragment() {
 
     //TODO: Declare ViewModel
     val viewModel:ElectionsViewModel by viewModels()
+
+
     private lateinit var  binding: FragmentLaunchBinding
     override fun onCreateView(inflater: LayoutInflater,
                               container: ViewGroup?,
