@@ -5,8 +5,12 @@ import com.squareup.moshi.Moshi
 import com.squareup.moshi.kotlin.reflect.KotlinJsonAdapterFactory
 import retrofit2.Retrofit
 import retrofit2.converter.moshi.MoshiConverterFactory
+import retrofit2.http.GET
 
 private const val BASE_URL = "https://www.googleapis.com/civicinfo/v2/"
+
+
+/*AIzaSyBVi-yCWfTYpr2lqclNWtfawdpNmSxkVvc*/
 
 // TODO: Add adapters for Java Date and custom adapter ElectionAdapter (included in project)
 private val moshi = Moshi.Builder()
@@ -27,9 +31,18 @@ private val retrofit = Retrofit.Builder()
 interface CivicsApiService {
     //TODO: Add elections API Call
 
+    @GET("elections")
+    suspend fun electionQuery()
+
     //TODO: Add voterinfo API Call
 
+    @GET("voterinfo")
+    suspend fun voterInfoQuery()
+
     //TODO: Add representatives API Call
+
+    @GET("representatives")
+    suspend fun representativeInfoByAddress()
 }
 
 object CivicsApi {
