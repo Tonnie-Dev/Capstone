@@ -1,16 +1,12 @@
 package com.example.android.politicalpreparedness.election.adapter
 
 import android.view.LayoutInflater
-
-import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.example.android.politicalpreparedness.databinding.ElectionItemBinding
-import com.example.android.politicalpreparedness.databinding.ViewholderElectionBinding
 import com.example.android.politicalpreparedness.network.models.Election
-import java.time.Duration.from
 
 class ElectionListAdapter(private val clickListener: ElectionListener) : ListAdapter<Election, ElectionListAdapter.ElectionViewHolder>(
         ElectionDiffCallback()) {
@@ -25,6 +21,18 @@ class ElectionListAdapter(private val clickListener: ElectionListener) : ListAda
 
     //TODO: Bind ViewHolder
     override fun onBindViewHolder(holder: ElectionViewHolder, position: Int) {
+
+        //get election item
+
+        val electionItem = getItem(position)
+
+
+        //set onClickLister on Holder's itemView and pass in the ElectionListener
+        // but omit the brackets for the lambda
+        holder.itemView.setOnClickListener { clickListener.onClick(electionItem)}
+
+        //bind electionItem to ViewHolder
+        holder.bind(electionItem)
 
 
     }
@@ -77,14 +85,10 @@ class ElectionDiffCallback : DiffUtil.ItemCallback<Election>() {
 }
 
 
-
-
-
-
 //TODO: Create ElectionListener
 
 
-class ElectionListener (private val onClickListener:(Election)-> Unit){
+class ElectionListener(private val onClickListener: (Election) -> Unit) {
 
     fun onClick(election: Election) = onClickListener(election)
 
