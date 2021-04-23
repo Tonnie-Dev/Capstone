@@ -32,23 +32,6 @@ class DetailFragment : Fragment() {
 
     }
 
-    override fun onRequestPermissionsResult(requestCode: Int, permissions: Array<out String>, grantResults: IntArray) {
-        super.onRequestPermissionsResult(requestCode, permissions, grantResults)
-        //TODO: Handle location permission result to get location on permission granted
-    }
-
-    private fun checkLocationPermissions(): Boolean {
-        return if (isPermissionGranted()) {
-            true
-        } else {
-            //TODO: Request Location permissions
-            false
-        }
-    }
-
-    private fun isPermissionGranted() : Boolean {
-        //TODO: Check if permission is already granted and return (true = granted, false = denied/other)
-    }
 
     private fun getLocation() {
         //TODO: Get location from LocationServices
@@ -69,4 +52,48 @@ class DetailFragment : Fragment() {
         imm.hideSoftInputFromWindow(view!!.windowToken, 0)
     }
 
+
+
+
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/*
+    override fun onRequestPermissionsResult(requestCode: Int, permissions: Array<out String>, grantResults: IntArray) {
+        super.onRequestPermissionsResult(requestCode, permissions, grantResults)
+        //TODO: Handle location permission result to get location on permission granted
+    }
+
+    private fun checkLocationPermissions(): Boolean {
+        return if (isPermissionGranted()) {
+            true
+        } else {
+            //TODO: Request Location permissions
+            false
+        }
+    }
+
+    private fun isPermissionGranted() : Boolean {
+        //TODO: Check if permission is already granted and return (true = granted, false = denied/other)
+    }*/
