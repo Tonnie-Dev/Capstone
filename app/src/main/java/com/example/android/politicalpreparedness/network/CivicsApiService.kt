@@ -20,7 +20,7 @@ private val moshi = Moshi.Builder()
 private val retrofit = Retrofit.Builder()
         .addConverterFactory(MoshiConverterFactory.create(moshi))
         .addCallAdapterFactory(CoroutineCallAdapterFactory())
-        .client(CivicsHttpClient.getClient())
+        .client(CivicsHttpClient.getClient()) //Here we set the custom OkHttp client we just created.
         .baseUrl(BASE_URL)
         .build()
 
