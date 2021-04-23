@@ -66,12 +66,12 @@
             android:layout_height="@dimen/social_icons_dimens"
             app:layout_constraintEnd_toStartOf="@+id/twitterIcon"
             app:layout_constraintHorizontal_bias="0.5"
-            app:layout_constraintStart_toEndOf="@+id/web_icon"
-            app:layout_constraintTop_toTopOf="@+id/web_icon"
+            app:layout_constraintStart_toEndOf="@+id/wwwIcon"
+            app:layout_constraintTop_toTopOf="@+id/wwwIcon"
             app:srcCompat="@drawable/ic_facebook" />
 
         <ImageView
-            android:id="@+id/web_icon"
+            android:id="@+id/wwwIcon"
             android:layout_width="@dimen/social_icons_dimens"
             android:layout_height="@dimen/social_icons_dimens"
             android:layout_marginStart="8dp"
