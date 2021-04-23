@@ -62,6 +62,7 @@ class ElectionListAdapter(private val clickListener: ElectionListener) : ListAda
 
 
 }
+
 //TODO: Create ElectionDiffCallback
 
 class ElectionDiffCallback : DiffUtil.ItemCallback<Election>() {
@@ -81,3 +82,10 @@ class ElectionDiffCallback : DiffUtil.ItemCallback<Election>() {
 
 
 //TODO: Create ElectionListener
+
+
+class ElectionListener (private val onClickListener:(Election)-> Unit){
+
+    fun onClick(election: Election) = onClickListener(election)
+
+}

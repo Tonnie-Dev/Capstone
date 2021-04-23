@@ -19,6 +19,8 @@ class ElectionsFragment: Fragment() {
                               container: ViewGroup?,
                               savedInstanceState: Bundle?): View {
 
+
+
         //TODO: Add ViewModel values and create ViewModel
 
         //TODO: Add binding values
