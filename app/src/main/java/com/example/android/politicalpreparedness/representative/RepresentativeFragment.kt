@@ -7,28 +7,45 @@ import android.os.Bundle
 import android.view.*
 import android.view.inputmethod.InputMethodManager
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.viewModels
+import com.example.android.politicalpreparedness.databinding.FragmentVoterInfoBinding
 import com.example.android.politicalpreparedness.network.models.Address
+import com.google.android.gms.location.LocationRequest
 import java.util.Locale
+import java.util.concurrent.TimeUnit
 
 class DetailFragment : Fragment() {
 
+    //VARS
+    private lateinit var binding: FragmentVoterInfoBinding
+
     companion object {
         //TODO: Add Constant for Location request
+
+        private val locationRequest = LocationRequest().apply {
+             priority = LocationRequest.PRIORITY_HIGH_ACCURACY
+            interval = TimeUnit.MINUTES.toMillis(5)
+            fastestInterval = TimeUnit.MINUTES.toMillis(3)
+        }
     }
 
     //TODO: Declare ViewModel
 
+    private val viewModel:RepresentativeViewModel by viewModels()
     override fun onCreateView(inflater: LayoutInflater,
                               container: ViewGroup?,
                               savedInstanceState: Bundle?): View? {
 
         //TODO: Establish bindings
+        binding = FragmentVoterInfoBinding.inflate(inflater)
 
         //TODO: Define and assign Representative adapter
 
         //TODO: Populate Representative adapter
 
         //TODO: Establish button listeners for field and location search
+
+        return binding.root
 
     }
 
@@ -77,23 +94,23 @@ class DetailFragment : Fragment() {
 
 
 
-
+//OLD CODE for android permissions
 
 /*
     override fun onRequestPermissionsResult(requestCode: Int, permissions: Array<out String>, grantResults: IntArray) {
         super.onRequestPermissionsResult(requestCode, permissions, grantResults)
-        //TODO: Handle location permission result to get location on permission granted
+         Handle location permission result to get location on permission granted
     }
 
     private fun checkLocationPermissions(): Boolean {
         return if (isPermissionGranted()) {
             true
         } else {
-            //TODO: Request Location permissions
+            // Request Location permissions
             false
         }
     }
 
     private fun isPermissionGranted() : Boolean {
-        //TODO: Check if permission is already granted and return (true = granted, false = denied/other)
+        //Check if permission is already granted and return (true = granted, false = denied/other)
     }*/

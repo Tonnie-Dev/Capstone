@@ -80,8 +80,9 @@ dependencies {
     kapt "androidx.room:room-compiler:$version_room"
 
     // Location
-    implementation "com.google.android.gms:play-services-location:$version_play_services_location"
-
+    //implementation "com.google.android.gms:play-services-location:$version_play_services_location"
+    //Maps & Geofencing
+    implementation 'com.google.android.libraries.places:places:2.4.0'
     //Logging
     implementation 'com.jakewharton.timber:timber:4.7.1'
 
