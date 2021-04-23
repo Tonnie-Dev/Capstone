@@ -32,7 +32,7 @@ interface CivicsApiService {
     //TODO: Add elections API Call
 
     @GET("elections")
-    suspend fun electionQuery()
+    suspend fun electionQuery():String
 
     //TODO: Add voterinfo API Call
 
