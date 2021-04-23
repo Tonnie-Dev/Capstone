@@ -1,84 +1,95 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="wrap_content">
+    xmlns:tools="http://schemas.android.com/tools">
 
-    <ImageView
-        android:id="@+id/repPhoto"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="16dp"
-        android:layout_marginBottom="16dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        tools:srcCompat="@tools:sample/avatars" />
+    <data>
 
-    <TextView
-        android:id="@+id/officeNameTextView"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="16dp"
-        android:text="TextView"
-        app:layout_constraintStart_toEndOf="@+id/repPhoto"
-        app:layout_constraintTop_toTopOf="parent"
-        tools:text="President of the United States" />
+        <variable
+            name="rep"
+            type="com.example.android.politicalpreparedness.representative.model.Representative" />
 
-    <TextView
-        android:id="@+id/repNameTextView"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="16dp"
-        android:text="TextView"
-        app:layout_constraintStart_toEndOf="@+id/repPhoto"
-        app:layout_constraintTop_toBottomOf="@+id/officeNameTextView"
-        tools:text="Joe Biden" />
+    </data>
 
-    <TextView
-        android:id="@+id/partyNameTextView"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="16dp"
-        android:text="TextView"
-        app:layout_constraintStart_toEndOf="@+id/repPhoto"
-        app:layout_constraintTop_toBottomOf="@+id/repNameTextView"
-        tools:text="Democratic Party" />
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
 
-    <ImageView
-        android:id="@+id/fb_icon"
-        android:layout_width="@dimen/social_icons_dimens"
-        android:layout_height="@dimen/social_icons_dimens"
-        app:layout_constraintEnd_toStartOf="@+id/imageView4"
-        app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toEndOf="@+id/web_icon"
-        app:layout_constraintTop_toTopOf="@+id/web_icon"
-        app:srcCompat="@drawable/ic_facebook" />
+        <ImageView
+            android:id="@+id/repPhoto"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="16dp"
+            android:layout_marginBottom="16dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:srcCompat="@tools:sample/avatars" />
 
-    <ImageView
-        android:id="@+id/web_icon"
-        android:layout_width="@dimen/social_icons_dimens"
-        android:layout_height="@dimen/social_icons_dimens"
-        android:layout_marginStart="8dp"
-        app:layout_constraintBottom_toBottomOf="@+id/partyNameTextView"
-        app:layout_constraintEnd_toStartOf="@+id/fb_icon"
-        app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintHorizontal_chainStyle="spread"
-        app:layout_constraintStart_toEndOf="@+id/partyNameTextView"
-        app:srcCompat="@drawable/ic_www" />
+        <TextView
+            android:id="@+id/officeNameTextView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="16dp"
+            android:text="TextView"
+            app:layout_constraintStart_toEndOf="@+id/repPhoto"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:text="President of the United States" />
 
-    <ImageView
-        android:id="@+id/imageView4"
-        android:layout_width="@dimen/social_icons_dimens"
-        android:layout_height="@dimen/social_icons_dimens"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toEndOf="@+id/fb_icon"
-        app:layout_constraintTop_toTopOf="@+id/fb_icon"
-        app:srcCompat="@drawable/ic_twitter" />
-</androidx.constraintlayout.widget.ConstraintLayout>
+        <TextView
+            android:id="@+id/repNameTextView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="16dp"
+            android:text="TextView"
+            app:layout_constraintStart_toEndOf="@+id/repPhoto"
+            app:layout_constraintTop_toBottomOf="@+id/officeNameTextView"
+            tools:text="Joe Biden" />
+
+        <TextView
+            android:id="@+id/partyNameTextView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="16dp"
+            android:text="TextView"
+            app:layout_constraintStart_toEndOf="@+id/repPhoto"
+            app:layout_constraintTop_toBottomOf="@+id/repNameTextView"
+            tools:text="Democratic Party" />
+
+        <ImageView
+            android:id="@+id/facebookIcon"
+            android:layout_width="@dimen/social_icons_dimens"
+            android:layout_height="@dimen/social_icons_dimens"
+            app:layout_constraintEnd_toStartOf="@+id/twitterIcon"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toEndOf="@+id/web_icon"
+            app:layout_constraintTop_toTopOf="@+id/web_icon"
+            app:srcCompat="@drawable/ic_facebook" />
+
+        <ImageView
+            android:id="@+id/web_icon"
+            android:layout_width="@dimen/social_icons_dimens"
+            android:layout_height="@dimen/social_icons_dimens"
+            android:layout_marginStart="8dp"
+            app:layout_constraintBottom_toBottomOf="@+id/partyNameTextView"
+            app:layout_constraintEnd_toStartOf="@+id/facebookIcon"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintHorizontal_chainStyle="spread"
+            app:layout_constraintStart_toEndOf="@+id/partyNameTextView"
+            app:srcCompat="@drawable/ic_www" />
+
+        <ImageView
+            android:id="@+id/twitterIcon"
+            android:layout_width="@dimen/social_icons_dimens"
+            android:layout_height="@dimen/social_icons_dimens"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toEndOf="@+id/facebookIcon"
+            app:layout_constraintTop_toTopOf="@+id/facebookIcon"
+            app:srcCompat="@drawable/ic_twitter" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>
