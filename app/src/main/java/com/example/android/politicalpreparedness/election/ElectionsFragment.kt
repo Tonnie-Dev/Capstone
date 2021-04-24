@@ -12,14 +12,14 @@ import com.example.android.politicalpreparedness.databinding.FragmentElectionBin
 import com.example.android.politicalpreparedness.databinding.FragmentLaunchBinding
 import timber.log.Timber
 
-class ElectionsFragment: Fragment() {
+class ElectionsFragment : Fragment() {
 
     //TODO: Declare ViewModel
     //val viewModel:ElectionsViewModel by viewModels()
-private lateinit var viewModel:ElectionsViewModel
+    private lateinit var viewModel: ElectionsViewModel
 
 
-    private lateinit var  binding: FragmentElectionBinding
+    private lateinit var binding: FragmentElectionBinding
     override fun onCreateView(inflater: LayoutInflater,
                               container: ViewGroup?,
                               savedInstanceState: Bundle?): View {
@@ -28,10 +28,10 @@ private lateinit var viewModel:ElectionsViewModel
 
         val factory = ElectionsViewModelFactory(db)
 
-viewModel = ViewModelProvider(this, factory).get(ElectionsViewModel::class.java)
-       viewModel.test()
+        viewModel = ViewModelProvider(this, factory).get(ElectionsViewModel::class.java)
+        viewModel.test()
 
-        Timber.i("onCreate()")
+        Timber.i("onCreate() called")
         //TODO: Add ViewModel values and create ViewModel
 
         //TODO: Add binding values

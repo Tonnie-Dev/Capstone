@@ -7,6 +7,7 @@ import androidx.lifecycle.viewModelScope
 import com.example.android.politicalpreparedness.database.ElectionDatabase
 import com.example.android.politicalpreparedness.repo.ElectionsRepo
 import kotlinx.coroutines.launch
+import timber.log.Timber
 
 //TODO: Construct ViewModel and provide election datasource
 
@@ -21,11 +22,16 @@ init {
   repo = ElectionsRepo(database)
 
   test()
+    Timber.i("Init ViewModel Called")
 }
 
 
      fun  test(){
+
+         Timber.i("test Called")
       viewModelScope.launch {
+
+          Timber.i("inside viewModelScope")
         repo.getRepInfo()
         repo.getUpcomingElections()
         repo.getVoterInfo()

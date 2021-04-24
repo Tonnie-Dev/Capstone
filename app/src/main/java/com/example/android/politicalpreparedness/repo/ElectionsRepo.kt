@@ -24,9 +24,9 @@ class ElectionsRepo(private val database: ElectionDatabase) {
     suspend fun getVoterInfo() {
 
         withContext(IO) {
-            val response = CivicsApi.retrofitService.voterInfoQuery()
+            /*val response = CivicsApi.retrofitService.voterInfoQuery()
 
-            Timber.i("The response:$response")
+            Timber.i("The response:$response")*/
 
         }
     }
@@ -34,9 +34,9 @@ class ElectionsRepo(private val database: ElectionDatabase) {
     suspend fun getRepInfo() {
 
         withContext(IO) {
-            val response = CivicsApi.retrofitService.representativeInfoByAddress()
+            /*val response = CivicsApi.retrofitService.representativeInfoByAddress()
 
-            Timber.i("The response:$response")
+            Timber.i("The response:$response")*/
 
         }
     }
