@@ -16,17 +16,10 @@ import com.example.android.politicalpreparedness.databinding.RepItemBinding
 import com.example.android.politicalpreparedness.network.models.Channel
 import com.example.android.politicalpreparedness.representative.model.Representative
 
-class RepresentativeListAdapter: ListAdapter<Representative, RepresentativeViewHolder>(RepresentativeDiffCallback()){
-    class RepresentativeDiffCallback : DiffUtil.ItemCallback<Representative>() {
-        override fun areItemsTheSame(oldItem: Representative, newItem: Representative): Boolean {
-          return oldItem.official == newItem.official
-        }
+class RepresentativeListAdapter(val onClickListener:RepClickListener) : ListAdapter<Representative,
+        RepresentativeViewHolder>(
+        RepresentativeViewHolder.RepresentativeDiffCallback()) {
 
-        override fun areContentsTheSame(oldItem: Representative, newItem: Representative): Boolean {
-           return oldItem==newItem
-        }
-
-    }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RepresentativeViewHolder {
         return RepresentativeViewHolder.from(parent)
@@ -38,7 +31,7 @@ class RepresentativeListAdapter: ListAdapter<Representative, RepresentativeViewH
     }
 }
 
-class RepresentativeViewHolder(val binding: RepItemBinding): RecyclerView.ViewHolder(binding.root) {
+class RepresentativeViewHolder(val binding: RepItemBinding) : RecyclerView.ViewHolder(binding.root) {
 
     fun bind(rep: Representative) {
         binding.rep = rep
@@ -51,29 +44,31 @@ class RepresentativeViewHolder(val binding: RepItemBinding): RecyclerView.ViewHo
     }
 
 
-
-
     //TODO: Add companion object to inflate ViewHolder (from)
 
     companion object {
-
-
-        fun from(parent: ViewGroup):RepresentativeViewHolder{
+        fun from(parent: ViewGroup): RepresentativeViewHolder {
 
             val inflater = LayoutInflater.from(parent.context)
 
-            val binding = DataBindingUtil.inflate<RepItemBinding>(inflater, R.layout.rep_item, parent, false)
+            val binding = DataBindingUtil.inflate<RepItemBinding>(inflater,
+                                                                  R.layout.rep_item,
+                                                                  parent,
+                                                                  false)
             return RepresentativeViewHolder(binding)
-
         }
     }
 
     private fun showSocialLinks(channels: List<Channel>) {
         val facebookUrl = getFacebookUrl(channels)
-        if (!facebookUrl.isNullOrBlank()) { enableLink(binding.facebookIcon, facebookUrl) }
+        if (!facebookUrl.isNullOrBlank()) {
+            enableLink(binding.facebookIcon, facebookUrl)
+        }
 
         val twitterUrl = getTwitterUrl(channels)
-        if (!twitterUrl.isNullOrBlank()) { enableLink(binding.twitterIcon, twitterUrl) }
+        if (!twitterUrl.isNullOrBlank()) {
+            enableLink(binding.twitterIcon, twitterUrl)
+        }
     }
 
     private fun showWWWLinks(urls: List<String>) {
@@ -102,6 +97,23 @@ class RepresentativeViewHolder(val binding: RepItemBinding): RecyclerView.ViewHo
         val intent = Intent(ACTION_VIEW, uri)
         itemView.context.startActivity(intent)
     }
+    class RepresentativeDiffCallback : DiffUtil.ItemCallback<Representative>() {
+        override fun areItemsTheSame(oldItem: Representative, newItem: Representative): Boolean {
+            return oldItem.official == newItem.official
+        }
+
+        override fun areContentsTheSame(oldItem: Representative, newItem: Representative): Boolean {
+            return oldItem == newItem
+        }
+
+    }
+}
+
+class RepClickListener(val clickListener:(Representative) -> Unit){
+
+
+    fun onClickRep(rep: Representative) = clickListener(rep)
+
 
 }
 
