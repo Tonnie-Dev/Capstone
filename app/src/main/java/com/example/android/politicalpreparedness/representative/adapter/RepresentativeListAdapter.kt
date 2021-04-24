@@ -97,6 +97,8 @@ class RepresentativeViewHolder(val binding: RepItemBinding) : RecyclerView.ViewH
         val intent = Intent(ACTION_VIEW, uri)
         itemView.context.startActivity(intent)
     }
+
+    //TODO: Create RepresentativeDiffCallback
     class RepresentativeDiffCallback : DiffUtil.ItemCallback<Representative>() {
         override fun areItemsTheSame(oldItem: Representative, newItem: Representative): Boolean {
             return oldItem.official == newItem.official
@@ -117,6 +119,6 @@ class RepClickListener(val clickListener:(Representative) -> Unit){
 
 }
 
-//TODO: Create RepresentativeDiffCallback
+
 
 //TODO: Create RepresentativeListener

@@ -8,6 +8,7 @@ import android.view.*
 import android.view.inputmethod.InputMethodManager
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
+import com.example.android.politicalpreparedness.databinding.FragmentRepresentativeBinding
 import com.example.android.politicalpreparedness.databinding.FragmentVoterInfoBinding
 import com.example.android.politicalpreparedness.network.models.Address
 import com.google.android.gms.location.LocationRequest
@@ -17,7 +18,7 @@ import java.util.concurrent.TimeUnit
 class DetailFragment : Fragment() {
 
     //VARS
-    private lateinit var binding: FragmentVoterInfoBinding
+    private lateinit var binding: FragmentRepresentativeBinding
 
     companion object {
         //TODO: Add Constant for Location request
@@ -37,7 +38,10 @@ class DetailFragment : Fragment() {
                               savedInstanceState: Bundle?): View? {
 
         //TODO: Establish bindings
-        binding = FragmentVoterInfoBinding.inflate(inflater)
+        binding = FragmentRepresentativeBinding.inflate(inflater)
+
+        //make binding observe LiveData
+        binding.lifecycleOwner = viewLifecycleOwner
 
         //TODO: Define and assign Representative adapter
 

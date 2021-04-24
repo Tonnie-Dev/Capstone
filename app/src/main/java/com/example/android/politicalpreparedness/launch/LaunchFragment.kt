@@ -15,10 +15,13 @@ class LaunchFragment : Fragment() {
 
     override fun onCreateView(inflater: LayoutInflater,
                               container: ViewGroup?,
-                              savedInstanceState: Bundle?): View? {
+                              savedInstanceState: Bundle?): View {
         val binding = FragmentLaunchBinding.inflate(inflater)
+
+        //make binding observe LiveData
         binding.lifecycleOwner = this
 
+        //onClick Listeners
         binding.findRepsButton.setOnClickListener { navToRepresentatives() }
         binding.upcomingElectionsButton.setOnClickListener { navToElections() }
 
@@ -26,11 +29,12 @@ class LaunchFragment : Fragment() {
     }
 
     private fun navToElections() {
-        this.findNavController().navigate(LaunchFragmentDirections.actionLaunchFragmentToElectionsFragment())
+        this.findNavController().navigate(LaunchFragmentDirections
+                                              .actionLaunchFragmentToElectionsFragment())
     }
 
     private fun navToRepresentatives() {
-        this.findNavController().navigate(LaunchFragmentDirections.actionLaunchFragmentToRepresentativeFragment())
+     findNavController().navigate(LaunchFragmentDirections.actionLaunchFragmentToRepresentativeFragment())
     }
 
 }
