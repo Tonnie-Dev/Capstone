@@ -7,6 +7,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
+import androidx.databinding.DataBindingUtil
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
@@ -49,7 +50,23 @@ class RepresentativeViewHolder(val binding: RepItemBinding): RecyclerView.ViewHo
         binding.executePendingBindings()
     }
 
+
+
+
     //TODO: Add companion object to inflate ViewHolder (from)
+
+    companion object {
+
+
+        fun from(parent: ViewGroup):RepresentativeViewHolder{
+
+            val inflater = LayoutInflater.from(parent.context)
+
+            val binding = DataBindingUtil.inflate<RepItemBinding>(inflater, R.layout.rep_item, parent, false)
+            return RepresentativeViewHolder(binding)
+
+        }
+    }
 
     private fun showSocialLinks(channels: List<Channel>) {
         val facebookUrl = getFacebookUrl(channels)
