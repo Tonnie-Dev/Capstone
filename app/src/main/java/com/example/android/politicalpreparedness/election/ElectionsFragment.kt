@@ -50,14 +50,14 @@ class ElectionsFragment : Fragment() {
 
         })
 
-        
+
         //TODO: Link elections to voter info
 
         //TODO: Initiate recycler adapters
 
         //TODO: Populate recycler adapters
 
-        binding = FragmentElectionBinding.inflate(inflater)
+
         return binding.root
 
     }

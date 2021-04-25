@@ -13,7 +13,7 @@ fun RecyclerView.bindRecyclerViewData(electionData: List<Election>?) {
     //get the ListAdapter
 
     val adapter = this.adapter as ElectionListAdapter
-Timber.i("Checking The adapter which is $adapter")
+    Timber.i("Checking The adapter which is $adapter")
 
     /* When this method is called, the ListAdapter diffs the new list
  against the old one and detects items that were added, removed, removed
