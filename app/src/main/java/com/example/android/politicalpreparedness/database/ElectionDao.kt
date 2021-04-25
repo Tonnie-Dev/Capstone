@@ -16,7 +16,7 @@ interface ElectionDao {
     //TODO: Add select all election query
 
     @Query("SELECT * FROM election_table ORDER BY electionDay")
-    fun getAllElections(): LiveData<List<Election>>
+    fun getAllSavedElections(): LiveData<List<Election>>
 
     //TODO: Add select single election query
 

@@ -7,9 +7,12 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.ViewModelProvider
+import androidx.lifecycle.ViewModelProviders
 import com.example.android.politicalpreparedness.database.ElectionDatabase
 import com.example.android.politicalpreparedness.databinding.FragmentElectionBinding
 import com.example.android.politicalpreparedness.databinding.FragmentLaunchBinding
+import com.example.android.politicalpreparedness.election.adapter.ElectionListAdapter
+import com.example.android.politicalpreparedness.election.adapter.ElectionListener
 import timber.log.Timber
 
 class ElectionsFragment : Fragment() {
@@ -23,7 +26,7 @@ class ElectionsFragment : Fragment() {
     override fun onCreateView(inflater: LayoutInflater,
                               container: ViewGroup?,
                               savedInstanceState: Bundle?): View {
-
+        //TODO: Add ViewModel values and create ViewModel
         val db = ElectionDatabase.getInstance(requireContext().applicationContext)
 
         val factory = ElectionsViewModelFactory(db)
@@ -31,11 +34,12 @@ class ElectionsFragment : Fragment() {
         viewModel = ViewModelProvider(this, factory).get(ElectionsViewModel::class.java)
         viewModel.test()
 
-        Timber.i("onCreate() called")
-        //TODO: Add ViewModel values and create ViewModel
-
         //TODO: Add binding values
+        //make binding observe LiveData
+        binding.lifecycleOwner = viewLifecycleOwner
 
+        //set upcoming recyclerview Adapter 
+binding.upcomingRecycler.adapter = ElectionListAdapter (ElectionListener{})
         //TODO: Link elections to voter info
 
         //TODO: Initiate recycler adapters
