@@ -41,7 +41,7 @@ init {
 
 
     //TODO: Create live data val for upcoming elections
-
+val elections = repo.savedElections
 
 
     //TODO: Create live data val for saved elections
