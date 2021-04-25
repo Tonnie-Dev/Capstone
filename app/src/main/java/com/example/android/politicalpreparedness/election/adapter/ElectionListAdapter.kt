@@ -2,9 +2,11 @@ package com.example.android.politicalpreparedness.election.adapter
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
+import androidx.databinding.DataBindingUtil
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
+import com.example.android.politicalpreparedness.R
 import com.example.android.politicalpreparedness.databinding.ElectionItemBinding
 import com.example.android.politicalpreparedness.network.models.Election
 
@@ -53,7 +55,9 @@ class ElectionListAdapter(private val clickListener: ElectionListener) : ListAda
 
                 //get binding
 
-                val binding = ElectionItemBinding.inflate(inflater)
+                //val binding = ElectionItemBinding.inflate(inflater)
+                val binding = DataBindingUtil .inflate<ElectionItemBinding>(inflater, R.layout
+                        .election_item, parent, false)
                 return ElectionViewHolder(binding)
             }
         }
