@@ -35,10 +35,11 @@ class ElectionsFragment : Fragment() {
         viewModel.test()
 
         //TODO: Add binding values
+        binding = FragmentElectionBinding.inflate(inflater)
         //make binding observe LiveData
         binding.lifecycleOwner = viewLifecycleOwner
 
-        //set upcoming recyclerview Adapter 
+        //set upcoming recyclerview Adapter
 binding.upcomingRecycler.adapter = ElectionListAdapter (ElectionListener{})
         //TODO: Link elections to voter info
 
