@@ -1,5 +1,6 @@
 package com.example.android.politicalpreparedness.database
 
+import androidx.lifecycle.LiveData
 import androidx.room.*
 import com.example.android.politicalpreparedness.network.models.Election
 
@@ -11,7 +12,11 @@ interface ElectionDao {
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     fun insertElections(elections:List<Election>)
 
+
     //TODO: Add select all election query
+
+    @Query("SELECT * FROM election_table ORDER BY electionDay")
+    fun getAllElections(): LiveData<List<Election>>
 
     //TODO: Add select single election query
 
