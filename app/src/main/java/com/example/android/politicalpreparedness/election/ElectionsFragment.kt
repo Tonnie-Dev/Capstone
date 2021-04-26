@@ -28,7 +28,7 @@ class ElectionsFragment : Fragment() {
                               container: ViewGroup?,
                               savedInstanceState: Bundle?): View {
         //TODO: Add ViewModel values and create ViewModel
-        val db = ElectionDatabase.getInstance(requireContext().applicationContext)
+        val db = ElectionDatabase.getInstance(requireContext())
 
         val factory = ElectionsViewModelFactory(db)
 
