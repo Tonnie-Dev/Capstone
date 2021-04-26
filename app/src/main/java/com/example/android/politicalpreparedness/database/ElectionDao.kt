@@ -11,18 +11,18 @@ interface ElectionDao {
     election entry is present in database then it is overwritten using REPLACE Strategy*/
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     fun insertElections(elections: List<Election>)
+    //TODO: Add delete query
 
 
-    //TODO: Add select all election query
 
     @Query("SELECT * FROM election_table ORDER BY electionDay")
     fun getAllSavedElections(): LiveData<List<Election>>
 
     //TODO: Add select single election query
-    @Query("SELECT * FROM election_table WHERE id=:key")
-    fun getElectionById(key: Int)
-    //TODO: Add delete query
+    @Query("SELECT * FROM election_table WHERE id =:key")
+    fun getElectionById(key: Int):Election
 
     //TODO: Add clear query
 
+    //TODO: Add select all election query
 }
