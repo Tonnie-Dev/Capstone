@@ -11,7 +11,7 @@ import com.example.android.politicalpreparedness.databinding.FragmentVoterInfoBi
 
 class VoterInfoFragment : Fragment() {
 
-    private val args:VoterInfoFragment by navArgs()
+    private val args:VoterInfoFragmentArgs by navArgs()
 
     private lateinit var viewModel:VoterInfoViewModel
 
@@ -23,7 +23,8 @@ class VoterInfoFragment : Fragment() {
         binding = FragmentVoterInfoBinding.inflate(inflater)
         //TODO: Add ViewModel values and create ViewModel
         val database = ElectionDatabase.getInstance(requireContext())
-        val factory = VoterInfoViewModelFactory(database.electionDao)
+        val factory = VoterInfoViewModelFactory(database.electionDao,args.argDivision.state,args
+                .argElectionId)
         viewModel = ViewModelProvider(this, factory).get(VoterInfoViewModel::class.java)
 
         //TODO: Add binding values
