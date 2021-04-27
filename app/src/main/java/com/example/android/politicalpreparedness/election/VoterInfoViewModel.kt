@@ -9,11 +9,13 @@ import com.example.android.politicalpreparedness.network.CivicsApi
 import com.example.android.politicalpreparedness.network.models.Division
 import com.example.android.politicalpreparedness.network.models.Election
 import com.example.android.politicalpreparedness.network.models.VoterInfoResponse
+import kotlinx.coroutines.Dispatchers.IO
 import kotlinx.coroutines.launch
+import kotlinx.coroutines.withContext
 import timber.log.Timber
 
 class VoterInfoViewModel(private val dataSource: ElectionDao, private val division: Division,
-                         private val electionId:Int) :
+                         private val electionId: Int) :
         ViewModel() {
 
     //TODO: Add live data to hold voter info
@@ -23,7 +25,16 @@ class VoterInfoViewModel(private val dataSource: ElectionDao, private val divisi
 
     private val _election = MutableLiveData<Election>()
     val election: LiveData<Election>
-    get() = _election
+        get() = _election
+
+    private var _votingCentreURL = MutableLiveData<String>()
+    val votingCentreURL: LiveData<String>
+        get() = _votingCentreURL
+
+    private val _ballotInfoURL = MutableLiveData<String>()
+    val ballotInfoURL: LiveData<String>
+        get() = _ballotInfoURL
+
 
     init {
 
@@ -31,43 +42,63 @@ class VoterInfoViewModel(private val dataSource: ElectionDao, private val divisi
         getElectionFromDatabase(electionId)
     }
 
+
     private fun getElectionFromDatabase(id: Int) {
 
-        viewModelScope.launch{
+        viewModelScope.launch {
 
-           _election.value = dataSource.getElectionById(id)
+            withContext(IO) {
+
+                _election.postValue(dataSource.getElectionById(id))
+            }
+
+
         }
+
     }
 
 
-    private fun  getNetworkVoterInfo(){
+    private fun getNetworkVoterInfo() {
 
-      val address = getAddressFromDivision(division)
-      viewModelScope.launch{
+        val address = getAddressFromDivision(division)
+        viewModelScope.launch {
 
-          _voterResponse.value = CivicsApi.retrofitService.voterInfoQuery(address, electionId)
+            _voterResponse.value = CivicsApi.retrofitService.voterInfoQuery(address, electionId)
 
-          Timber.i("The voter response is${_voterResponse.value }")
-      }
-
-  }
-
-
-    private fun getAddressFromDivision(division: Division):String {
-
-
-        var address =""
-
-        if (division.state.isEmpty() && division.state.isBlank()){
-
-
-           address ="country:/state:ca"
-        }else{
-
-             address = "country:/state:${division.state}"
+            Timber.i("The voter response is${_voterResponse.value}")
         }
 
-return address
+    }
+
+
+    private fun getAddressFromDivision(division: Division): String {
+
+
+        var address = ""
+
+        if (division.state.isEmpty() && division.state.isBlank()) {
+
+
+            address = "country:/state:ca"
+        } else {
+
+            address = "country:/state:${division.state}"
+        }
+
+        return address
+    }
+
+
+    fun onVotingCentreLinkClick() {
+
+        _votingCentreURL.value = _voterResponse.value?.state?.get(0)?.electionAdministrationBody?.votingLocationFinderUrl!!
+    }
+
+    fun onBallotInfoLinkClick() {
+
+        _ballotInfoURL.value = _voterResponse.value?.state?.get(0)?.electionAdministrationBody?.ballotInfoUrl!!
+
+
     }
     //TODO: Add var and methods to populate voter info
 
