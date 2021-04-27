@@ -7,6 +7,7 @@ import androidx.lifecycle.viewModelScope
 import com.example.android.politicalpreparedness.database.ElectionDao
 import com.example.android.politicalpreparedness.network.CivicsApi
 import com.example.android.politicalpreparedness.network.models.Division
+import com.example.android.politicalpreparedness.network.models.Election
 import com.example.android.politicalpreparedness.network.models.VoterInfoResponse
 import kotlinx.coroutines.launch
 import timber.log.Timber
@@ -20,14 +21,28 @@ class VoterInfoViewModel(private val dataSource: ElectionDao, private val divisi
     val voterResponse: LiveData<VoterInfoResponse>
         get() = _voterResponse
 
+    private val _election = MutableLiveData<Election>()
+    val election: LiveData<Election>
+    get() = _election
+
     init {
 
         getNetworkVoterInfo()
+        getElectionFromDatabase(electionId)
+    }
+
+    private fun getElectionFromDatabase(id: Int) {
+
+        viewModelScope.launch{
+
+           _election.value = dataSource.getElectionById(id)
+        }
     }
 
 
-  private fun  getNetworkVoterInfo(){
+    private fun  getNetworkVoterInfo(){
 
+      val address = getAddressFromDivision(division)
       viewModelScope.launch{
 
           _voterResponse.value = CivicsApi.retrofitService.voterInfoQuery(address, electionId)
@@ -36,6 +51,24 @@ class VoterInfoViewModel(private val dataSource: ElectionDao, private val divisi
       }
 
   }
+
+
+    private fun getAddressFromDivision(division: Division):String {
+
+
+        var address =""
+
+        if (division.state.isEmpty() && division.state.isBlank()){
+
+
+           address ="country:/state:ca"
+        }else{
+
+             address = "country:/state:${division.state}"
+        }
+
+return address
+    }
     //TODO: Add var and methods to populate voter info
 
     //TODO: Add var and methods to support loading URLs
