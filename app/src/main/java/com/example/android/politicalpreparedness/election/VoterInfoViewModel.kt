@@ -51,10 +51,7 @@ class VoterInfoViewModel(private val dataSource: ElectionDao, private val divisi
 
                 _election.postValue(dataSource.getElectionById(id))
             }
-
-
         }
-
     }
 
 
@@ -67,29 +64,26 @@ class VoterInfoViewModel(private val dataSource: ElectionDao, private val divisi
 
             Timber.i("The voter response is${_voterInfoResponse.value}")
         }
-
     }
 
 
     private fun getAddressFromDivision(division: Division): String {
-
-
         var address = ""
 
-        if (division.state.isEmpty() && division.state.isBlank()) {
-
-
-            address = "country:/state:ca"
+        address = if (division.state.isEmpty() && division.state.isBlank()) {
+            "country:/state:ca"
         } else {
-
-            address = "country:/state:${division.state}"
+            "country:/state:${division.state}"
         }
 
+
+        Timber.i("The Address is $address")
         return address
+
     }
 
 
-    fun onVotingCentreLinkClick() {
+    fun onVotingLocationLinkClick() {
 
         _votingLocationURL.value = _voterInfoResponse.value?.state?.get(0)?.electionAdministrationBody?.votingLocationFinderUrl!!
     }
