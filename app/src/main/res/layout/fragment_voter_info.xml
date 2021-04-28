@@ -56,7 +56,7 @@
             android:id="@+id/state_locations"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@{viewModel.votingLocationURL}"
+           android:onClick="@{()-> viewModel.onVotingLocationLinkClick()}"
             app:layout_constraintStart_toStartOf="@id/election_date"
             app:layout_constraintTop_toBottomOf="@id/state_header" />
 
@@ -65,7 +65,7 @@
         <TextView
             android:id="@+id/state_ballot"
             android:layout_width="wrap_content"
-            android:text="@{viewModel.ballotInfoURL}"
+            android:onClick="@{()-> viewModel.onBallotInfoLinkClick()}"
             android:layout_height="wrap_content"
             app:layout_constraintStart_toStartOf="@id/election_date"
             app:layout_constraintTop_toBottomOf="@id/state_locations" />
