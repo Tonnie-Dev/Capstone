@@ -32,6 +32,8 @@ class VoterInfoFragment : Fragment() {
         //make binding observe LiveData
         binding.lifecycleOwner = viewLifecycleOwner
 
+        //link binding's viewModel to ViewModel
+        binding.viewModel = viewModel
         //TODO: Populate voter info -- hide views without provided data.
         /**
         Hint: You will need to ensure proper data is provided from previous fragment.
@@ -39,7 +41,15 @@ class VoterInfoFragment : Fragment() {
 
 
         //TODO: Handle loading of URLs
+        viewModel.votingLocationURL.observe(viewLifecycleOwner){ url ->
 
+
+        }
+
+        viewModel.ballotInfoURL.observe(viewLifecycleOwner){ url ->
+
+
+        }
         //TODO: Handle save button UI state
         //TODO: cont'd Handle save button clicks
 

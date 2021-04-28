@@ -19,17 +19,17 @@ class VoterInfoViewModel(private val dataSource: ElectionDao, private val divisi
         ViewModel() {
 
     //TODO: Add live data to hold voter info
-    private val _voterResponse = MutableLiveData<VoterInfoResponse>()
-    val voterResponse: LiveData<VoterInfoResponse>
-        get() = _voterResponse
+    private val _voterInfoResponse = MutableLiveData<VoterInfoResponse>()
+    val voterInfoResponse: LiveData<VoterInfoResponse>
+        get() = _voterInfoResponse
 
     private val _election = MutableLiveData<Election>()
     val election: LiveData<Election>
         get() = _election
 
-    private var _votingCentreURL = MutableLiveData<String>()
-    val votingCentreURL: LiveData<String>
-        get() = _votingCentreURL
+    private var _votingLocationURL = MutableLiveData<String>()
+    val votingLocationURL: LiveData<String>
+        get() = _votingLocationURL
 
     private val _ballotInfoURL = MutableLiveData<String>()
     val ballotInfoURL: LiveData<String>
@@ -63,9 +63,9 @@ class VoterInfoViewModel(private val dataSource: ElectionDao, private val divisi
         val address = getAddressFromDivision(division)
         viewModelScope.launch {
 
-            _voterResponse.value = CivicsApi.retrofitService.voterInfoQuery(address, electionId)
+            _voterInfoResponse.value = CivicsApi.retrofitService.voterInfoQuery(address, electionId)
 
-            Timber.i("The voter response is${_voterResponse.value}")
+            Timber.i("The voter response is${_voterInfoResponse.value}")
         }
 
     }
@@ -91,12 +91,12 @@ class VoterInfoViewModel(private val dataSource: ElectionDao, private val divisi
 
     fun onVotingCentreLinkClick() {
 
-        _votingCentreURL.value = _voterResponse.value?.state?.get(0)?.electionAdministrationBody?.votingLocationFinderUrl!!
+        _votingLocationURL.value = _voterInfoResponse.value?.state?.get(0)?.electionAdministrationBody?.votingLocationFinderUrl!!
     }
 
     fun onBallotInfoLinkClick() {
 
-        _ballotInfoURL.value = _voterResponse.value?.state?.get(0)?.electionAdministrationBody?.ballotInfoUrl!!
+        _ballotInfoURL.value = _voterInfoResponse.value?.state?.get(0)?.electionAdministrationBody?.ballotInfoUrl!!
 
 
     }
