@@ -34,16 +34,19 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_margin="@dimen/default_padding"
-
+            android:text="@{viewModel.election.electionDay.toString()}"
             app:layout_constraintTop_toBottomOf="@id/election_name"
             tools:text="12 November 2055" />
         <!-- app:dateToString="@{viewModel.election}"-->
+
+        <!--  android:text="@{viewModel.election.electionDay.toString()}"-->
         <!-- TODO: Add visual styling and content -->
         <TextView
             android:id="@+id/state_header"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@{viewModel.election.division.state}"
+            android:text="@string/election_info_text"
+            android:textStyle="bold"
             app:layout_constraintStart_toStartOf="@id/election_date"
             app:layout_constraintTop_toBottomOf="@id/election_date" />
 

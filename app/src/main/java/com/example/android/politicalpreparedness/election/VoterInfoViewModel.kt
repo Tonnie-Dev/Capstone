@@ -13,12 +13,16 @@ import kotlinx.coroutines.Dispatchers.IO
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
 import timber.log.Timber
+import java.util.*
 
 class VoterInfoViewModel(private val dataSource: ElectionDao, private val division: Division,
                          private val electionId: Int) :
         ViewModel() {
 
     //TODO: Add live data to hold voter info
+
+    private var electionVariable: Election? = null
+
     private val _voterInfoResponse = MutableLiveData<VoterInfoResponse>()
     val voterInfoResponse: LiveData<VoterInfoResponse>
         get() = _voterInfoResponse
@@ -40,18 +44,21 @@ class VoterInfoViewModel(private val dataSource: ElectionDao, private val divisi
 
         getNetworkVoterInfo()
         getElectionFromDatabase(electionId)
+
     }
 
 
     private fun getElectionFromDatabase(id: Int) {
-
         viewModelScope.launch {
 
             withContext(IO) {
-
+                //Access Database on IO Coroutine Scope
                 _election.postValue(dataSource.getElectionById(id))
             }
+
+
         }
+
     }
 
 
@@ -70,8 +77,8 @@ class VoterInfoViewModel(private val dataSource: ElectionDao, private val divisi
     private fun getAddressFromDivision(division: Division): String {
         var address = ""
 
-        address = if (division.state.isEmpty() && division.state.isBlank()) {
-            "country:/state:ca"
+        address = if (division.state.isBlank() || division.state.isEmpty()) {
+            "country:/state:ny"
         } else {
             "country:/state:${division.state}"
         }
