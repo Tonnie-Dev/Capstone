@@ -48,10 +48,20 @@ class VoterInfoFragment : Fragment() {
         viewModel.votingLocationURL.observe(viewLifecycleOwner){ url ->
 
 
+
+            binding.stateLocations.setOnClickListener {
+
+                loadUrl(url)
+            }
         }
 
         viewModel.ballotInfoURL.observe(viewLifecycleOwner){ url ->
 
+
+            binding.stateBallot.setOnClickListener {
+
+                loadUrl(url)
+            }
 
         }
         //TODO: Handle save button UI state
