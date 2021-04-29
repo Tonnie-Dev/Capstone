@@ -39,6 +39,10 @@ class VoterInfoViewModel(private val dataSource: ElectionDao, private val divisi
     val ballotInfoURL: LiveData<String>
         get() = _ballotInfoURL
 
+    private val _followButtonClicked = MutableLiveData<Boolean>()
+    val followButtonClicked: LiveData<Boolean>
+    get() =_followButtonClicked
+
 
     init {
 
@@ -83,25 +87,19 @@ class VoterInfoViewModel(private val dataSource: ElectionDao, private val divisi
             "country:/state:${division.state}"
         }
 
-
         Timber.i("The Address is $address")
         return address
-
     }
 
 
-   
 
     fun onVotingLocationLinkClick() {
-
         _votingLocationURL.value = _voterInfoResponse.value?.state?.get(0)?.electionAdministrationBody?.votingLocationFinderUrl!!
     }
 
     fun onBallotInfoLinkClick() {
 
         _ballotInfoURL.value = _voterInfoResponse.value?.state?.get(0)?.electionAdministrationBody?.ballotInfoUrl!!
-
-
     }
     //TODO: Add var and methods to populate voter info
 
@@ -113,5 +111,10 @@ class VoterInfoViewModel(private val dataSource: ElectionDao, private val divisi
     /**
      * Hint: The saved state can be accomplished in multiple ways. It is directly related to how elections are saved/removed from the database.
      */
+
+    fun onClickFollowElectionButton(){
+
+
+    }
 
 }
