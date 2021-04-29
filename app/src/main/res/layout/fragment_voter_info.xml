@@ -56,6 +56,8 @@
             android:id="@+id/state_locations"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:linksClickable="true"
+            android:textColorLink="@color/quantum_amber600"
             android:text="@string/voting_locations_text"
            android:onClick="@{()-> viewModel.onVotingLocationLinkClick()}"
             app:layout_constraintStart_toStartOf="@id/election_date"
@@ -93,6 +95,17 @@
             android:layout_height="wrap_content"
             app:layout_constraintStart_toStartOf="@id/election_date"
             app:layout_constraintTop_toBottomOf="@id/state_correspondence_header" />
+
+        <Button
+            android:id="@+id/button"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:layout_marginEnd="8dp"
+            android:text="Button"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            tools:layout_editor_absoluteY="636dp" />
 
         <!-- TODO: Add button to save election to Room -->
 
