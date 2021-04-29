@@ -68,7 +68,7 @@ class VoterInfoViewModel(private val dataSource: ElectionDao, private val divisi
         viewModelScope.launch {
 
             _voterInfoResponse.value = CivicsApi.retrofitService.voterInfoQuery(address, electionId)
-setURL()
+
             Timber.i("The voter response is${_voterInfoResponse.value}")
         }
     }
@@ -90,10 +90,7 @@ setURL()
     }
 
 
-    fun setURL (){
-        _votingLocationURL.value = _voterInfoResponse.value?.state?.get(0)?.electionAdministrationBody?.votingLocationFinderUrl!!
-        _ballotInfoURL.value = _voterInfoResponse.value?.state?.get(0)?.electionAdministrationBody?.ballotInfoUrl!!
-    }
+   
 
     fun onVotingLocationLinkClick() {
 
