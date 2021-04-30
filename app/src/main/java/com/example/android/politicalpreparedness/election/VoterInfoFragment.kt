@@ -9,6 +9,7 @@ import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.ViewModelProviders
 import androidx.navigation.fragment.navArgs
+import com.example.android.politicalpreparedness.R
 import com.example.android.politicalpreparedness.database.ElectionDatabase
 import com.example.android.politicalpreparedness.databinding.FragmentVoterInfoBinding
 
@@ -67,7 +68,31 @@ class VoterInfoFragment : Fragment() {
 
         }
         //TODO: Handle save button UI state
+
+        viewModel.followElectionButtonClicked.observe(viewLifecycleOwner){ isClicked ->
+
+            //set text to 'Unfollow Election'
+            if (isClicked){
+
+               binding.followElectionButton.text = getString(R.string. unfollow_election_text)
+
+            }
+
+
+            //show the button
+            else{
+                //set text to 'Follow Election'
+
+                binding.followElectionButton.text = getString(R.string. unfollow_election_text)
+            }
+
+        }
         //TODO: cont'd Handle save button clicks
+
+        binding.followElectionButton.setOnClickListener {
+
+            viewModel.onClickFollowElectionButton()
+        }
 
         return binding.root
     }

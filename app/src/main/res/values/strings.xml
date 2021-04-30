@@ -8,6 +8,8 @@
     <string name="election_info_text">Election Information</string>
     <string name="voting_locations_text">Voting Locations</string>
     <string name="ballot_info_text">Ballot Information</string>
+    <string name="follow_election_text">Follow Election</string>
+    <string name="unfollow_election_text">Unfollow Election</string>
 
     <!-- TODO: Add necessary string values -->
 

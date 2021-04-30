@@ -39,9 +39,10 @@ class VoterInfoViewModel(private val dataSource: ElectionDao, private val divisi
     val ballotInfoURL: LiveData<String>
         get() = _ballotInfoURL
 
-    private val _followButtonClicked = MutableLiveData<Boolean>()
-    val followButtonClicked: LiveData<Boolean>
-    get() =_followButtonClicked
+    private val _followElectionButtonClicked = MutableLiveData<Boolean>()
+    val followElectionButtonClicked: LiveData<Boolean>
+    get() =_followElectionButtonClicked
+
 
 
     init {
@@ -113,6 +114,16 @@ class VoterInfoViewModel(private val dataSource: ElectionDao, private val divisi
      */
 
     fun onClickFollowElectionButton(){
+_followElectionButtonClicked.value = true
+
+    }
+
+
+    fun saveElection(){
+
+
+    }
+    fun removeElection(){
 
 
     }

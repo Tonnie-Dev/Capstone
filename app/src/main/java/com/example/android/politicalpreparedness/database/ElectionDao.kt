@@ -33,7 +33,10 @@ interface ElectionDao {
 
     //TODO: Add delete query
 
-    //TODO: Add clear query
 
+
+    //TODO: Add clear query
+    @Query("DELETE FROM election_table")
+    fun clearElections()
 
 }
