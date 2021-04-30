@@ -47,6 +47,7 @@ class VoterInfoViewModel(private val dataSource: ElectionDao, private val divisi
     val isElectionFollowed:LiveData<Boolean>
     get() = _isElectionFollowed
 
+    private var buttonModeFollow = true
 
 
     init {
@@ -118,18 +119,32 @@ class VoterInfoViewModel(private val dataSource: ElectionDao, private val divisi
      */
 
     fun onClickFollowElectionButton(){
-_followElectionButtonClicked.value = true
+
+       if (buttonModeFollow){
+
+
+           followElection()
+
+           buttonModeFollow = false
+       }
+
+
+       unfollowElection()
+        buttonModeFollow = true
 
     }
 
 
-    fun saveElection(){
+    private fun followElection(){
 
 
     }
-    fun removeElection(){
+    private fun unfollowElection(){
 
 
     }
+
+
+
 
 }
