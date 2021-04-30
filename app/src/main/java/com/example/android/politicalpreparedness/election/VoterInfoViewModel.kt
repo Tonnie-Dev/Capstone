@@ -43,6 +43,10 @@ class VoterInfoViewModel(private val dataSource: ElectionDao, private val divisi
     val followElectionButtonClicked: LiveData<Boolean>
     get() =_followElectionButtonClicked
 
+    private val _isElectionFollowed = MutableLiveData<Boolean>(false)
+    val isElectionFollowed:LiveData<Boolean>
+    get() = _isElectionFollowed
+
 
 
     init {
