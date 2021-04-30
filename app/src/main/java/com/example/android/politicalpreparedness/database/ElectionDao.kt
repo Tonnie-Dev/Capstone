@@ -9,7 +9,7 @@ interface ElectionDao {
 
 
     @Query("SELECT * FROM election_table WHERE id =:key")
-    fun getElectionById(key: Int):Election
+    fun getElectionById(key: Int): Election
 
 
     /*insert a list of elections fetched from the network into the database. If and
@@ -18,21 +18,15 @@ interface ElectionDao {
     fun insertElections(elections: List<Election>)
 
 
-
-
     @Query("SELECT * FROM election_table ORDER BY electionDay")
     fun getAllSavedElections(): LiveData<List<Election>>
 
 
-
-
-
-
-
-
+    
 
     //TODO: Add delete query
-
+    @Query("DELETE FROM election_table WHERE id = :id")
+    fun deleteElections(id: Int)
 
 
     //TODO: Add clear query
