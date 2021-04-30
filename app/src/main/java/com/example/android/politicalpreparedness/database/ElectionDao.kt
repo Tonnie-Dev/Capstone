@@ -18,11 +18,12 @@ interface ElectionDao {
     fun insertElections(elections: List<Election>)
 
 
-    @Query("SELECT * FROM election_table ORDER BY electionDay")
+    @Query("SELECT * FROM election_table ORDER BY electionDay ASC")
     fun getAllSavedElections(): LiveData<List<Election>>
 
-
-    
+    @Query("SELECT * FROM election_table WHERE id in (SELECT * FROM followed_elections_table) ORDER BY electionDay DESC")
+    fun getFollowedElections(): LiveData<List<Election>>
+   
 
     //TODO: Add delete query
     @Query("DELETE FROM election_table WHERE id = :id")
