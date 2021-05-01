@@ -22,7 +22,7 @@ interface ElectionDao {
     fun getElectionById(key: Int): Election
 
     @Query("SELECT * FROM election_table ORDER BY electionDay ASC")
-    fun getAllSavedElections(): LiveData<List<Election>>
+    fun getAllElections(): LiveData<List<Election>>
 
     @Query("SELECT * FROM election_table WHERE id in (SELECT * FROM followed_elections_table) ")
     fun getFollowedElections(): LiveData<List<Election>>

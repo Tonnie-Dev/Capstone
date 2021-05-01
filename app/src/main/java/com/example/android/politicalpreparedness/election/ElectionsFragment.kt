@@ -54,6 +54,13 @@ class ElectionsFragment : Fragment() {
        (it.id, it.division))
         })
 
+        binding.savedRecycler.adapter = ElectionListAdapter(ElectionListener {
+
+
+
+            findNavController().navigate(ElectionsFragmentDirections.actionElectionsFragmentToVoterInfoFragment
+            (it.id, it.division))
+        })
 
         //TODO: Link elections to voter info
 

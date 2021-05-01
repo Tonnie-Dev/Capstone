@@ -8,7 +8,7 @@ import timber.log.Timber
 
 class ElectionsRepo(private val database: ElectionDatabase) {
 
-val savedElections = database.electionDao.getAllSavedElections()
+val savedElections = database.electionDao.getAllElections()
     suspend fun getUpcomingElections() {
 
         withContext(IO) {
