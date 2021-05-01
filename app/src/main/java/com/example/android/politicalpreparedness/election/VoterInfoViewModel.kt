@@ -8,6 +8,7 @@ import com.example.android.politicalpreparedness.database.ElectionDao
 import com.example.android.politicalpreparedness.network.CivicsApi
 import com.example.android.politicalpreparedness.network.models.Division
 import com.example.android.politicalpreparedness.network.models.Election
+import com.example.android.politicalpreparedness.network.models.FollowedElection
 import com.example.android.politicalpreparedness.network.models.VoterInfoResponse
 import kotlinx.coroutines.Dispatchers.IO
 import kotlinx.coroutines.launch
@@ -51,9 +52,7 @@ class VoterInfoViewModel(private val dao: ElectionDao, private val division: Div
 
         getNetworkVoterInfo()
         getElectionFromDatabase(electionId)
-
     }
-
 
     private fun getElectionFromDatabase(id: Int) {
         viewModelScope.launch {
@@ -67,7 +66,6 @@ class VoterInfoViewModel(private val dao: ElectionDao, private val division: Div
         }
 
     }
-
 
     private fun getNetworkVoterInfo() {
 
@@ -132,11 +130,7 @@ val election = _voterInfoResponse.value?.election
            buttonModeFollow = true
        }
 
-
-
-
     }
-
 
     private fun followElection(election: Election){
 
@@ -144,7 +138,7 @@ val election = _voterInfoResponse.value?.election
 
             withContext(IO) {
 
-                dao.insertFollowedElection(election)
+                dao.insertFollowedElection(FollowedElection(election.id))
                 _isElectionFollowed.postValue(true)
             }
 
@@ -161,9 +155,7 @@ val election = _voterInfoResponse.value?.election
                 _isElectionFollowed.postValue(false)
 
             }
-
         }
-
     }
 
 
