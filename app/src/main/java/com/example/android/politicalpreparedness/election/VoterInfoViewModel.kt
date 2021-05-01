@@ -145,7 +145,6 @@ val election = _voterInfoResponse.value?.election
 
         }
 
-
     }
     private fun unfollowElection(id: Int){
 
@@ -157,6 +156,14 @@ val election = _voterInfoResponse.value?.election
 
             }
         }
+    }
+
+
+
+    fun electionItemClickFromRecyclerView(id:Int){
+
+
+
     }
 
 
