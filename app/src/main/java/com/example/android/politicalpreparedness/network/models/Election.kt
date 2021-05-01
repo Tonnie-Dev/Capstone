@@ -14,4 +14,4 @@ data class Election(
 
 
 @Entity(tableName = "followed_elections_table")
-data class FollowedElections(@PrimaryKey val id: Int)
+data class FollowedElection(@PrimaryKey val id: Int)

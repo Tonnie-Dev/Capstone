@@ -15,7 +15,7 @@ interface ElectionDao {
 
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
-    fun insertFollowedElection( followedElectionId: Election)
+    fun insertFollowedElection( followedElection: Election)
 
     @Query("SELECT * FROM election_table WHERE id =:key")
     fun getElectionById(key: Int): Election
@@ -23,10 +23,10 @@ interface ElectionDao {
     @Query("SELECT * FROM election_table ORDER BY electionDay ASC")
     fun getAllSavedElections(): LiveData<List<Election>>
 
-    @Query("SELECT * FROM election_table WHERE id in (SELECT * FROM followed_elections_table) ORDER BY electionDay DESC")
+    @Query("SELECT * FROM election_table WHERE id in (SELECT * FROM followed_elections_table) ")
     fun getFollowedElections(): LiveData<List<Election>>
 
-    @Query("DELETE FROM election_table WHERE id = :id")
+    @Query("DELETE FROM followed_elections_table WHERE id = :id")
     fun deleteElections(id: Int)
 
     @Query("DELETE FROM election_table")
