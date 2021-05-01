@@ -21,19 +21,10 @@ import timber.log.Timber
   class ElectionsViewModel(val database:ElectionDatabase): ViewModel() {
 
 
-  private lateinit var repo: ElectionsRepo
-init {
-  repo = ElectionsRepo(database)
+  private var repo: ElectionsRepo = ElectionsRepo(database)
 
 
-    Timber.i("Init ViewModel Called")
-}
-
-
-
-
-
-    //TODO: Create live data val for upcoming elections
+      //TODO: Create live data val for upcoming elections
 val upComingElections = repo.savedElections
 
 
