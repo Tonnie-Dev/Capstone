@@ -118,6 +118,7 @@ class VoterInfoViewModel(private val dao: ElectionDao, private val division: Div
        if (buttonModeFollow){
 
 val election = _voterInfoResponse.value?.election
+
           election?.let {
 
               followElection(it)

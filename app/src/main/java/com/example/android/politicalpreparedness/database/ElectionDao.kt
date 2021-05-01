@@ -24,7 +24,7 @@ interface ElectionDao {
     @Query("SELECT * FROM election_table ORDER BY electionDay ASC")
     fun getAllElections(): LiveData<List<Election>>
 
-    @Query("SELECT * FROM election_table WHERE id in (SELECT * FROM followed_elections_table) ")
+    @Query("SELECT * FROM election_table WHERE id in (SELECT * FROM followed_elections_table) ORDER BY name ASC ")
     fun getFollowedElections(): LiveData<List<Election>>
 
     @Query("DELETE FROM followed_elections_table WHERE id = :id")

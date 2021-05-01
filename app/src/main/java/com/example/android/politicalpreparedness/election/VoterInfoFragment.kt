@@ -15,11 +15,11 @@ import com.example.android.politicalpreparedness.databinding.FragmentVoterInfoBi
 
 class VoterInfoFragment : Fragment() {
 
-    private val args:VoterInfoFragmentArgs by navArgs()
+    private val args: VoterInfoFragmentArgs by navArgs()
 
-    private lateinit var viewModel:VoterInfoViewModel
+    private lateinit var viewModel: VoterInfoViewModel
 
-    private lateinit var binding:FragmentVoterInfoBinding
+    private lateinit var binding: FragmentVoterInfoBinding
     override fun onCreateView(inflater: LayoutInflater,
                               container: ViewGroup?,
                               savedInstanceState: Bundle?): View {
@@ -27,7 +27,7 @@ class VoterInfoFragment : Fragment() {
         binding = FragmentVoterInfoBinding.inflate(inflater)
         //TODO: Add ViewModel values and create ViewModel
         val database = ElectionDatabase.getInstance(requireContext())
-        val factory = VoterInfoViewModelFactory(database.electionDao,args.argDivision,args
+        val factory = VoterInfoViewModelFactory(database.electionDao, args.argDivision, args
                 .argElectionId)
         viewModel = ViewModelProvider(this, factory).get(VoterInfoViewModel::class.java)
 
@@ -41,16 +41,12 @@ class VoterInfoFragment : Fragment() {
         //TODO: Populate voter info -- hide views without provided data.
         /**
         Hint: You will need to ensure proper data is provided from previous fragment.
-        */
+         */
 
 
-
-//viewModel.election.observe(viewLifecycleOwner){}
+        //viewModel.election.observe(viewLifecycleOwner){}
         //TODO: Handle loading of URLs
-        viewModel.votingLocationURL.observe(viewLifecycleOwner){ url ->
-
-
-
+        viewModel.votingLocationURL.observe(viewLifecycleOwner) { url ->
 
             binding.stateLocations.setOnClickListener {
 
@@ -58,7 +54,7 @@ class VoterInfoFragment : Fragment() {
             }
         }
 
-        viewModel.ballotInfoURL.observe(viewLifecycleOwner){ url ->
+        viewModel.ballotInfoURL.observe(viewLifecycleOwner) { url ->
 
 
             binding.stateBallot.setOnClickListener {
@@ -69,21 +65,20 @@ class VoterInfoFragment : Fragment() {
         }
         //TODO: Handle save button UI state
 
-        viewModel.isElectionFollowed.observe(viewLifecycleOwner){ isFollowed ->
+        viewModel.isElectionFollowed.observe(viewLifecycleOwner) { isFollowed ->
 
             //set text to 'Unfollow Election'
-            if (isFollowed){
+            if (isFollowed) {
 
-               binding.followElectionButton.text = getString(R.string.unfollow_election_text)
+                binding.followElectionButton.text = getString(R.string.unfollow_election_text)
 
             }
 
 
-            //show the button
-            else{
-                //set text to 'Follow Election'
+            //set text to 'Follow Election'
+            else {
 
-                binding.followElectionButton.text = getString(R.string. follow_election_text)
+                binding.followElectionButton.text = getString(R.string.follow_election_text)
             }
 
         }

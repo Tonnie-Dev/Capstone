@@ -25,22 +25,11 @@ import timber.log.Timber
 init {
   repo = ElectionsRepo(database)
 
-  test()
+
     Timber.i("Init ViewModel Called")
 }
 
 
-     fun  test(){
-
-         Timber.i("test Called")
-      viewModelScope.launch {
-
-          Timber.i("inside viewModelScope")
-        repo.getRepInfo()
-        repo.getUpcomingElections()
-        repo.getVoterInfo()
-      }
-    }
 
 
 
@@ -53,19 +42,6 @@ val upComingElections = repo.savedElections
 val followedElections = database.electionDao.getFollowedElections()
 
 
-     /*   fun getFollowedElections(): LiveData<List<Election>?> {
-
-            viewModelScope.launch {
-
-
-                withContext(IO){
-
-                    database.electionDao.getFollowedElections()
-
-                }
-            }
-
-        }*/
 
     //TODO: Create val and functions to populate live data for upcoming elections from the API and saved elections from local database
 

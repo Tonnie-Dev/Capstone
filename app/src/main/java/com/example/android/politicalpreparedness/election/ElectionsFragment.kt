@@ -33,7 +33,7 @@ class ElectionsFragment : Fragment() {
         val factory = ElectionsViewModelFactory(db)
 
         viewModel = ViewModelProvider(this, factory).get(ElectionsViewModel::class.java)
-        viewModel.test()
+        //viewModel.test()
 
         //TODO: Add binding values
 
@@ -48,15 +48,13 @@ class ElectionsFragment : Fragment() {
         //set upcoming recyclerview Adapter
         binding.upcomingRecycler.adapter = ElectionListAdapter(ElectionListener {
 
-
-
        findNavController().navigate(ElectionsFragmentDirections.actionElectionsFragmentToVoterInfoFragment
        (it.id, it.division))
         })
 
+
+        //set followed recyclerview Adapter
         binding.savedRecycler.adapter = ElectionListAdapter(ElectionListener {
-
-
 
             findNavController().navigate(ElectionsFragmentDirections.actionElectionsFragmentToVoterInfoFragment
             (it.id, it.division))
