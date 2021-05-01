@@ -13,9 +13,8 @@ import kotlinx.coroutines.Dispatchers.IO
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
 import timber.log.Timber
-import java.util.*
 
-class VoterInfoViewModel(private val dataSource: ElectionDao, private val division: Division,
+class VoterInfoViewModel(private val dao: ElectionDao, private val division: Division,
                          private val electionId: Int) :
         ViewModel() {
 
@@ -39,11 +38,9 @@ class VoterInfoViewModel(private val dataSource: ElectionDao, private val divisi
     val ballotInfoURL: LiveData<String>
         get() = _ballotInfoURL
 
-    private val _followElectionButtonClicked = MutableLiveData<Boolean>()
-    val followElectionButtonClicked: LiveData<Boolean>
-    get() =_followElectionButtonClicked
 
-    private val _isElectionFollowed = MutableLiveData<Boolean>(false)
+
+    private val _isElectionFollowed = MutableLiveData(false)
     val isElectionFollowed:LiveData<Boolean>
     get() = _isElectionFollowed
 
@@ -63,7 +60,7 @@ class VoterInfoViewModel(private val dataSource: ElectionDao, private val divisi
 
             withContext(IO) {
                 //Access Database on IO Coroutine Scope
-                _election.postValue(dataSource.getElectionById(id))
+                _election.postValue(dao.getElectionById(id))
             }
 
 
@@ -122,25 +119,50 @@ class VoterInfoViewModel(private val dataSource: ElectionDao, private val divisi
 
        if (buttonModeFollow){
 
+val election = _voterInfoResponse.value?.election
+          election?.let {
 
-           followElection()
+              followElection(it)
+          }
 
            buttonModeFollow = false
+       }else{
+
+           unfollowElection(electionId)
+           buttonModeFollow = true
        }
 
 
-       unfollowElection()
-        buttonModeFollow = true
-
-    }
-
-
-    private fun followElection(){
 
 
     }
-    private fun unfollowElection(){
 
+
+    private fun followElection(election: Election){
+
+        viewModelScope.launch {
+
+            withContext(IO) {
+
+                dao.insertFollowedElection(election)
+                _isElectionFollowed.postValue(true)
+            }
+
+        }
+
+
+    }
+    private fun unfollowElection(id: Int){
+
+        viewModelScope.launch {
+
+            withContext(IO) {
+                dao.deleteElections(id)
+                _isElectionFollowed.postValue(false)
+
+            }
+
+        }
 
     }
 

@@ -69,12 +69,12 @@ class VoterInfoFragment : Fragment() {
         }
         //TODO: Handle save button UI state
 
-        viewModel.followElectionButtonClicked.observe(viewLifecycleOwner){ isClicked ->
+        viewModel.isElectionFollowed.observe(viewLifecycleOwner){ isFollowed ->
 
             //set text to 'Unfollow Election'
-            if (isClicked){
+            if (isFollowed){
 
-               binding.followElectionButton.text = getString(R.string. unfollow_election_text)
+               binding.followElectionButton.text = getString(R.string.unfollow_election_text)
 
             }
 
@@ -83,7 +83,7 @@ class VoterInfoFragment : Fragment() {
             else{
                 //set text to 'Follow Election'
 
-                binding.followElectionButton.text = getString(R.string. unfollow_election_text)
+                binding.followElectionButton.text = getString(R.string. follow_election_text)
             }
 
         }

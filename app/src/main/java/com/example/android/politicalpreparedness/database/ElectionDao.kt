@@ -13,8 +13,9 @@ interface ElectionDao {
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     fun insertElections(elections: List<Election>)
 
+
     @Insert(onConflict = OnConflictStrategy.REPLACE)
-    fun insertFollowedElection( followedElectionId: Int)
+    fun insertFollowedElection( followedElectionId: Election)
 
     @Query("SELECT * FROM election_table WHERE id =:key")
     fun getElectionById(key: Int): Election
