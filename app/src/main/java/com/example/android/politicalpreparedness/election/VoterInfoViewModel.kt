@@ -99,13 +99,13 @@ class VoterInfoViewModel(private val dao: ElectionDao, private val division: Div
     fun onVotingLocationLinkClick() {
         _votingLocationURL.value = _voterInfoResponse.value?.state?.get(0)?.electionAdministrationBody?.votingLocationFinderUrl!!
 
-        Timber.i("votingURL is ${_votingLocationURL.value}")
+
     }
 
     fun onBallotInfoLinkClick() {
 
         _ballotInfoURL.value = _voterInfoResponse.value?.state?.get(0)?.electionAdministrationBody?.ballotInfoUrl!!
-        Timber.i("votingURL is ${_ballotInfoURL.value}")
+
     }
     //TODO: Add var and methods to populate voter info
 

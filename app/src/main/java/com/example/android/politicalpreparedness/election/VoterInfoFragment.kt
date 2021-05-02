@@ -12,12 +12,14 @@ import androidx.navigation.fragment.navArgs
 import com.example.android.politicalpreparedness.R
 import com.example.android.politicalpreparedness.database.ElectionDatabase
 import com.example.android.politicalpreparedness.databinding.FragmentVoterInfoBinding
+import timber.log.Timber
 
 class VoterInfoFragment : Fragment() {
 
     private val args: VoterInfoFragmentArgs by navArgs()
 
     private lateinit var viewModel: VoterInfoViewModel
+   
 
     private lateinit var binding: FragmentVoterInfoBinding
     override fun onCreateView(inflater: LayoutInflater,
@@ -46,23 +48,25 @@ class VoterInfoFragment : Fragment() {
 
         //viewModel.election.observe(viewLifecycleOwner){}
         //TODO: Handle loading of URLs
+
+
+
+
         viewModel.votingLocationURL.observe(viewLifecycleOwner) { url ->
 
-            binding.stateLocations.setOnClickListener {
-
-                loadUrl(url)
-            }
+           loadUrl(url)
         }
 
-        viewModel.ballotInfoURL.observe(viewLifecycleOwner) { url ->
 
+        viewModel.ballotInfoURL.observe(viewLifecycleOwner) {url ->
 
-            binding.stateBallot.setOnClickListener {
-
-                loadUrl(url)
-            }
-
+            loadUrl(url)
         }
+
+
+
+
+
         //TODO: Handle save button UI state
 
         viewModel.isElectionFollowed.observe(viewLifecycleOwner) { isFollowed ->
