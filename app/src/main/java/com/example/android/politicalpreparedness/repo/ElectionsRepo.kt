@@ -8,14 +8,14 @@ import timber.log.Timber
 
 class ElectionsRepo(private val database: ElectionDatabase) {
 
-val savedElections = database.electionDao.getAllElections()
-    suspend fun getUpcomingElections() {
+//GET ELECTIONS FROM NETWORK INTO DATABASE
+    suspend fun refreshDatabaseElections() {
 
         withContext(IO) {
+
+            //get elections from Network
             val response = CivicsApi.retrofitService.electionQuery()
             val elections = response.elections
-
-            Timber.i("Election Query response is:$elections")
 
             //insert elections into database
             database.electionDao.insertElections(elections)
@@ -23,8 +23,7 @@ val savedElections = database.electionDao.getAllElections()
     }
 
 
-
-
-
+//EXPOSE THE DATABASE ELECTIONS AS LIVEDATA
+val upcomingElections = database.electionDao.getAllElections()
 
 }

@@ -1,7 +1,5 @@
 package com.example.android.politicalpreparedness.election
 
-import android.app.Application
-import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
@@ -11,31 +9,39 @@ import com.example.android.politicalpreparedness.repo.ElectionsRepo
 import kotlinx.coroutines.Dispatchers.IO
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
-import timber.log.Timber
 
 //TODO: Construct ViewModel and provide election datasource
 
 
+class ElectionsViewModel(val database: ElectionDatabase) : ViewModel() {
+
+    //create repo instance
+    private var repo: ElectionsRepo = ElectionsRepo(database)
 
 
-  class ElectionsViewModel(val database:ElectionDatabase): ViewModel() {
+    // create live data val for upcoming elections
+    val upComingElections: LiveData<List<Election>>
+        get() = repo.upcomingElections
 
 
-  private var repo: ElectionsRepo = ElectionsRepo(database)
+    // Create live data val for followed elections
+    val followedElections: LiveData<List<Election>>
+        get() = database.electionDao.getFollowedElections()
 
+// populate live data for upcoming elections from the API and saved
 
-      //TODO: Create live data val for upcoming elections
-val upComingElections = repo.savedElections
+    init {
 
+        viewModelScope.launch {
 
-    //TODO: Create live data val for saved elections
+            //switch to Background
+            withContext(IO) {
 
-val followedElections = database.electionDao.getFollowedElections()
+                repo.refreshDatabaseElections()
+            }
+        }
+    }
 
-
-
-    //TODO: Create val and functions to populate live data for upcoming elections from the API and saved elections from local database
-
-    //TODO: Create functions to navigate to saved or upcoming election voter info
+   //Create functions to navigate to saved or upcoming election voter info - not needed for now
 
 }

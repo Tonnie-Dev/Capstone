@@ -51,7 +51,7 @@ class ElectionsFragment : Fragment() {
        findNavController().navigate(ElectionsFragmentDirections.actionElectionsFragmentToVoterInfoFragment
        (it.id, it.division))
 
-            Timber.i("the passed id is ${it.id}, division is ${it.division} ")
+
         })
 
 
