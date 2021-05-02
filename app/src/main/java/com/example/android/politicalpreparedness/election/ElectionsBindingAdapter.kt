@@ -30,7 +30,6 @@ fun RecyclerView.bindRecyclerViewData(electionData: List<Election>?) {
 @BindingAdapter("followedElectionData")
 fun RecyclerView.getFollowedElections(electionData: List<Election>?){
 
-
     val adapter = this.adapter as ElectionListAdapter
 
     adapter.submitList(electionData)
