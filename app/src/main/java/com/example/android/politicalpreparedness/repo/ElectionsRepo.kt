@@ -24,25 +24,6 @@ val savedElections = database.electionDao.getAllElections()
 
 
 
-    suspend fun getVoterInfo() {
-
-        withContext(IO) {
-           /* val response = CivicsApi.retrofitService.voterInfoQuery()
-
-            Timber.i("Voter response is:$response")*/
-
-        }
-    }
-
-    suspend fun getRepInfo() {
-
-        withContext(IO) {
-           /* val response = CivicsApi.retrofitService.representativeInfoByAddress()
-
-            Timber.i("The RepInfo is :$response")*/
-
-        }
-    }
 
 
 
