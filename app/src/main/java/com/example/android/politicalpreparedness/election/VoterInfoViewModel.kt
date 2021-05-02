@@ -52,6 +52,7 @@ class VoterInfoViewModel(private val dao: ElectionDao, private val division: Div
 
         getNetworkVoterInfo()
         getElectionFromDatabase(electionId)
+        checkIdExistsInDatabase()
     }
 
     private fun getElectionFromDatabase(id: Int) {
@@ -117,12 +118,20 @@ class VoterInfoViewModel(private val dao: ElectionDao, private val division: Div
 
        if (buttonModeFollow){
 
-val election = _voterInfoResponse.value?.election
+/*val election = _voterInfoResponse.value?.election
 
           election?.let {
 
               followElection(it)
-          }
+          }*/
+
+              val election = _election.value
+
+           election?.let {
+
+               followElection(it)
+           }
+
 
            buttonModeFollow = false
        }else{
@@ -160,11 +169,25 @@ val election = _voterInfoResponse.value?.election
 
 
 
-    fun electionItemClickFromRecyclerView(id:Int){
+    private fun checkIdExistsInDatabase(){
+
+        viewModelScope.launch {
+
+          withContext(IO) {
+
+              _isElectionFollowed.postValue(dao.isElectionFollowed(electionId))
+              Timber.i("CheckIDExistsDatabase value is:  ${_isElectionFollowed.value }")
+          }
+
+        }
 
 
 
     }
+
+
+
+
 
 
 

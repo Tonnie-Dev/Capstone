@@ -12,13 +12,15 @@ interface ElectionDao {
     /*insert a list of elections fetched from the network into the database. If and
     election entry is present in database then it is overwritten using REPLACE Strategy*/
 
-    //FOLLOWED_ELECTION
-
+    //FOLLOWED_ELECTION_QUERIES
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     fun insertFollowedElection(followedElection: FollowedElection)
 
 
-    //ALL_ELECTIONS
+    @Query("SELECT EXISTS (SELECT 1 FROM followed_elections_table WHERE id = :id)")
+    fun isElectionFollowed(id: Int):Boolean
+
+    //ALL_ELECTIONS_QUERIES
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     fun insertElections(elections: List<Election>)
 
