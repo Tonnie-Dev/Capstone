@@ -19,7 +19,7 @@ class VoterInfoFragment : Fragment() {
     private val args: VoterInfoFragmentArgs by navArgs()
 
     private lateinit var viewModel: VoterInfoViewModel
-   
+
 
     private lateinit var binding: FragmentVoterInfoBinding
     override fun onCreateView(inflater: LayoutInflater,
@@ -45,29 +45,19 @@ class VoterInfoFragment : Fragment() {
         Hint: You will need to ensure proper data is provided from previous fragment.
          */
 
-
-        //viewModel.election.observe(viewLifecycleOwner){}
-        //TODO: Handle loading of URLs
-
-
-
+        //Handle loading of URLs
 
         viewModel.votingLocationURL.observe(viewLifecycleOwner) { url ->
-
-           loadUrl(url)
-        }
-
-
-        viewModel.ballotInfoURL.observe(viewLifecycleOwner) {url ->
 
             loadUrl(url)
         }
 
+        viewModel.ballotInfoURL.observe(viewLifecycleOwner) { url ->
 
+            loadUrl(url)
+        }
 
-
-
-        //TODO: Handle save button UI state
+        // Handle save button UI state
 
         viewModel.isElectionFollowed.observe(viewLifecycleOwner) { isFollowed ->
 
@@ -86,8 +76,8 @@ class VoterInfoFragment : Fragment() {
             }
 
         }
-        //TODO: cont'd Handle save button clicks
 
+        //Handle save button clicks
         binding.followElectionButton.setOnClickListener {
 
             viewModel.onClickFollowElectionButton()
@@ -96,7 +86,7 @@ class VoterInfoFragment : Fragment() {
         return binding.root
     }
 
-    //TODO: Create method to load URL intents
+    // Create method to load URL intents
 
     private fun loadUrl(url: String) {
         val intent = Intent(Intent.ACTION_VIEW, Uri.parse(url))
