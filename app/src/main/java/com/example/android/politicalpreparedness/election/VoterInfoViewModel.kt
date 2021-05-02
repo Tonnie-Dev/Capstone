@@ -40,12 +40,11 @@ class VoterInfoViewModel(private val dao: ElectionDao, private val division: Div
         get() = _ballotInfoURL
 
 
-
     private val _isElectionFollowed = MutableLiveData(false)
-    val isElectionFollowed:LiveData<Boolean>
-    get() = _isElectionFollowed
+    val isElectionFollowed: LiveData<Boolean>
+        get() = _isElectionFollowed
 
-    private var buttonModeFollow = true
+    private var buttonModeFollow: Boolean? = null
 
 
     init {
@@ -53,6 +52,7 @@ class VoterInfoViewModel(private val dao: ElectionDao, private val division: Div
         getNetworkVoterInfo()
         getElectionFromDatabase(electionId)
         checkIdExistsInDatabase()
+        buttonModeFollow = _isElectionFollowed.value
     }
 
     private fun getElectionFromDatabase(id: Int) {
@@ -73,9 +73,11 @@ class VoterInfoViewModel(private val dao: ElectionDao, private val division: Div
         val address = getAddressFromDivision(division)
         viewModelScope.launch {
 
-            _voterInfoResponse.value = CivicsApi.retrofitService.voterInfoQuery(address, electionId)
+            withContext(IO) {
+                _voterInfoResponse.postValue(CivicsApi.retrofitService.voterInfoQuery(address,
+                                                                                      electionId))
+            }
 
-            Timber.i("The voter response is${_voterInfoResponse.value}")
         }
     }
 
@@ -92,7 +94,6 @@ class VoterInfoViewModel(private val dao: ElectionDao, private val division: Div
         Timber.i("The Address is $address")
         return address
     }
-
 
 
     fun onVotingLocationLinkClick() {
@@ -114,82 +115,80 @@ class VoterInfoViewModel(private val dao: ElectionDao, private val division: Div
      * Hint: The saved state can be accomplished in multiple ways. It is directly related to how elections are saved/removed from the database.
      */
 
-    fun onClickFollowElectionButton(){
-
-       if (buttonModeFollow){
-
-/*val election = _voterInfoResponse.value?.election
-
-          election?.let {
-
-              followElection(it)
-          }*/
-
-              val election = _election.value
-
-           election?.let {
-
-               followElection(it)
-           }
+    fun onClickFollowElectionButton() {
 
 
-           buttonModeFollow = false
-       }else{
 
-           unfollowElection(electionId)
-           buttonModeFollow = true
-       }
+        if (_isElectionFollowed.value == true) {
+
+
+            unfollowElection(electionId)
+           
+
+
+
+        } else {
+
+            val election = _election.value
+
+            election?.let {
+
+                followElection(it)
+               // buttonModeFollow = false
+            }
+
+
+
+        }
 
     }
 
-    private fun followElection(election: Election){
+    private fun followElection(election: Election) {
+        _isElectionFollowed.value = true
 
         viewModelScope.launch {
 
             withContext(IO) {
 
                 dao.insertFollowedElection(FollowedElection(election.id))
-                _isElectionFollowed.postValue(true)
+                //   _isElectionFollowed.postValue(true)
             }
 
         }
 
     }
-    private fun unfollowElection(id: Int){
+
+    private fun unfollowElection(id: Int) {
+
+        _isElectionFollowed.value = false
 
         viewModelScope.launch {
 
             withContext(IO) {
                 dao.deleteElections(id)
-                _isElectionFollowed.postValue(false)
+                //_isElectionFollowed.postValue(false)
 
             }
+
         }
+
     }
 
 
-
-    private fun checkIdExistsInDatabase(){
+    private fun checkIdExistsInDatabase() {
 
         viewModelScope.launch {
 
-          withContext(IO) {
+            withContext(IO) {
 
-              _isElectionFollowed.postValue(dao.isElectionFollowed(electionId))
-              Timber.i("CheckIDExistsDatabase value is:  ${_isElectionFollowed.value }")
-          }
+                _isElectionFollowed.postValue(dao.isElectionFollowed(electionId))
+
+            }
 
         }
 
 
-
     }
-
-
-
-
-
-
 
 
 }
