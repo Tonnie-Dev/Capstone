@@ -2,19 +2,25 @@ package com.example.android.politicalpreparedness.representative
 
 import android.Manifest
 import android.content.Context
+import android.content.Intent
 import android.location.Geocoder
 import android.location.Location
+import android.location.LocationManager
+import android.os.Build
 import android.os.Bundle
+import android.provider.Settings
 import android.view.*
 import android.view.inputmethod.InputMethodManager
 import androidx.activity.result.contract.ActivityResultContract
 import androidx.activity.result.contract.ActivityResultContracts
+import androidx.annotation.RequiresApi
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import com.example.android.politicalpreparedness.databinding.FragmentRepresentativeBinding
 import com.example.android.politicalpreparedness.databinding.FragmentVoterInfoBinding
 import com.example.android.politicalpreparedness.network.models.Address
 import com.google.android.gms.location.*
+import com.google.android.material.snackbar.Snackbar
 import java.util.Locale
 import java.util.concurrent.TimeUnit
 
@@ -141,6 +147,42 @@ class DetailFragment : Fragment() {
         val imm = activity?.getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
         imm.hideSoftInputFromWindow(view!!.windowToken, 0)
     }
+
+
+    @RequiresApi(Build.VERSION_CODES.M)
+    private fun isLocationEnabled(): Boolean {
+        val locationManager = requireActivity().getSystemService(LocationManager::class.java)
+        return locationManager.isProviderEnabled(LocationManager.GPS_PROVIDER) || locationManager
+                .isProviderEnabled(LocationManager.NETWORK_PROVIDER)
+    }
+
+    @RequiresApi(Build.VERSION_CODES.M)
+    private fun showLocationSettingDialog() {
+
+        if (!isLocationEnabled()) {
+
+            val materialAlertDialogBuilder = MaterialAlertDialogBuilder(requireActivity())
+                    .setTitle(R.string.enable_location)
+                    .setMessage(R.string.enable_dialog_message)
+                    .setPositiveButton(getString(R.string.settings)) { _, _ ->
+                        val intent = Intent(Settings.ACTION_LOCATION_SOURCE_SETTINGS)
+                        startActivity(intent)
+                    }
+                    .setNegativeButton(getString(R.string.exit)) { _, _ ->
+                        Snackbar.make(
+                                binding.root, R.string.location_required_error, Snackbar
+                                .LENGTH_INDEFINITE
+                        )
+                                .setAction(getString(android.R.string.ok)) {}
+                                .show()
+                    }
+                    .create()
+            materialAlertDialogBuilder.show()
+        }
+    }
+
+
+
 
 
 }
