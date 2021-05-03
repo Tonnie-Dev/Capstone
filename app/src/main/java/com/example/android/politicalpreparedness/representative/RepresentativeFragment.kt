@@ -1,28 +1,33 @@
 package com.example.android.politicalpreparedness.representative
 
 import android.Manifest
+import android.annotation.SuppressLint
 import android.content.Context
 import android.content.Intent
 import android.location.Geocoder
 import android.location.Location
 import android.location.LocationManager
+import android.net.Uri
 import android.os.Build
 import android.os.Bundle
+import android.os.Looper
 import android.provider.Settings
 import android.view.*
 import android.view.inputmethod.InputMethodManager
-import androidx.activity.result.contract.ActivityResultContract
+import android.widget.Toast
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.annotation.RequiresApi
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
+import com.android.volley.BuildConfig
 import com.example.android.politicalpreparedness.databinding.FragmentRepresentativeBinding
-import com.example.android.politicalpreparedness.databinding.FragmentVoterInfoBinding
 import com.example.android.politicalpreparedness.network.models.Address
 import com.google.android.gms.location.*
+import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import com.google.android.material.snackbar.Snackbar
-import java.util.Locale
+import java.util.*
 import java.util.concurrent.TimeUnit
+import com.example.android.politicalpreparedness.R
 
 class DetailFragment : Fragment() {
 
@@ -44,12 +49,12 @@ class DetailFragment : Fragment() {
 
     private val locationCallback = object : LocationCallback() {
 
-        override fun onLocationResult(result: LocationResult?) {
-            super.onLocationResult(result)
+        override fun onLocationResult(locationResult: LocationResult?) {
+            super.onLocationResult(locationResult)
 
+            if (locationResult != null) {
 
-            if (result != null) {
-
+                lastKnownLocation = locationResult.lastLocation
 
             }
         }
@@ -64,10 +69,46 @@ class DetailFragment : Fragment() {
         if (isGranted) {
             //get last known location permission
 
+            getLastKnownLocation()
         } else {
 
-            shouldShowRequestPermissionRationale(Manifest.permission.ACCESS_FINE_LOCATION)
+            showRationale(Manifest.permission.ACCESS_FINE_LOCATION)
         }
+    }
+
+    @SuppressLint("MissingPermission")
+    private fun getLastKnownLocation() {
+
+        //get last known location from fusedLocationProviderClient returned as a task
+        fusedLocationProviderClient.lastLocation.addOnSuccessListener {
+
+            lastLoc ->
+
+            if (lastLoc != null) {
+
+                //initialize lastKnownLocation from fusedLocationProviderClient
+                lastKnownLocation = lastLoc
+            } else {
+
+                //prompt user to turn on location
+
+                showLocationSettingDialog()
+
+                //when user turns on location trigger updates to get a location
+
+                fusedLocationProviderClient.requestLocationUpdates(locationRequest,
+                                                                   locationCallback,
+                                                                   Looper.getMainLooper())
+            }
+
+            //in case of error Toast the error in a short Toast message
+        }.addOnFailureListener {
+
+
+            Toast.makeText(requireActivity(), "${it.message}", Toast.LENGTH_SHORT).show()
+        }
+
+
     }
 
     companion object {
@@ -109,7 +150,12 @@ class DetailFragment : Fragment() {
         binding.buttonSearch.setOnClickListener {}
 
         //use my location button
-        binding.buttonLocation.setOnClickListener { }
+        binding.buttonLocation.setOnClickListener {
+
+            //request for permission if not already granted
+
+            fineLocationPermissionLauncher.launch(Manifest.permission.ACCESS_FINE_LOCATION)
+        }
 
 
         return binding.root
@@ -148,7 +194,7 @@ class DetailFragment : Fragment() {
         imm.hideSoftInputFromWindow(view!!.windowToken, 0)
     }
 
-
+    //Check if location is enabled
     @RequiresApi(Build.VERSION_CODES.M)
     private fun isLocationEnabled(): Boolean {
         val locationManager = requireActivity().getSystemService(LocationManager::class.java)
@@ -156,13 +202,14 @@ class DetailFragment : Fragment() {
                 .isProviderEnabled(LocationManager.NETWORK_PROVIDER)
     }
 
+    //settings Dialog
     @RequiresApi(Build.VERSION_CODES.M)
     private fun showLocationSettingDialog() {
 
         if (!isLocationEnabled()) {
 
             val materialAlertDialogBuilder = MaterialAlertDialogBuilder(requireActivity())
-                    .setTitle(R.string.enable_location)
+                    .setTitle(getString(R.string.enable_location))
                     .setMessage(R.string.enable_dialog_message)
                     .setPositiveButton(getString(R.string.settings)) { _, _ ->
                         val intent = Intent(Settings.ACTION_LOCATION_SOURCE_SETTINGS)
@@ -182,7 +229,61 @@ class DetailFragment : Fragment() {
     }
 
 
+    private fun showRationale(permission: String) {
+        if (shouldShowRequestPermissionRationale(permission)) {
+            val materialAlertDialogBuilder = MaterialAlertDialogBuilder(
+                    requireActivity()
+            ).setTitle("Location Permission")
+                    .setMessage(getString(R.string.rationale_for_location_permissions))
+                    .setPositiveButton(getString(R.string.rationale_for_location_permissions)) { dialog, _ ->
 
+                        startActivity(Intent().apply {
+
+                            action = Settings.ACTION_APPLICATION_DETAILS_SETTINGS
+                            data = Uri.fromParts("package", BuildConfig.APPLICATION_ID, null)
+                            flags = Intent.FLAG_ACTIVITY_NEW_TASK
+                        })
+
+                        dialog.dismiss()
+
+                    }
+                    .setNegativeButton(android.R.string.cancel) { dialog, _ ->
+                        Snackbar.make(
+                                binding.root, getString(R.string.location_required_error),
+                                Snackbar.LENGTH_INDEFINITE
+                        )
+                                .setAction(android.R.string.ok) {
+
+                                    showSnackBar(
+                                            getString(R.string.rationale_for_location_permissions)
+                                    )
+                                }
+
+                    }
+                    .create()
+            materialAlertDialogBuilder.show()
+
+        }
+    }
+
+
+    private fun showSnackBar(message: String) {
+        Snackbar.make(
+                binding.root, getString(R.string.location_required_error),
+                Snackbar.LENGTH_INDEFINITE
+        )
+                .setAction(getString(R.string.settings)) {
+                    startActivity(Intent().apply {
+
+                        action = Settings.ACTION_APPLICATION_DETAILS_SETTINGS
+                        data = Uri.fromParts("package", BuildConfig.APPLICATION_ID, null)
+                        flags = Intent.FLAG_ACTIVITY_NEW_TASK
+                    })
+
+                }
+                .show()
+
+    }
 
 
 }
