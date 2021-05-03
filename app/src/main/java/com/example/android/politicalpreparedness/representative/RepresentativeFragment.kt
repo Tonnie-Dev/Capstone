@@ -11,7 +11,10 @@ import androidx.fragment.app.viewModels
 import com.example.android.politicalpreparedness.databinding.FragmentRepresentativeBinding
 import com.example.android.politicalpreparedness.databinding.FragmentVoterInfoBinding
 import com.example.android.politicalpreparedness.network.models.Address
+import com.google.android.gms.location.FusedLocationProviderClient
+import com.google.android.gms.location.LocationCallback
 import com.google.android.gms.location.LocationRequest
+import com.google.android.gms.location.LocationResult
 import java.util.Locale
 import java.util.concurrent.TimeUnit
 
@@ -19,6 +22,32 @@ class DetailFragment : Fragment() {
 
     //VARS
     private lateinit var binding: FragmentRepresentativeBinding
+private lateinit var lastKnownLocation: Location
+
+
+    //Location Components
+    private lateinit var fusedLocationProviderClient: FusedLocationProviderClient
+
+    private val locationRequest = LocationRequest().apply {
+
+        priority = LocationRequest.PRIORITY_HIGH_ACCURACY
+        interval = TimeUnit.MINUTES.toMillis(5)
+        fastestInterval = TimeUnit.SECONDS.toMillis(1)
+    }
+
+
+    private val locationCallback = object : LocationCallback(){
+
+        override fun onLocationResult(result: LocationResult?) {
+            super.onLocationResult(result)
+
+
+            if (result != null){
+
+                
+            }
+        }
+    }
 
     companion object {
         //TODO: Add Constant for Location request
