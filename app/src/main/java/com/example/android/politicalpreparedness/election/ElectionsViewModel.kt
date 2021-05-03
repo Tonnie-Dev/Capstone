@@ -31,13 +31,15 @@ class ElectionsViewModel(val database: ElectionDatabase) : ViewModel() {
     // populate live data for upcoming elections from the API and followed elections
 
     init {
-        Timber.i("The upcoming is ${upComingElections.value}")
+
         viewModelScope.launch {
 
             //switch to Background
             withContext(IO) {
 
                 repo.refreshDatabaseElections()
+
+
             }
         }
     }

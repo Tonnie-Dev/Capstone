@@ -11,6 +11,8 @@
     <string name="follow_election_text">Follow Election</string>
     <string name="unfollow_election_text">Unfollow Election</string>
     <string name="followed_elections_header_text" >Followed Elections</string>
+    <string name="use_my_locations_text" >Use my Location</string>
+
 
 
 
