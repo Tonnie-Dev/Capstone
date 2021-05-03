@@ -194,39 +194,7 @@ class DetailFragment : Fragment() {
         imm.hideSoftInputFromWindow(view!!.windowToken, 0)
     }
 
-    //Check if location is enabled
-    @RequiresApi(Build.VERSION_CODES.M)
-    private fun isLocationEnabled(): Boolean {
-        val locationManager = requireActivity().getSystemService(LocationManager::class.java)
-        return locationManager.isProviderEnabled(LocationManager.GPS_PROVIDER) || locationManager
-                .isProviderEnabled(LocationManager.NETWORK_PROVIDER)
-    }
 
-    //settings Dialog
-    @RequiresApi(Build.VERSION_CODES.M)
-    private fun showLocationSettingDialog() {
-
-        if (!isLocationEnabled()) {
-
-            val materialAlertDialogBuilder = MaterialAlertDialogBuilder(requireActivity())
-                    .setTitle(getString(R.string.enable_location))
-                    .setMessage(R.string.enable_dialog_message)
-                    .setPositiveButton(getString(R.string.settings)) { _, _ ->
-                        val intent = Intent(Settings.ACTION_LOCATION_SOURCE_SETTINGS)
-                        startActivity(intent)
-                    }
-                    .setNegativeButton(getString(R.string.exit)) { _, _ ->
-                        Snackbar.make(
-                                binding.root, R.string.location_required_error, Snackbar
-                                .LENGTH_INDEFINITE
-                        )
-                                .setAction(getString(android.R.string.ok)) {}
-                                .show()
-                    }
-                    .create()
-            materialAlertDialogBuilder.show()
-        }
-    }
 
 
     private fun showRationale(permission: String) {
@@ -285,7 +253,39 @@ class DetailFragment : Fragment() {
 
     }
 
+    //Check if location is enabled
+    @RequiresApi(Build.VERSION_CODES.M)
+    private fun isLocationEnabled(): Boolean {
+        val locationManager = requireActivity().getSystemService(LocationManager::class.java)
+        return locationManager.isProviderEnabled(LocationManager.GPS_PROVIDER) || locationManager
+                .isProviderEnabled(LocationManager.NETWORK_PROVIDER)
+    }
 
+    //settings Dialog
+    @RequiresApi(Build.VERSION_CODES.M)
+    private fun showLocationSettingDialog() {
+
+        if (!isLocationEnabled()) {
+
+            val materialAlertDialogBuilder = MaterialAlertDialogBuilder(requireActivity())
+                    .setTitle(getString(R.string.enable_location))
+                    .setMessage(R.string.enable_dialog_message)
+                    .setPositiveButton(getString(R.string.settings)) { _, _ ->
+                        val intent = Intent(Settings.ACTION_LOCATION_SOURCE_SETTINGS)
+                        startActivity(intent)
+                    }
+                    .setNegativeButton(getString(R.string.exit)) { _, _ ->
+                        Snackbar.make(
+                                binding.root, R.string.location_required_error, Snackbar
+                                .LENGTH_INDEFINITE
+                        )
+                                .setAction(getString(android.R.string.ok)) {}
+                                .show()
+                    }
+                    .create()
+            materialAlertDialogBuilder.show()
+        }
+    }
 }
 
 
