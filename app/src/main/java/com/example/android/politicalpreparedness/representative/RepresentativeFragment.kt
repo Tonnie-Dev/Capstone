@@ -19,7 +19,6 @@ import androidx.activity.result.contract.ActivityResultContracts
 import androidx.annotation.RequiresApi
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
-import com.android.volley.BuildConfig
 import com.example.android.politicalpreparedness.databinding.FragmentRepresentativeBinding
 import com.example.android.politicalpreparedness.network.models.Address
 import com.google.android.gms.location.*
@@ -28,6 +27,7 @@ import com.google.android.material.snackbar.Snackbar
 import java.util.*
 import java.util.concurrent.TimeUnit
 import com.example.android.politicalpreparedness.R
+import com.example.android.politicalpreparedness.BuildConfig
 
 class DetailFragment : Fragment() {
 
@@ -203,7 +203,7 @@ class DetailFragment : Fragment() {
                     requireActivity()
             ).setTitle("Location Permission")
                     .setMessage(getString(R.string.rationale_for_location_permissions))
-                    .setPositiveButton(getString(R.string.rationale_for_location_permissions)) { dialog, _ ->
+                    .setPositiveButton(getString(R.string.settings)) { dialog, _ ->
 
                         startActivity(Intent().apply {
 

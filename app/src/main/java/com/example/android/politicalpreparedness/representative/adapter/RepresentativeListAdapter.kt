@@ -111,6 +111,7 @@ class RepresentativeViewHolder(val binding: RepItemBinding) : RecyclerView.ViewH
     }
 }
 
+//TODO: Create RepresentativeListener
 class RepClickListener(val clickListener:(Representative) -> Unit){
 
 
@@ -121,4 +122,3 @@ class RepClickListener(val clickListener:(Representative) -> Unit){
 
 
 
-//TODO: Create RepresentativeListener
