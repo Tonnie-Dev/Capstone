@@ -1,11 +1,14 @@
 package com.example.android.politicalpreparedness.representative
 
+import android.Manifest
 import android.content.Context
 import android.location.Geocoder
 import android.location.Location
 import android.os.Bundle
 import android.view.*
 import android.view.inputmethod.InputMethodManager
+import androidx.activity.result.contract.ActivityResultContract
+import androidx.activity.result.contract.ActivityResultContracts
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import com.example.android.politicalpreparedness.databinding.FragmentRepresentativeBinding
@@ -19,7 +22,7 @@ class DetailFragment : Fragment() {
 
     //VARS
     private lateinit var binding: FragmentRepresentativeBinding
-private lateinit var lastKnownLocation: Location
+    private lateinit var lastKnownLocation: Location
 
 
     //Location Components
@@ -33,13 +36,13 @@ private lateinit var lastKnownLocation: Location
     }
 
 
-    private val locationCallback = object : LocationCallback(){
+    private val locationCallback = object : LocationCallback() {
 
         override fun onLocationResult(result: LocationResult?) {
             super.onLocationResult(result)
 
 
-            if (result != null){
+            if (result != null) {
 
 
             }
@@ -47,13 +50,25 @@ private lateinit var lastKnownLocation: Location
     }
 
 
-    private val fineLocationPermissionLauncher = registerForActivityResult()
+    private val fineLocationPermissionLauncher = registerForActivityResult(ActivityResultContracts.RequestPermission()) {
+
+
+        isGranted ->
+
+        if (isGranted) {
+            //get last known location permission
+
+        } else {
+
+            shouldShowRequestPermissionRationale(Manifest.permission.ACCESS_FINE_LOCATION)
+        }
+    }
 
     companion object {
         //TODO: Add Constant for Location request
 
         private val locationRequest = LocationRequest().apply {
-             priority = LocationRequest.PRIORITY_HIGH_ACCURACY
+            priority = LocationRequest.PRIORITY_HIGH_ACCURACY
             interval = TimeUnit.MINUTES.toMillis(5)
             fastestInterval = TimeUnit.MINUTES.toMillis(3)
         }
@@ -61,7 +76,7 @@ private lateinit var lastKnownLocation: Location
 
     //TODO: Declare ViewModel
 
-    private val viewModel:RepresentativeViewModel by viewModels()
+    private val viewModel: RepresentativeViewModel by viewModels()
     override fun onCreateView(inflater: LayoutInflater,
                               container: ViewGroup?,
                               savedInstanceState: Bundle?): View {
@@ -74,7 +89,8 @@ private lateinit var lastKnownLocation: Location
 
 
         //initialize FusedLocationProviderClient
-        fusedLocationProviderClient = LocationServices.getFusedLocationProviderClient(requireActivity())
+        fusedLocationProviderClient = LocationServices.getFusedLocationProviderClient(
+                requireActivity())
 
         //TODO: Define and assign Representative adapter
 
@@ -94,6 +110,7 @@ private lateinit var lastKnownLocation: Location
 
 
     }
+
     private fun getLocation() {
         //TODO: Get location from LocationServices
         //TODO: The geoCodeLocation method is a helper function to change the lat/long location to a human readable street address
@@ -103,7 +120,11 @@ private lateinit var lastKnownLocation: Location
         val geocoder = Geocoder(context, Locale.getDefault())
         return geocoder.getFromLocation(location.latitude, location.longitude, 1)
                 .map { address ->
-                    Address(address.thoroughfare, address.subThoroughfare, address.locality, address.adminArea, address.postalCode)
+                    Address(address.thoroughfare,
+                            address.subThoroughfare,
+                            address.locality,
+                            address.adminArea,
+                            address.postalCode)
                 }
                 .first()
     }
@@ -114,28 +135,7 @@ private lateinit var lastKnownLocation: Location
     }
 
 
-
-
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 //OLD CODE for android permissions
