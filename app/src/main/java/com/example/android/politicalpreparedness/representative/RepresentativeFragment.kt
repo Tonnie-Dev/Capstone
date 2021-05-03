@@ -11,10 +11,7 @@ import androidx.fragment.app.viewModels
 import com.example.android.politicalpreparedness.databinding.FragmentRepresentativeBinding
 import com.example.android.politicalpreparedness.databinding.FragmentVoterInfoBinding
 import com.example.android.politicalpreparedness.network.models.Address
-import com.google.android.gms.location.FusedLocationProviderClient
-import com.google.android.gms.location.LocationCallback
-import com.google.android.gms.location.LocationRequest
-import com.google.android.gms.location.LocationResult
+import com.google.android.gms.location.*
 import java.util.Locale
 import java.util.concurrent.TimeUnit
 
@@ -44,10 +41,13 @@ private lateinit var lastKnownLocation: Location
 
             if (result != null){
 
-                
+
             }
         }
     }
+
+
+    private val fineLocationPermissionLauncher = registerForActivityResult()
 
     companion object {
         //TODO: Add Constant for Location request
@@ -64,13 +64,17 @@ private lateinit var lastKnownLocation: Location
     private val viewModel:RepresentativeViewModel by viewModels()
     override fun onCreateView(inflater: LayoutInflater,
                               container: ViewGroup?,
-                              savedInstanceState: Bundle?): View? {
+                              savedInstanceState: Bundle?): View {
 
         //TODO: Establish bindings
         binding = FragmentRepresentativeBinding.inflate(inflater)
 
         //make binding observe LiveData
         binding.lifecycleOwner = viewLifecycleOwner
+
+
+        //initialize FusedLocationProviderClient
+        fusedLocationProviderClient = LocationServices.getFusedLocationProviderClient(requireActivity())
 
         //TODO: Define and assign Representative adapter
 
@@ -83,6 +87,13 @@ private lateinit var lastKnownLocation: Location
     }
 
 
+    override fun onStart() {
+        super.onStart()
+
+        //register for permissions
+
+
+    }
     private fun getLocation() {
         //TODO: Get location from LocationServices
         //TODO: The geoCodeLocation method is a helper function to change the lat/long location to a human readable street address
