@@ -8,15 +8,15 @@
     <data>
 
         <variable
-            name="representative"
-            type="com.example.android.politicalpreparedness.network.models.RepresentativeResponse" />
+            name="viewModel"
+            type="com.example.android.politicalpreparedness.representative.RepresentativeViewModel" />
 
     </data>
 
     <!-- TODO: Add motion scene to hide form on vertical scroll. -->
     <androidx.constraintlayout.motion.widget.MotionLayout
-        android:layout_height="match_parent"
-        android:layout_width="match_parent">
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
 
         <!-- TODO: Add visual styling and content -->
         <TextView
@@ -57,8 +57,8 @@
             android:layout_height="wrap_content"
             android:autofillHints=""
             android:inputType="textPostalAddress"
-            app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toStartOf="@id/state"
+            app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/address_line_2" />
 
         <!-- TODO: Add default values from provided resources  -->
@@ -68,13 +68,13 @@
             android:id="@+id/state"
             android:layout_width="0dp"
             android:layout_height="0dp"
-            android:entries="@array/states"
             android:autofillHints=""
+            android:entries="@array/states"
             android:inputType="textPostalAddress"
-            app:layout_constraintStart_toEndOf="@id/city"
+            app:layout_constraintBottom_toBottomOf="@id/city"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toTopOf="@id/city"
-            app:layout_constraintBottom_toBottomOf="@id/city"/>
+            app:layout_constraintStart_toEndOf="@id/city"
+            app:layout_constraintTop_toTopOf="@id/city" />
 
         <!-- TODO: Add data binding value -->
         <!-- TODO: Add visual styling and content -->
@@ -85,8 +85,8 @@
             android:autofillHints=""
             android:inputType="number"
             android:maxLength="5"
-            app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="@id/city"
+            app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/city" />
 
         <!-- TODO: Add visual styling and label -->
@@ -95,17 +95,18 @@
         <Button
             android:id="@+id/button_search"
             android:layout_width="match_parent"
-            android:text="@string/find_my_reps_text"
             android:layout_height="wrap_content"
+            android:text="@string/find_my_reps_text"
             app:layout_constraintTop_toBottomOf="@id/zip"
             motion:layout_editor_absoluteX="104dp" />
 
         <!-- TODO: Add visual styling and content -->
+
         <Button
             android:id="@+id/button_location"
             android:layout_width="match_parent"
-            android:text="@string/use_my_locations_text"
             android:layout_height="wrap_content"
+            android:text="@string/use_my_locations_text"
             app:layout_constraintTop_toBottomOf="@id/button_search"
             motion:layout_editor_absoluteX="0dp" />
 
@@ -113,8 +114,8 @@
             android:id="@+id/representative_title"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:textStyle="bold"
             android:text="@string/my_representatives_text"
+            android:textStyle="bold"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/button_location" />
 
@@ -128,9 +129,9 @@
             android:gravity="center"
             android:textAlignment="center"
             android:visibility="gone"
-            motion:visibilityMode="ignore"
+            app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintTop_toBottomOf="@id/representative_title"
-            app:layout_constraintBottom_toBottomOf="parent" />
+            motion:visibilityMode="ignore" />
 
     </androidx.constraintlayout.motion.widget.MotionLayout>
 </layout>

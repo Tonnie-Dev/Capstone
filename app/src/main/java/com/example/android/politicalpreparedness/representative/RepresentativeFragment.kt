@@ -87,6 +87,8 @@ class DetailFragment : Fragment() {
         //make binding observe LiveData
         binding.lifecycleOwner = viewLifecycleOwner
 
+        //link binding's viewModel to viewModel
+        binding.viewModel = viewModel
 
         //initialize FusedLocationProviderClient
         fusedLocationProviderClient = LocationServices.getFusedLocationProviderClient(
@@ -97,6 +99,12 @@ class DetailFragment : Fragment() {
         //TODO: Populate Representative adapter
 
         //TODO: Establish button listeners for field and location search
+        //search  by address
+        binding.buttonSearch.setOnClickListener {}
+
+        //use my location button
+        binding.buttonLocation.setOnClickListener { }
+
 
         return binding.root
 
