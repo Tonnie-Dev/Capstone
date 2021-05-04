@@ -28,6 +28,7 @@ import java.util.*
 import java.util.concurrent.TimeUnit
 import com.example.android.politicalpreparedness.R
 import com.example.android.politicalpreparedness.BuildConfig
+import timber.log.Timber
 
 class DetailFragment : Fragment() {
 
@@ -42,7 +43,7 @@ class DetailFragment : Fragment() {
     private val locationRequest = LocationRequest().apply {
 
         priority = LocationRequest.PRIORITY_HIGH_ACCURACY
-        interval = TimeUnit.MINUTES.toMillis(5)
+        interval = TimeUnit.SECONDS.toMillis(3)
         fastestInterval = TimeUnit.SECONDS.toMillis(1)
     }
 
@@ -56,6 +57,7 @@ class DetailFragment : Fragment() {
 
                 lastKnownLocation = locationResult.lastLocation
 
+                Timber.i("The lastKnownLoc inside coallback $lastKnownLocation")
             }
         }
     }
@@ -81,10 +83,11 @@ class DetailFragment : Fragment() {
     companion object {
         //TODO: Add Constant for Location request
 
-        private val locationRequest = LocationRequest().apply {
+        private val locationRequeste = LocationRequest().apply {
             priority = LocationRequest.PRIORITY_HIGH_ACCURACY
-            interval = TimeUnit.MINUTES.toMillis(5)
-            fastestInterval = TimeUnit.MINUTES.toMillis(3)
+            interval = TimeUnit.SECONDS.toMillis(5)
+            fastestInterval = TimeUnit.SECONDS.toMillis(3)
+
         }
     }
 
@@ -130,7 +133,12 @@ class DetailFragment : Fragment() {
         return binding.root
 
     }
+    override fun onStop() {
+        super.onStop()
+        fusedLocationProviderClient.removeLocationUpdates(locationCallback)
 
+
+    }
 
     @SuppressLint("MissingPermission")
     private fun getLastKnownLocation() {
@@ -138,14 +146,25 @@ class DetailFragment : Fragment() {
         //get last known location from fusedLocationProviderClient returned as a task
         fusedLocationProviderClient.lastLocation.addOnSuccessListener {
 
+
+
             lastLoc ->
 
             if (lastLoc != null) {
 
                 //initialize lastKnownLocation from fusedLocationProviderClient
                 lastKnownLocation = lastLoc
-            } else {
+                Timber.i("The lastLoc is $lastLoc")
 
+                //TODO: The geoCodeLocation method is a helper function to change the lat/long location to a human readable street address
+
+                Timber.i("The last known location after success is $lastKnownLocation")
+                 val address = geoCodeLocation(lastKnownLocation)
+
+                Timber.i("The address is $address")
+                autoFillAddresses(address)
+            } else {
+                Timber.i("The lastLoc is null")
                 //prompt user to turn on location
 
                 showLocationSettingDialog()
@@ -163,17 +182,18 @@ class DetailFragment : Fragment() {
 
             Toast.makeText(requireActivity(), "${it.message}", Toast.LENGTH_SHORT).show()
         }
-        //TODO: The geoCodeLocation method is a helper function to change the lat/long location to a human readable street address
 
-        val address = geoCodeLocation(lastKnownLocation)
 
 
 
     }
 
-    private fun autoFillAddresses(){
+    private fun autoFillAddresses(address: Address){
 
-        
+        binding.addressLine1.setText(address.line1)
+        binding.addressLine2.setText(address.line2)
+        binding.city.setText(address.city)
+        binding.zip.setText(address.zip)
 
 
     }

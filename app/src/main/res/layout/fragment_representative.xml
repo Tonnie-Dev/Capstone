@@ -31,7 +31,7 @@
         <EditText
             android:id="@+id/address_line_1"
             android:layout_width="match_parent"
-            android:text="@={viewModel.line1}"
+
             android:layout_height="wrap_content"
             android:hint="@string/address_line_1_hint"
             android:autofillHints="streetAddress"
@@ -48,7 +48,7 @@
             android:id="@+id/address_line_2"
             android:layout_width="match_parent"
             android:layout_height="0dp"
-            android:text="@={viewModel.line1}"
+
             android:hint="@string/address_line_2_hint"
             android:autofillHints="extendedAddress"
             android:inputType="textPostalAddress"
@@ -59,7 +59,7 @@
             android:id="@+id/city"
             android:layout_width="0dp"
             android:hint="@string/city_hint"
-            android:text="@={viewModel.city}"
+
             android:layout_height="wrap_content"
             android:autofillHints="extendedPostalCode"
             android:inputType="textPostalAddress"
@@ -91,7 +91,7 @@
             android:autofillHints="extendedPostalCode"
             android:inputType="number"
             android:maxLength="5"
-            android:text="@={viewModel.zip}"
+
             android:hint="@string/zip_code_hint"
             app:layout_constraintEnd_toEndOf="@id/city"
             app:layout_constraintStart_toStartOf="parent"
