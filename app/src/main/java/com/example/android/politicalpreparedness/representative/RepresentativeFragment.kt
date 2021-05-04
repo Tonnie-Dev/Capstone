@@ -113,6 +113,8 @@ class DetailFragment : Fragment() {
 
         //TODO: Define and assign Representative adapter
 
+        binding.recy
+
         //TODO: Populate Representative adapter
 
         //TODO: Establish button listeners for field and location search
