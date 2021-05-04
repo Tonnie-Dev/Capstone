@@ -76,40 +76,7 @@ class DetailFragment : Fragment() {
         }
     }
 
-    @SuppressLint("MissingPermission")
-    private fun getLastKnownLocation() {
 
-        //get last known location from fusedLocationProviderClient returned as a task
-        fusedLocationProviderClient.lastLocation.addOnSuccessListener {
-
-            lastLoc ->
-
-            if (lastLoc != null) {
-
-                //initialize lastKnownLocation from fusedLocationProviderClient
-                lastKnownLocation = lastLoc
-            } else {
-
-                //prompt user to turn on location
-
-                showLocationSettingDialog()
-
-                //when user turns on location trigger updates to get a location
-
-                fusedLocationProviderClient.requestLocationUpdates(locationRequest,
-                                                                   locationCallback,
-                                                                   Looper.getMainLooper())
-            }
-
-            //in case of error Toast the error in a short Toast message
-        }.addOnFailureListener {
-
-
-            Toast.makeText(requireActivity(), "${it.message}", Toast.LENGTH_SHORT).show()
-        }
-
-
-    }
 
     companion object {
         //TODO: Add Constant for Location request
@@ -155,6 +122,8 @@ class DetailFragment : Fragment() {
             //request for permission if not already granted
 
             fineLocationPermissionLauncher.launch(Manifest.permission.ACCESS_FINE_LOCATION)
+
+
         }
 
 
@@ -163,17 +132,43 @@ class DetailFragment : Fragment() {
     }
 
 
-    override fun onStart() {
-        super.onStart()
-
-        //register for permissions
-
-
-    }
-
-    private fun getLocation() {
+    @SuppressLint("MissingPermission")
+    private fun getLastKnownLocation() {
         //TODO: Get location from LocationServices
+        //get last known location from fusedLocationProviderClient returned as a task
+        fusedLocationProviderClient.lastLocation.addOnSuccessListener {
+
+            lastLoc ->
+
+            if (lastLoc != null) {
+
+                //initialize lastKnownLocation from fusedLocationProviderClient
+                lastKnownLocation = lastLoc
+            } else {
+
+                //prompt user to turn on location
+
+                showLocationSettingDialog()
+
+                //when user turns on location trigger updates to get a location
+
+                fusedLocationProviderClient.requestLocationUpdates(locationRequest,
+                                                                   locationCallback,
+                                                                   Looper.getMainLooper())
+            }
+
+            //in case of error Toast the error in a short Toast message
+        }.addOnFailureListener {
+
+
+            Toast.makeText(requireActivity(), "${it.message}", Toast.LENGTH_SHORT).show()
+        }
         //TODO: The geoCodeLocation method is a helper function to change the lat/long location to a human readable street address
+
+        val address = geoCodeLocation(lastKnownLocation)
+
+
+
     }
 
     private fun geoCodeLocation(location: Location): Address {
@@ -308,4 +303,13 @@ class DetailFragment : Fragment() {
 
     private fun isPermissionGranted() : Boolean {
         //Check if permission is already granted and return (true = granted, false = denied/other)
-    }*/
+    }
+private fun getLocation() {
+
+
+
+
+
+
+
+}*/

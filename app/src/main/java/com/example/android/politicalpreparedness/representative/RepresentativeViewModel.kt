@@ -35,8 +35,9 @@ class RepresentativeViewModel: ViewModel() {
             withContext(IO) {
                 //_representatives.postValue(CivicsApi.retrofitService
                 // .representativeInfoByAddress())
-                val (offices, officials) =CivicsApi.retrofitService.representativeInfoByAddress()
-                _representatives.postValue(offices.flatMap {office ->office.getRepresentatives(officials)})
+               //val (offices, officials) =CivicsApi.retrofitService.representativeInfoByAddress()
+             /*  _representatives.postValue(offices.flatMap {office ->office.getRepresentatives
+                (officials)})*/
             }
         }
 
