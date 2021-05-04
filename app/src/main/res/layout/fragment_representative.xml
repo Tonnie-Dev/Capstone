@@ -32,6 +32,7 @@
             android:id="@+id/address_line_1"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:hint="@string/address_line_1_hint"
             android:autofillHints="streetAddress"
             android:inputType="textPostalAddress"
             app:layout_constraintStart_toStartOf="parent"
@@ -46,6 +47,7 @@
             android:id="@+id/address_line_2"
             android:layout_width="match_parent"
             android:layout_height="0dp"
+            android:hint="@string/address_line_2_hint"
             android:autofillHints="extendedAddress"
             android:inputType="textPostalAddress"
             app:layout_constraintStart_toStartOf="parent"
@@ -54,6 +56,7 @@
         <EditText
             android:id="@+id/city"
             android:layout_width="0dp"
+            android:hint="@string/city_hint"
             android:layout_height="wrap_content"
             android:autofillHints="extendedPostalCode"
             android:inputType="textPostalAddress"
@@ -85,6 +88,7 @@
             android:autofillHints="extendedPostalCode"
             android:inputType="number"
             android:maxLength="5"
+            android:hint="@string/city_hint"
             app:layout_constraintEnd_toEndOf="@id/city"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/city" />
