@@ -171,6 +171,13 @@ class DetailFragment : Fragment() {
 
     }
 
+    private fun autoFillAddresses(){
+
+        
+
+
+    }
+
     private fun geoCodeLocation(location: Location): Address {
         val geocoder = Geocoder(context, Locale.getDefault())
         return geocoder.getFromLocation(location.latitude, location.longitude, 1)

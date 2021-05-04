@@ -11,36 +11,47 @@ import kotlinx.coroutines.Dispatchers.IO
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
 
-class RepresentativeViewModel: ViewModel() {
+class RepresentativeViewModel : ViewModel() {
 
     //TODO: Establish live data for representatives and address
 
     private val _representatives = MutableLiveData<List<Representative>>()
     val representatives: LiveData<List<Representative>>
-    get() = _representatives
+        get() = _representatives
 
     private val _address = MutableLiveData<Address>()
     val address: LiveData<Address>
-    get() = _address
+        get() = _address
 
+    private val _line1 = MutableLiveData<String>()
+    val line1: LiveData<String>
+        get() = _line1
 
+    private val _line2 = MutableLiveData<String>()
+    val line2: LiveData<String>
+        get() = _line2
 
+    private val _city = MutableLiveData<String>()
+    val city: LiveData<String>
+        get() = _city
 
+    private val _zip = MutableLiveData<String>()
+    val zip: LiveData<String>
+        get() = _zip
     //TODO: Create function to fetch representatives from API from a provided address
 
-    fun fetchRepsFromNetwork(){
+    fun fetchRepsFromNetwork() {
 
         viewModelScope.launch {
 
             withContext(IO) {
                 //_representatives.postValue(CivicsApi.retrofitService
                 // .representativeInfoByAddress())
-               //val (offices, officials) =CivicsApi.retrofitService.representativeInfoByAddress()
-             /*  _representatives.postValue(offices.flatMap {office ->office.getRepresentatives
-                (officials)})*/
+                //val (offices, officials) =CivicsApi.retrofitService.representativeInfoByAddress()
+                /*  _representatives.postValue(offices.flatMap {office ->office.getRepresentatives
+                   (officials)})*/
             }
         }
-
 
 
     }
