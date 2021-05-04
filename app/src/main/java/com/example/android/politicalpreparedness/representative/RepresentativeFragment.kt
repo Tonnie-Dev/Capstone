@@ -28,6 +28,8 @@ import java.util.*
 import java.util.concurrent.TimeUnit
 import com.example.android.politicalpreparedness.R
 import com.example.android.politicalpreparedness.BuildConfig
+import com.example.android.politicalpreparedness.representative.adapter.RepClickListener
+import com.example.android.politicalpreparedness.representative.adapter.RepresentativeListAdapter
 import timber.log.Timber
 
 class DetailFragment : Fragment() {
@@ -113,7 +115,7 @@ class DetailFragment : Fragment() {
 
         //TODO: Define and assign Representative adapter
 
-        binding.recy
+        binding.repsRecyclerview.adapter = RepresentativeListAdapter (RepClickListener{})
 
         //TODO: Populate Representative adapter
 
