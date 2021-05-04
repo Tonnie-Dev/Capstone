@@ -10,6 +10,7 @@ import com.example.android.politicalpreparedness.representative.model.Representa
 import kotlinx.coroutines.Dispatchers.IO
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
+import timber.log.Timber
 import java.util.*
 
 class RepresentativeViewModel(application: Application) : AndroidViewModel(application) {
@@ -34,9 +35,12 @@ class RepresentativeViewModel(application: Application) : AndroidViewModel(appli
             withContext(IO) {
               //  _representatives.postValue(CivicsApi.retrofitService
                 //  .representativeInfoByAddress())
-                val (offices, officials) =CivicsApi.retrofitService.representativeInfoByAddress(address)
-                  _reps.postValue(offices.flatMap { office ->office.getRepresentatives(officials)})
+
             }
+            val (offices, officials) =CivicsApi.retrofitService.representativeInfoByAddress(address)
+            _reps.value = (offices.flatMap { office ->office.getRepresentatives(officials)})
+            Timber.i("The reps are ${_reps.value}")
+
         }
 
 

@@ -113,8 +113,7 @@ class DetailFragment : Fragment() {
         fusedLocationProviderClient = LocationServices.getFusedLocationProviderClient(
                 requireActivity())
 
-        //TODO: Define and assign Representative adapter
-
+        //Define and assign Representative adapter
         binding.repsRecyclerview.adapter = RepresentativeListAdapter (RepClickListener{})
 
         //TODO: Populate Representative adapter
