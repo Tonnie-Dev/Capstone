@@ -1,17 +1,18 @@
 package com.example.android.politicalpreparedness.representative
 
-import androidx.lifecycle.LiveData
-import androidx.lifecycle.MutableLiveData
-import androidx.lifecycle.ViewModel
-import androidx.lifecycle.viewModelScope
+import android.app.Application
+import android.location.Geocoder
+import android.location.Location
+import androidx.lifecycle.*
 import com.example.android.politicalpreparedness.network.CivicsApi
 import com.example.android.politicalpreparedness.network.models.Address
 import com.example.android.politicalpreparedness.representative.model.Representative
 import kotlinx.coroutines.Dispatchers.IO
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
+import java.util.*
 
-class RepresentativeViewModel : ViewModel() {
+class RepresentativeViewModel(application: Application) : AndroidViewModel(application) {
 
     //TODO: Establish live data for representatives and address
 
@@ -45,11 +46,10 @@ class RepresentativeViewModel : ViewModel() {
         viewModelScope.launch {
 
             withContext(IO) {
-                //_representatives.postValue(CivicsApi.retrofitService
-                // .representativeInfoByAddress())
-                //val (offices, officials) =CivicsApi.retrofitService.representativeInfoByAddress()
-                /*  _representatives.postValue(offices.flatMap {office ->office.getRepresentatives
-                   (officials)})*/
+              //  _representatives.postValue(CivicsApi.retrofitService
+                //  .representativeInfoByAddress())
+                val (offices, officials) =CivicsApi.retrofitService.representativeInfoByAddress()
+                  _representatives.postValue(offices.flatMap {office ->office.getRepresentatives(officials)})
             }
         }
 
@@ -69,7 +69,18 @@ class RepresentativeViewModel : ViewModel() {
      */
 
     //TODO: Create function get address from geo location
-
+    fun geoCodeLocation(location: Location): Address {
+        val geocoder = Geocoder(getApplication(), Locale.getDefault())
+        return geocoder.getFromLocation(location.latitude, location.longitude, 1)
+                .map { address ->
+                    Address(address.thoroughfare,
+                            address.subThoroughfare,
+                            address.locality,
+                            address.adminArea,
+                            address.postalCode)
+                }
+                .first()
+    }
     //TODO: Create function to get address from individual fields
 
 }
