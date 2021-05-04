@@ -158,11 +158,15 @@ class DetailFragment : Fragment() {
 
                 //TODO: The geoCodeLocation method is a helper function to change the lat/long location to a human readable street address
 
-                Timber.i("The last known location after success is $lastKnownLocation")
-                 val address = viewModel.geoCodeLocation(lastKnownLocation)
+                viewModel.getAddressFromGeoLocation(geoCodeLocation(lastKnownLocation))
+                viewModel.fetchRepsFromNetwork(viewModel.address.value.toString())
 
-                Timber.i("The address is $address")
-                autoFillAddresses(address)
+
+                Timber.i("The last known location after success is $lastKnownLocation")
+                 //val address = geoCodeLocation(lastKnownLocation)
+
+                //Timber.i("The address is $address")
+                //autoFillAddresses(address)
             } else {
                 Timber.i("The lastLoc is null")
                 //prompt user to turn on location

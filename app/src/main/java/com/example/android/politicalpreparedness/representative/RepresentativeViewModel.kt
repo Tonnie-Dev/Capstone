@@ -16,26 +16,26 @@ class RepresentativeViewModel(application: Application) : AndroidViewModel(appli
 
     //TODO: Establish live data for representatives and address
 
-    private val _representatives = MutableLiveData<List<Representative>>()
-    val representatives: LiveData<List<Representative>>
-        get() = _representatives
+    private val _reps = MutableLiveData<List<Representative>>()
+    val reps: LiveData<List<Representative>>
+        get() = _reps
 
     private val _address = MutableLiveData<Address>()
     val address: LiveData<Address>
         get() = _address
 
-    
+
     //TODO: Create function to fetch representatives from API from a provided address
 
-    fun fetchRepsFromNetwork() {
+    fun fetchRepsFromNetwork(address:String) {
 
         viewModelScope.launch {
 
             withContext(IO) {
               //  _representatives.postValue(CivicsApi.retrofitService
                 //  .representativeInfoByAddress())
-                val (offices, officials) =CivicsApi.retrofitService.representativeInfoByAddress()
-                  _representatives.postValue(offices.flatMap {office ->office.getRepresentatives(officials)})
+                val (offices, officials) =CivicsApi.retrofitService.representativeInfoByAddress(address)
+                  _reps.postValue(offices.flatMap { office ->office.getRepresentatives(officials)})
             }
         }
 
@@ -55,18 +55,11 @@ class RepresentativeViewModel(application: Application) : AndroidViewModel(appli
      */
 
     //TODO: Create function get address from geo location
-    fun geoCodeLocation(location: Location): Address {
-        val geocoder = Geocoder(getApplication(), Locale.getDefault())
-        return geocoder.getFromLocation(location.latitude, location.longitude, 1)
-                .map { address ->
-                    Address(address.thoroughfare,
-                            address.subThoroughfare,
-                            address.locality,
-                            address.adminArea,
-                            address.postalCode)
-                }
-                .first()
+    fun getAddressFromGeoLocation(address:Address){
+
+        _address.value = address
     }
+
     //TODO: Create function to get address from individual fields
 
 }

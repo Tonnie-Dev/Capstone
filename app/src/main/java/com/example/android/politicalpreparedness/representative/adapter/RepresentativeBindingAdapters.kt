@@ -5,6 +5,8 @@ import android.widget.ImageView
 import android.widget.Spinner
 import androidx.core.net.toUri
 import androidx.databinding.BindingAdapter
+import androidx.recyclerview.widget.RecyclerView
+import com.example.android.politicalpreparedness.representative.model.Representative
 
 @BindingAdapter("profileImage")
 fun fetchImage(view: ImageView, src: String?) {
@@ -28,4 +30,14 @@ fun Spinner.setNewValue(value: String?) {
 
 inline fun <reified T> toTypedAdapter(adapter: ArrayAdapter<*>): ArrayAdapter<T>{
     return adapter as ArrayAdapter<T>
+}
+
+
+@BindingAdapter("repsRecyclerViewData")
+
+fun RecyclerView.populateRecyclerView(reps: List<Representative>?){
+
+
+    val adapter = this.adapter as RepresentativeListAdapter
+    adapter.submitList(reps)
 }
