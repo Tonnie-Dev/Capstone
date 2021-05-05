@@ -7,7 +7,9 @@ import androidx.core.net.toUri
 import androidx.databinding.BindingAdapter
 import androidx.recyclerview.widget.RecyclerView
 import coil.api.load
+import coil.transform.CircleCropTransformation
 import com.bumptech.glide.Glide
+import com.example.android.politicalpreparedness.R
 import com.example.android.politicalpreparedness.representative.model.Representative
 import timber.log.Timber
 
@@ -47,18 +49,17 @@ fun RecyclerView.populateRecyclerView(reps: List<Representative>?){
 
 
 @BindingAdapter("loadImageFromCoil")
-
 fun ImageView.getImageFromCoil(imageUrl:String?){
-
-
     imageUrl?.let {
 
       val uri =  it.toUri().buildUpon().scheme("https").build()
 
-        Glide.with(this.context).load(uri)
-        //this.load(uri)
+        //Glide.with(this.context).load(uri)
+       load(uri){
+           crossfade(true)
+           transformations(CircleCropTransformation())
+       }
     }
-
 
 
 }
