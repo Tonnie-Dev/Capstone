@@ -6,6 +6,7 @@ import android.widget.Spinner
 import androidx.core.net.toUri
 import androidx.databinding.BindingAdapter
 import androidx.recyclerview.widget.RecyclerView
+import coil.api.load
 import com.example.android.politicalpreparedness.representative.model.Representative
 
 @BindingAdapter("profileImage")
@@ -40,4 +41,22 @@ fun RecyclerView.populateRecyclerView(reps: List<Representative>?){
 
     val adapter = this.adapter as RepresentativeListAdapter
     adapter.submitList(reps)
+}
+
+
+@BindingAdapter("loadImageFromCoil")
+
+fun ImageView.getImageFromCoil(imageUrl:String?){
+
+
+    imageUrl?.let {
+
+
+      val uri =  it.toUri().buildUpon().scheme("https").build()
+
+        this.load(uri)
+    }
+
+
+
 }

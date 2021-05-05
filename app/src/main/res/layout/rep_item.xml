@@ -21,6 +21,7 @@
             android:layout_height="0dp"
             android:layout_marginStart="16dp"
             android:layout_marginTop="16dp"
+            app:loadImageFromCoil="@{rep.official.photoUrl}"
             android:layout_marginBottom="16dp"
             android:adjustViewBounds="true"
             app:layout_constraintBottom_toBottomOf="@id/twitterIcon"

@@ -35,7 +35,7 @@ class RepresentativeViewHolder(val binding: RepItemBinding) : RecyclerView.ViewH
 
     fun bind(rep: Representative) {
         binding.rep = rep
-        binding.repPhoto.setImageResource(R.drawable.ic_profile)
+       // binding.repPhoto.setImageResource(R.drawable.ic_profile)
 
         //TODO: Show social links ** Hint: Use provided helper methods
         //TODO: Show www link ** Hint: Use provided helper methods

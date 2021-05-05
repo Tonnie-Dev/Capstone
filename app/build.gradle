@@ -94,7 +94,7 @@ dependencies {
     //Material Components for Android
     implementation 'com.google.android.material:material:1.4.0-alpha02'
 
-
+    //Add Coil(Coroutine Image Loader )
     implementation "io.coil-kt:coil:0.9.5"
 
 }
