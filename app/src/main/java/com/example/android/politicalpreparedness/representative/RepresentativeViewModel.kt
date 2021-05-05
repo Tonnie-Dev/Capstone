@@ -36,7 +36,7 @@ class RepresentativeViewModel(application: Application) : AndroidViewModel(appli
 
                 val (offices, officials) =CivicsApi.retrofitService.representativeInfoByAddress(address)
                 _reps.postValue (offices.flatMap { office ->office.getRepresentatives(officials)})
-                Timber.i("The reps are ${_reps.value}")
+                //Timber.i("The reps are ${_reps.value}")
             }
 
 

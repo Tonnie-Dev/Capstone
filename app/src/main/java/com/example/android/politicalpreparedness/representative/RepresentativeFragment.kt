@@ -162,12 +162,12 @@ class DetailFragment : Fragment() {
         viewModel.getAddressFromGeoLocation(address)
 
         // get network response for the reps
-       //viewModel.fetchRepsFromNetwork(address.toFormattedString())
+       viewModel.fetchRepsFromNetwork(address.toString())
 
-       viewModel.address.value?.let {
+       /*viewModel.address.value?.let {
 
             viewModel.fetchRepsFromNetwork(it.toFormattedString())
-        }
+        }*/
 
         autoFillAddresses(address)
     }

@@ -7,7 +7,9 @@ import androidx.core.net.toUri
 import androidx.databinding.BindingAdapter
 import androidx.recyclerview.widget.RecyclerView
 import coil.api.load
+import com.bumptech.glide.Glide
 import com.example.android.politicalpreparedness.representative.model.Representative
+import timber.log.Timber
 
 @BindingAdapter("profileImage")
 fun fetchImage(view: ImageView, src: String?) {
@@ -51,10 +53,10 @@ fun ImageView.getImageFromCoil(imageUrl:String?){
 
     imageUrl?.let {
 
-
       val uri =  it.toUri().buildUpon().scheme("https").build()
 
-        this.load(uri)
+        Glide.with(this.context).load(uri)
+        //this.load(uri)
     }
 
 
