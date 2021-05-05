@@ -7,6 +7,7 @@ import androidx.core.net.toUri
 import androidx.databinding.BindingAdapter
 import androidx.recyclerview.widget.RecyclerView
 import coil.api.load
+import coil.size.Scale
 import coil.transform.CircleCropTransformation
 import com.bumptech.glide.Glide
 import com.example.android.politicalpreparedness.R
@@ -56,8 +57,10 @@ fun ImageView.getImageFromCoil(imageUrl:String?){
 
         //Glide.with(this.context).load(uri)
        load(uri){
-           crossfade(true)
+           crossfade(750)
            transformations(CircleCropTransformation())
+           error(R.drawable.ic_broken_image)
+           
        }
     }
 

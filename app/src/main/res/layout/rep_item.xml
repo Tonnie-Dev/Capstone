@@ -23,7 +23,8 @@
             android:layout_marginTop="16dp"
             app:loadImageFromCoil="@{rep.official.photoUrl}"
             android:layout_marginBottom="16dp"
-            android:adjustViewBounds="true"
+            android:scaleType="centerInside"
+
             app:layout_constraintBottom_toBottomOf="@id/twitterIcon"
             app:layout_constraintDimensionRatio="1:1"
             app:layout_constraintEnd_toStartOf="@+id/officeNameTextView"
