@@ -164,10 +164,17 @@ class DetailFragment : Fragment() {
         // set up viewModel's MutableLiveData for address
         viewModel.getAddressFromGeoLocation(address)
 
-        // get network response for the reps
-       viewModel.fetchRepsFromNetwork(address.toFormattedString() )
-
+        val formattedAddress = address.toFormattedString()
         Timber.i("The addrs ${address.toFormattedString()}")
+        if (formattedAddress == ""){
+
+            Toast.makeText(requireActivity(),"No valid address found", Toast.LENGTH_SHORT).show()
+        }
+
+        // get network response for the reps
+       viewModel.fetchRepsFromNetwork(formattedAddress )
+
+
 
        /*viewModel.address.value?.let {
 
