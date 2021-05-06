@@ -55,19 +55,24 @@ fun RecyclerView.populateRecyclerView(reps: List<Representative>?){
 
 @BindingAdapter("loadImageFromCoil")
 fun ImageView.getImageFromCoil(imageUrl:String?){
-    imageUrl?.let {
 
-      val uri =  it.toUri().buildUpon().scheme("https").build()
+
+    if (imageUrl != null){
+
+        val uri =  imageUrl.toUri().buildUpon().scheme("https").build()
 
         //Glide.with(this.context).load(uri)
-       load(uri){
-
-           crossfade(750)
-           placeholder(R.drawable.ic_profile)
-           transformations(CircleCropTransformation())
-           error(R.drawable.ic_broken_image)
-       }
+        load(uri){ crossfade(750)
+            placeholder(R.drawable.loading_animation)
+            transformations(CircleCropTransformation())
+            error(R.drawable.ic_broken_image)
+        }
     }
+    else{
+
+        setImageResource(R.drawable.ic_profile)
+    }
+
 
 
 }
