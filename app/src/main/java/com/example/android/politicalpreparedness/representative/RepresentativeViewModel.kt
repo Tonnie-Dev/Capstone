@@ -27,7 +27,8 @@ class RepresentativeViewModel(application: Application) : AndroidViewModel(appli
 
 
     private val _status = MutableLiveData<LoadingStatus>()
-    
+    val status: LiveData<LoadingStatus>
+    get() = _status
 
 
     //TODO: Create function to fetch representatives from API from a provided address
@@ -36,12 +37,20 @@ class RepresentativeViewModel(application: Application) : AndroidViewModel(appli
 
         viewModelScope.launch {
 
-            withContext(IO) {
+try {
 
-                val (offices, officials) =CivicsApi.retrofitService.representativeInfoByAddress(address)
-                _reps.postValue (offices.flatMap { office ->office.getRepresentatives(officials)})
+    _status.value = LoadingStatus.LOADING
+    withContext(IO) {
 
-            }
+        val (offices, officials) =CivicsApi.retrofitService.representativeInfoByAddress(address)
+        _reps.postValue (offices.flatMap { office ->office.getRepresentatives(officials)})
+_status.postValue(LoadingStatus.FINISHED)
+    }
+}catch (e:Exception) {
+
+    _status.value = LoadingStatus.ERROR
+}
+
 
 
         }
