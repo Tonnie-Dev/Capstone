@@ -60,7 +60,8 @@ fun ImageView.getImageFromCoil(imageUrl:String?){
            crossfade(750)
            transformations(CircleCropTransformation())
            error(R.drawable.ic_broken_image)
-           
+           placeholder(R.drawable.avatar)
+
        }
     }
 
