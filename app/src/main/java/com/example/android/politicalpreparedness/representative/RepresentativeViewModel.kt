@@ -28,13 +28,13 @@ class RepresentativeViewModel(application: Application) : AndroidViewModel(appli
 
     //TODO: Create function to fetch representatives from API from a provided address
 
-    fun fetchRepsFromNetwork(address:String,includeOffices:Boolean) {
+    fun fetchRepsFromNetwork(address:String) {
 
         viewModelScope.launch {
 
             withContext(IO) {
 
-                val (offices, officials) =CivicsApi.retrofitService.representativeInfoByAddress(address, includeOffices)
+                val (offices, officials) =CivicsApi.retrofitService.representativeInfoByAddress(address)
                 _reps.postValue (offices.flatMap { office ->office.getRepresentatives(officials)})
 
             }

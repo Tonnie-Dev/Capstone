@@ -38,6 +38,9 @@ class DetailFragment : Fragment() {
   private lateinit var binding: FragmentRepresentativeBinding
   private lateinit var lastKnownLocation: Location
 
+  private val officesList = listOf("headOfGovernment","deputyHeadOfGovernment","headOfState",
+                                   "legislatorUpperBody","legislatorLowerBody")
+
   // LOCATION COMPONENTS
   private lateinit var fusedLocationProviderClient: FusedLocationProviderClient
 
@@ -162,7 +165,7 @@ class DetailFragment : Fragment() {
         viewModel.getAddressFromGeoLocation(address)
 
         // get network response for the reps
-       viewModel.fetchRepsFromNetwork(address.toFormattedString(), false)
+       viewModel.fetchRepsFromNetwork(address.toFormattedString() )
 
         Timber.i("The addrs ${address.toFormattedString()}")
 
