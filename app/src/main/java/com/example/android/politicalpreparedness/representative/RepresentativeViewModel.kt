@@ -26,6 +26,10 @@ class RepresentativeViewModel(application: Application) : AndroidViewModel(appli
         get() = _address
 
 
+    private val _status = MutableLiveData<LoadingStatus>()
+    
+
+
     //TODO: Create function to fetch representatives from API from a provided address
 
     fun fetchRepsFromNetwork(address:String) {
@@ -65,4 +69,8 @@ class RepresentativeViewModel(application: Application) : AndroidViewModel(appli
 
     //TODO: Create function to get address from individual fields
 
+}
+
+enum class LoadingStatus {
+    LOADING, ERROR, FINISHED
 }
