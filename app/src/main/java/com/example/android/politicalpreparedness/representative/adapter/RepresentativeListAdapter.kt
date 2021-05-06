@@ -38,6 +38,17 @@ class RepresentativeViewHolder(val binding: RepItemBinding) : RecyclerView.ViewH
        // binding.repPhoto.setImageResource(R.drawable.ic_profile)
 
         //TODO: Show social links ** Hint: Use provided helper methods
+
+        rep.official.urls?.let {
+            showWWWLinks(it)
+
+
+        }
+
+        rep.official.channels?.let {
+
+            showSocialLinks(it)
+        }
         //TODO: Show www link ** Hint: Use provided helper methods
 
         binding.executePendingBindings()
