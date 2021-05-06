@@ -56,7 +56,9 @@ interface CivicsApiService {
     //TODO: Add representatives API Call
 
     @GET("representatives")
-    suspend fun representativeInfoByAddress(@Query("address") address: String): RepresentativeResponse
+    suspend fun representativeInfoByAddress(@Query("address") address: String, @Query
+        ("includeOffices" )includeOffices:Boolean):
+            RepresentativeResponse
 }
 
 object CivicsApi {

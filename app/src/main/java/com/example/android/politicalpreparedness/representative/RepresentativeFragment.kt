@@ -162,7 +162,9 @@ class DetailFragment : Fragment() {
         viewModel.getAddressFromGeoLocation(address)
 
         // get network response for the reps
-       viewModel.fetchRepsFromNetwork(address.toString())
+       viewModel.fetchRepsFromNetwork(address.toFormattedString(), false)
+
+        Timber.i("The addrs ${address.toFormattedString()}")
 
        /*viewModel.address.value?.let {
 

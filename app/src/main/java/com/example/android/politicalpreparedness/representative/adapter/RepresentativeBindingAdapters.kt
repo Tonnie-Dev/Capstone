@@ -46,22 +46,24 @@ fun RecyclerView.populateRecyclerView(reps: List<Representative>?){
 
     val adapter = this.adapter as RepresentativeListAdapter
     adapter.submitList(reps)
+
+    Timber.i("The reps in recycler are $reps")
 }
 
 
 @BindingAdapter("loadImageFromCoil")
 fun ImageView.getImageFromCoil(imageUrl:String?){
     imageUrl?.let {
-Timber.i("the url is $imageUrl")
+
       val uri =  it.toUri().buildUpon().scheme("https").build()
 
         //Glide.with(this.context).load(uri)
        load(uri){
-           placeholder(R.drawable.loading_animation)
-           transformations(CircleCropTransformation())
-           error(R.drawable.ic_broken_image)
 
            crossfade(750)
+           placeholder(R.drawable.ic_profile)
+           transformations(CircleCropTransformation())
+           error(R.drawable.ic_broken_image)
        }
     }
 

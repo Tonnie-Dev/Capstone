@@ -12,5 +12,10 @@ data class Address (
         if (!line2.isNullOrEmpty()) output = output.plus(line2).plus("\n")
         output = output.plus("$city, $state $zip")
         return output
+
+
+
+
+
     }
 }
