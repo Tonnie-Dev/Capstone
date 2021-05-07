@@ -77,6 +77,7 @@ class RepresentativeViewModel(application: Application) : AndroidViewModel(appli
       _showSnackbarValue.value = message
     _reps.value = listOf()
     _stateSpinnerValue.value = "Invalid"
+    _status.value = LoadingStatus.ERROR
 
     Timber.i("Following Invalidate the spinner points to ${_stateSpinnerValue.value}")
     Timber.i("Following Invalidate address is now ${_address.value}")

@@ -188,7 +188,7 @@ class DetailFragment : Fragment() {
 
 
 
-   
+
 
 
 
