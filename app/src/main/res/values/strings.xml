@@ -25,6 +25,9 @@
     <string name="address_line_2_hint">Address Line 2</string>
     <string name="city_hint">City</string>
     <string name="zip_code_hint">ZIP Code</string>
+    <string name="unnamed_address">Unnamed Address</string>
+    <string name="invalid_address">No Valid Address Found, Please Try Again</string>
+
 
 
 </resources>

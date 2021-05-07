@@ -1,7 +1,10 @@
 package com.example.android.politicalpreparedness.representative
 
 import android.app.Application
+import android.provider.Settings.Global.getString
+import androidx.core.content.ContextCompat
 import androidx.lifecycle.*
+import com.example.android.politicalpreparedness.R
 import com.example.android.politicalpreparedness.network.CivicsApi
 import com.example.android.politicalpreparedness.network.models.Address
 import com.example.android.politicalpreparedness.representative.model.Representative
@@ -25,6 +28,12 @@ class RepresentativeViewModel(application: Application) : AndroidViewModel(appli
   private val _status = MutableLiveData<LoadingStatus>()
   val status: LiveData<LoadingStatus>
     get() = _status
+
+  private val _showSnackbarValue = MutableLiveData<String>()
+  val showSnackBar: LiveData<String>
+  get() = _showSnackbarValue
+
+
 
   // TODO: Create function to fetch representatives from API from a provided address
 
@@ -58,10 +67,14 @@ class RepresentativeViewModel(application: Application) : AndroidViewModel(appli
    * housing representatives
    */
 
+  fun invalidateAddress(message: String){
+    _address.value = Address()
+      _showSnackbarValue.value = message
+    }
   // TODO: Create function get address from geo location
   fun getAddressFromGeoLocation(address: Address) {
+    _address.value =address
 
-    _address.value = address
   }
 
   // TODO: Create function to get address from individual fields

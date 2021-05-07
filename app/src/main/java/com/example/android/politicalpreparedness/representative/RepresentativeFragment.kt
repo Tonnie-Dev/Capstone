@@ -103,6 +103,11 @@ class DetailFragment : Fragment() {
     // Define and assign Representative adapter
     binding.repsRecyclerview.adapter = RepresentativeListAdapter(RepClickListener {})
 
+      viewModel.showSnackBar.observe(viewLifecycleOwner) { message ->
+
+          Snackbar.make(binding.root,message,Snackbar.LENGTH_INDEFINITE).show()
+      }
+
     // TODO: Populate Representative adapter
 
     // TODO: Establish button listeners for field and location search
@@ -166,9 +171,10 @@ class DetailFragment : Fragment() {
 
         val formattedAddress = address.toFormattedString()
         Timber.i("The addrs ${address.toFormattedString()}")
+
         if (formattedAddress == ""){
 
-            Toast.makeText(requireActivity(),"No valid address found", Toast.LENGTH_SHORT).show()
+            viewModel.invalidateAddress(getString(R.string.invalid_address))
         }
 
         // get network response for the reps
@@ -186,10 +192,19 @@ class DetailFragment : Fragment() {
 
     private fun autoFillAddresses(address: Address) {
 
-    binding.addressLine1.setText(address.line1)
-    binding.addressLine2.setText(address.line2)
-    binding.city.setText(address.city)
-    binding.zip.setText(address.zip)
+        if (address.line1 == null){
+            binding.addressLine1.setText(getString(R.string.unnamed_address))
+Timber.i("The unnamed address is ${address.line1}")
+        }else{
+
+            binding.addressLine1.setText(address.line1)
+            binding.addressLine2.setText(address.line2)
+            binding.city.setText(address.city)
+            binding.zip.setText(address.zip)
+        }
+
+
+        Timber.i("The full address is $address")
   }
 
   private fun geoCodeLocation(location: Location): Address {
