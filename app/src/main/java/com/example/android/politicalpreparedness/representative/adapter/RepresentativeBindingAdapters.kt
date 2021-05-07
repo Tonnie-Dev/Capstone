@@ -16,13 +16,7 @@ import com.example.android.politicalpreparedness.representative.LoadingStatus
 import com.example.android.politicalpreparedness.representative.model.Representative
 import timber.log.Timber
 
-@BindingAdapter("profileImage")
-fun fetchImage(view: ImageView, src: String?) {
-    src?.let {
-        val uri = src.toUri().buildUpon().scheme("https").build()
-        //TODO: Add Glide call to load image and circle crop - user ic_profile as a placeholder and for errors.
-    }
-}
+
 
 @BindingAdapter("stateValue")
 fun Spinner.setNewValue(value: String?) {
@@ -108,10 +102,17 @@ fun ImageView.getApiLoadingStatus (status: LoadingStatus?){
 
 }
 
-@BindingAdapter("spinnerStateValue")
+/*@BindingAdapter("spinnerStateValue")
 
     fun Spinner.setSpinnerStateValue(newStateValue: String?){
 
         this.setNewValue(newStateValue)
-    }
+    }*/
 
+/*@BindingAdapter("profileImage")
+fun fetchImage(view: ImageView, src: String?) {
+    src?.let {
+        val uri = src.toUri().buildUpon().scheme("https").build()
+ // Add Glide call to load image and circle crop - user ic_profile as a placeholder and for errors.
+    }
+}*/

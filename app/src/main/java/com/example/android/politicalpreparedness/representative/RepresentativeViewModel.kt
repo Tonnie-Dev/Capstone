@@ -26,19 +26,13 @@ class RepresentativeViewModel(application: Application) : AndroidViewModel(appli
   val status: LiveData<LoadingStatus>
     get() = _status
 
-
-
-
-
   private val _stateSpinnerValue = MutableLiveData<String?>()
   val stateSpinnerValue: LiveData<String?>
     get() = _stateSpinnerValue
 
   private val _showSnackbarValue = MutableLiveData<String>()
   val showSnackBar: LiveData<String>
-  get() = _showSnackbarValue
-
-
+    get() = _showSnackbarValue
 
   // TODO: Create function to fetch representatives from API from a provided address
 
@@ -71,24 +65,22 @@ class RepresentativeViewModel(application: Application) : AndroidViewModel(appli
    * API Note: _representatives in the above code represents the established mutable live data
    * housing representatives
    */
-
-  fun invalidateAddress(message: String){
+  fun invalidateAddress(message: String) {
     _address.value = Address()
-      _showSnackbarValue.value = message
+    _showSnackbarValue.value = message
     _reps.value = listOf()
     _stateSpinnerValue.value = "Invalid"
     _status.value = LoadingStatus.ERROR
 
     Timber.i("Following Invalidate the spinner points to ${_stateSpinnerValue.value}")
     Timber.i("Following Invalidate address is now ${_address.value}")
-    }
+  }
   // TODO: Create function get address from geo location
   fun getAddressFromGeoLocation(address: Address) {
-    _address.value =address
+    _address.value = address
     _stateSpinnerValue.value = address.state
 
     Timber.i("The Spinner is pointiing to ${_stateSpinnerValue.value}")
-
   }
 
   // TODO: Create function to get address from individual fields
