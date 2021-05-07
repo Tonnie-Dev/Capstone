@@ -103,4 +103,15 @@ fun ImageView.getApiLoadingStatus (status: LoadingStatus?){
         }
     }
 
+
+
+
 }
+
+@BindingAdapter("spinnerStateValue")
+
+    fun Spinner.setSpinnerStateValue(newStateValue: String?){
+
+        this.setNewValue(newStateValue)
+    }
+
