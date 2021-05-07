@@ -38,9 +38,6 @@ class DetailFragment : Fragment() {
   private lateinit var binding: FragmentRepresentativeBinding
   private lateinit var lastKnownLocation: Location
 
-  private val officesList = listOf("headOfGovernment","deputyHeadOfGovernment","headOfState",
-                                   "legislatorUpperBody","legislatorLowerBody")
-
   // LOCATION COMPONENTS
   private lateinit var fusedLocationProviderClient: FusedLocationProviderClient
 
@@ -103,10 +100,9 @@ class DetailFragment : Fragment() {
     // Define and assign Representative adapter
     binding.repsRecyclerview.adapter = RepresentativeListAdapter(RepClickListener {})
 
-      viewModel.showSnackBar.observe(viewLifecycleOwner) { message ->
-
-          Snackbar.make(binding.root,message,Snackbar.LENGTH_INDEFINITE).show()
-      }
+    viewModel.showSnackBar.observe(viewLifecycleOwner) { message ->
+      Snackbar.make(binding.root, message, Snackbar.LENGTH_LONG).show()
+    }
 
     // TODO: Populate Representative adapter
 
@@ -118,14 +114,17 @@ class DetailFragment : Fragment() {
     binding.buttonLocation.setOnClickListener {
 
       // request for permission if not already granted
-
+      clearForm()
       fineLocationPermissionLauncher.launch(Manifest.permission.ACCESS_FINE_LOCATION)
     }
 
     return binding.root
   }
+
   override fun onStop() {
     super.onStop()
+
+    // stop updates
     fusedLocationProviderClient.removeLocationUpdates(locationCallback)
   }
 
@@ -141,7 +140,7 @@ class DetailFragment : Fragment() {
             // initialize lastKnownLocation from fusedLocationProviderClient
             lastKnownLocation = lastLoc
 
-              setUpAddressAndGetReps()
+            setUpAddressAndGetReps()
           } else {
             Timber.i("The lastLoc is null")
             // prompt user to turn on location
@@ -161,51 +160,47 @@ class DetailFragment : Fragment() {
         }
   }
 
-    private fun setUpAddressAndGetReps() {
+  private fun setUpAddressAndGetReps() {
 
-        //get geoCoded address String
-        val address = geoCodeLocation(lastKnownLocation)
+    // get geoCoded address String
+    val address = geoCodeLocation(lastKnownLocation)
 
-        // set up viewModel's MutableLiveData for address
-        viewModel.getAddressFromGeoLocation(address)
+    // set up viewModel's MutableLiveData for address
+    viewModel.getAddressFromGeoLocation(address)
 
-        val formattedAddress = address.toFormattedString()
-        Timber.i("The addrs ${address.toFormattedString()}")
+    val formattedAddress = address.toFormattedString()
+    Timber.i("The addrs ${address.toFormattedString()}")
 
-        if (formattedAddress == ""){
+    if (formattedAddress == "") {
 
-            viewModel.invalidateAddress(getString(R.string.invalid_address))
-        }
-
-        // get network response for the reps
-       viewModel.fetchRepsFromNetwork(formattedAddress )
-
-
-
-       /*viewModel.address.value?.let {
-
-            viewModel.fetchRepsFromNetwork(it.toFormattedString())
-        }*/
-
-        autoFillAddresses(address)
+      viewModel.invalidateAddress(getString(R.string.invalid_address))
+        clearForm()
     }
 
-    private fun autoFillAddresses(address: Address) {
+    // get network response for the reps
+    viewModel.fetchRepsFromNetwork(formattedAddress)
 
-        if (address.line1 == null){
-            binding.addressLine1.setText(getString(R.string.unnamed_address))
-Timber.i("The unnamed address is ${address.line1}")
-        }else{
-
-            binding.addressLine1.setText(address.line1)
-            binding.addressLine2.setText(address.line2)
-            binding.city.setText(address.city)
-            binding.zip.setText(address.zip)
-        }
-
-
-        Timber.i("The full address is $address")
+    autoFillAddresses(address)
   }
+
+
+  private fun autoFillAddresses(address: Address) {
+
+    if (address.line1 == null) {
+      binding.addressLine1.setText(getString(R.string.unnamed_address))
+      Timber.i("The unnamed address is ${address.line1}")
+    } else {
+
+      binding.addressLine1.setText(address.line1)
+      binding.addressLine2.setText(address.line2)
+      binding.city.setText(address.city)
+      binding.zip.setText(address.zip)
+    }
+
+    Timber.i("The full address is $address")
+  }
+
+
 
   private fun geoCodeLocation(location: Location): Address {
     val geocoder = Geocoder(context, Locale.getDefault())
@@ -220,6 +215,15 @@ Timber.i("The unnamed address is ${address.line1}")
               address.postalCode)
         }
         .first()
+  }
+
+
+
+  private fun clearForm() {
+    binding.addressLine1.setText("")
+    binding.addressLine2.setText("")
+    binding.city.setText("")
+    binding.zip.setText("")
   }
 
   private fun hideKeyboard() {
@@ -244,15 +248,15 @@ Timber.i("The unnamed address is ${address.line1}")
                 dialog.dismiss()
               }
               .setNegativeButton(android.R.string.cancel) { dialog, _ ->
-
                 Snackbar.make(
                         binding.root,
                         getString(R.string.location_required_error),
                         Snackbar.LENGTH_INDEFINITE)
                     .setAction(android.R.string.ok) {
                       showSnackBar(getString(R.string.rationale_for_location_permissions))
-                        dialog.dismiss()
-                    }.show()
+                      dialog.dismiss()
+                    }
+                    .show()
               }
               .create()
 
@@ -303,13 +307,41 @@ Timber.i("The unnamed address is ${address.line1}")
                     .show()
               }
               .create()
+
       materialAlertDialogBuilder.show()
     }
   }
 }
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 // OLD CODE for android permissions
+
+
+
+
+
+
+
+
+
+
 
 
 

@@ -68,8 +68,9 @@ class RepresentativeViewModel(application: Application) : AndroidViewModel(appli
    */
 
   fun invalidateAddress(message: String){
-    _address.value = Address()
+    //_address.value = Address()
       _showSnackbarValue.value = message
+    _reps.value = listOf()
     }
   // TODO: Create function get address from geo location
   fun getAddressFromGeoLocation(address: Address) {
