@@ -165,24 +165,37 @@ class DetailFragment : Fragment() {
     // get geoCoded address String
     val address = geoCodeLocation(lastKnownLocation)
 
-    // set up viewModel's MutableLiveData for address
-    viewModel.getAddressFromGeoLocation(address)
+      //format the geoCoded Address
+      val formattedAddress = address.toFormattedString()
 
-    val formattedAddress = address.toFormattedString()
-    Timber.i("The addrs ${address.toFormattedString()}")
+      // Address outside USA
+      if (formattedAddress == "") {
 
-    if (formattedAddress == "") {
+          viewModel.invalidateAddress(getString(R.string.invalid_address))
+          clearForm()
+      }else {
 
-      viewModel.invalidateAddress(getString(R.string.invalid_address))
-        clearForm()
-    }
+          // set up viewModel's MutableLiveData for address
+          viewModel.getAddressFromGeoLocation(address)
 
-    // get network response for the reps
-    viewModel.fetchRepsFromNetwork(formattedAddress)
+          // get network response for the reps
+          viewModel.fetchRepsFromNetwork(formattedAddress)
 
-    autoFillAddresses(address)
+          autoFillAddresses(address)
+      }
+
+
+
+
+
+   
+
+
+
+
+
+
   }
-
 
   private fun autoFillAddresses(address: Address) {
 
@@ -200,8 +213,6 @@ class DetailFragment : Fragment() {
     Timber.i("The full address is $address")
   }
 
-
-
   private fun geoCodeLocation(location: Location): Address {
     val geocoder = Geocoder(context, Locale.getDefault())
     return geocoder
@@ -216,8 +227,6 @@ class DetailFragment : Fragment() {
         }
         .first()
   }
-
-
 
   private fun clearForm() {
     binding.addressLine1.setText("")
@@ -281,7 +290,9 @@ class DetailFragment : Fragment() {
   // Check if location is enabled
   @RequiresApi(Build.VERSION_CODES.M)
   private fun isLocationEnabled(): Boolean {
+
     val locationManager = requireActivity().getSystemService(LocationManager::class.java)
+
     return locationManager.isProviderEnabled(LocationManager.GPS_PROVIDER) ||
         locationManager.isProviderEnabled(LocationManager.NETWORK_PROVIDER)
   }
@@ -332,6 +343,10 @@ class DetailFragment : Fragment() {
 
 
 // OLD CODE for android permissions
+
+
+
+
 
 
 

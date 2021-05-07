@@ -49,7 +49,7 @@ fun RecyclerView.populateRecyclerView(reps: List<Representative>?){
     val adapter = this.adapter as RepresentativeListAdapter
     adapter.submitList(reps)
 
-    Timber.i("The reps in recycler are $reps")
+
 }
 
 

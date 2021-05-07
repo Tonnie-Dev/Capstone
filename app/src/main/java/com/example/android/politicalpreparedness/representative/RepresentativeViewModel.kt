@@ -73,9 +73,13 @@ class RepresentativeViewModel(application: Application) : AndroidViewModel(appli
    */
 
   fun invalidateAddress(message: String){
-    //_address.value = Address()
+    _address.value = Address()
       _showSnackbarValue.value = message
     _reps.value = listOf()
+    _stateSpinnerValue.value = "Invalid"
+
+    Timber.i("Following Invalidate the spinner points to ${_stateSpinnerValue.value}")
+    Timber.i("Following Invalidate address is now ${_address.value}")
     }
   // TODO: Create function get address from geo location
   fun getAddressFromGeoLocation(address: Address) {
