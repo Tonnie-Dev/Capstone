@@ -31,7 +31,7 @@
         <EditText
             android:id="@+id/address_line_1"
             android:layout_width="match_parent"
-
+android:text="@={viewModel.edLine1}"
             android:layout_height="wrap_content"
             android:autofillHints="streetAddress"
             android:hint="@string/address_line_1_hint"
@@ -48,10 +48,11 @@
             android:id="@+id/address_line_2"
             android:layout_width="match_parent"
             android:layout_height="0dp"
-
+            android:text="@={viewModel.edLine2}"
             android:autofillHints="extendedAddress"
             android:hint="@string/address_line_2_hint"
             android:inputType="textPostalAddress"
+            android:text="@={viewModel.line1}"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/address_line_1" />
 
@@ -61,6 +62,7 @@
             android:layout_height="wrap_content"
             android:autofillHints="extendedPostalCode"
             android:hint="@string/city_hint"
+            android:text="@={viewModel.edCity}"
             android:inputType="textPostalAddress"
             app:layout_constraintEnd_toStartOf="@id/state"
             app:layout_constraintStart_toStartOf="parent"
@@ -76,13 +78,13 @@
             android:layout_width="0dp"
             android:layout_height="0dp"
             android:autofillHints=""
-
+            android:entries="@array/states"
             android:inputType="textPostalAddress"
             app:layout_constraintBottom_toBottomOf="@id/city"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toEndOf="@id/city"
             app:layout_constraintTop_toTopOf="@id/city"
-            app:spinnerStateValue="@{viewModel.stateSpinnerValue}" />
+            app:stateValue="@{viewModel.stateSpinnerValue}" />
 
         <!-- TODO: Add data binding value -->
         <!-- TODO: Add visual styling and content -->
@@ -93,7 +95,7 @@
             android:autofillHints="extendedPostalCode"
             android:hint="@string/zip_code_hint"
             android:inputType="number"
-
+            android:text="@={viewModel.edZipCode}"
             android:maxLength="5"
             app:layout_constraintEnd_toEndOf="@id/city"
             app:layout_constraintStart_toStartOf="parent"

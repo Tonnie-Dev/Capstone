@@ -44,7 +44,7 @@ class DetailFragment : Fragment() {
   private val locationRequest =
       LocationRequest().apply {
         priority = LocationRequest.PRIORITY_HIGH_ACCURACY
-        interval = TimeUnit.SECONDS.toMillis(3)
+        interval = TimeUnit.MINUTES.toMillis(5)
         fastestInterval = TimeUnit.SECONDS.toMillis(1)
       }
 
@@ -213,6 +213,9 @@ class DetailFragment : Fragment() {
     Timber.i("The full address is $address")
   }
 
+
+
+
   private fun geoCodeLocation(location: Location): Address {
     val geocoder = Geocoder(context, Locale.getDefault())
     return geocoder
@@ -227,6 +230,13 @@ class DetailFragment : Fragment() {
         }
         .first()
   }
+
+
+    private fun readFromForm() {
+
+
+
+    }
 
   private fun clearForm() {
     binding.addressLine1.setText("")

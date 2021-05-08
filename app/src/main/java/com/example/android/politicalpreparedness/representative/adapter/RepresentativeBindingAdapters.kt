@@ -23,6 +23,7 @@ fun Spinner.setNewValue(value: String?) {
     val adapter = toTypedAdapter<String>(this.adapter as ArrayAdapter<*>)
     val position = when (adapter.getItem(0)) {
         is String -> adapter.getPosition(value)
+
         else -> this.selectedItemPosition
     }
     if (position >= 0) {
@@ -101,13 +102,20 @@ fun ImageView.getApiLoadingStatus (status: LoadingStatus?){
 
 
 }
-
-/*@BindingAdapter("spinnerStateValue")
+/*
+@BindingAdapter("spinnerStateValue")
 
     fun Spinner.setSpinnerStateValue(newStateValue: String?){
 
-        this.setNewValue(newStateValue)
+    setS
     }*/
+
+
+
+
+
+
+
 
 /*@BindingAdapter("profileImage")
 fun fetchImage(view: ImageView, src: String?) {

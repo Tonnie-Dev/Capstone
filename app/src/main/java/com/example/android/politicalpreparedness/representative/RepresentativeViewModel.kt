@@ -34,6 +34,29 @@ class RepresentativeViewModel(application: Application) : AndroidViewModel(appli
   val showSnackBar: LiveData<String>
     get() = _showSnackbarValue
 
+  private val _line1 = MutableLiveData<String>("baop")
+  val line1: LiveData<String>
+  get() = _line1
+  var edLine1 = ""
+
+  private val _line2 = MutableLiveData<String>()
+  val line2: LiveData<String>
+  get() = _line2
+  var edLine2 = ""
+
+  private val _city = MutableLiveData<String>()
+  val city: LiveData<String>
+  get() = _city
+  var edCity = ""
+
+  private val _zipcode = MutableLiveData<String>()
+  val zip: LiveData<String>
+  get() = _zipcode
+  var edZipCode = ""
+
+
+
+
   // TODO: Create function to fetch representatives from API from a provided address
 
   fun fetchRepsFromNetwork(address: String) {
