@@ -16,6 +16,7 @@
     <!-- TODO: Add motion scene to hide form on vertical scroll. -->
     <androidx.constraintlayout.motion.widget.MotionLayout
         android:layout_width="match_parent"
+        app:layout_behavior="com.google.android.material.appbar.AppBarLayout$ScrollingViewBehavior"
         android:layout_height="match_parent"
         app:layoutDescription="@xml/fragment_representative_scene">
 
@@ -161,6 +162,7 @@ android:text="@={viewModel.edLine1}"
         <ImageView
             android:layout_width="192dp"
             android:layout_height="192dp"
+            android:id="@+id/statusImageView"
             app:apiStatus="@{viewModel.status}"
             app:layout_constraintBottom_toBottomOf="@+id/reps_recyclerview"
             app:layout_constraintEnd_toEndOf="@id/reps_recyclerview"
