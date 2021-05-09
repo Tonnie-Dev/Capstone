@@ -86,11 +86,13 @@ fun ImageView.getApiLoadingStatus (status: LoadingStatus?){
             setImageResource(R.drawable.loading_animation)
             Timber.i("The status is $status")
         }
+
         LoadingStatus.ERROR -> {
             Timber.i("The status is $status")
             visibility = View.VISIBLE
             setImageResource(R.drawable.ic_broken_image)
         }
+        
         LoadingStatus.FINISHED -> {
             Timber.i("The status is $status")
             visibility = View.GONE
