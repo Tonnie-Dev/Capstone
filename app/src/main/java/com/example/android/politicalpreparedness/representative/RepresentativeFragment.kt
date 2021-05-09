@@ -107,8 +107,15 @@ class DetailFragment : Fragment() {
     // TODO: Populate Representative adapter
 
     // TODO: Establish button listeners for field and location search
-    // search  by address
-    binding.buttonSearch.setOnClickListener {}
+    // search  by address form
+    binding.buttonSearch.setOnClickListener {
+
+
+
+//clearForm()
+        viewModel.getAddressFromForm()
+        setUpAddressAndGetReps(viewModel.address.value!!)
+    }
 
     // use my location button
     binding.buttonLocation.setOnClickListener {
@@ -139,8 +146,9 @@ class DetailFragment : Fragment() {
 
             // initialize lastKnownLocation from fusedLocationProviderClient
             lastKnownLocation = lastLoc
-
-            setUpAddressAndGetReps()
+              // get geoCoded address String
+              val address = geoCodeLocation(lastKnownLocation)
+            setUpAddressAndGetReps(address)
           } else {
             Timber.i("The lastLoc is null")
             // prompt user to turn on location
@@ -160,13 +168,14 @@ class DetailFragment : Fragment() {
         }
   }
 
-  private fun setUpAddressAndGetReps() {
+  private fun setUpAddressAndGetReps(address: Address) {
 
-    // get geoCoded address String
-    val address = geoCodeLocation(lastKnownLocation)
+
 
       //format the geoCoded Address
       val formattedAddress = address.toFormattedString()
+
+      Timber.i("The formatted address is now $address")
 
       // Address outside USA
       if (formattedAddress == "") {

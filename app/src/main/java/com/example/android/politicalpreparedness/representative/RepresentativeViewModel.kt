@@ -108,6 +108,19 @@ class RepresentativeViewModel(application: Application) : AndroidViewModel(appli
 
   // TODO: Create function to get address from individual fields
 
+ fun getAddressFromForm(){
+
+    _line1.value = edLine1
+    _line2.value = edLine2
+    _city.value = edCity
+    _zipcode.value = edZipCode
+
+    //construct a new address
+
+    _address.value = Address(edLine1, edLine2, edCity, _stateSpinnerValue.value, edZipCode)
+
+
+  }
 }
 
 enum class LoadingStatus {
