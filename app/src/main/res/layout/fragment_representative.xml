@@ -1,8 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-
-    xmlns:tools="http://schemas.android.com/tools"
     xmlns:motion="http://schemas.android.com/tools">
 
     <!-- TODO: Add data binding node -->
@@ -18,9 +16,10 @@
     <!-- TODO: Add motion scene to hide form on vertical scroll. -->
     <androidx.constraintlayout.motion.widget.MotionLayout
         android:layout_width="match_parent"
-        app:layout_behavior="com.google.android.material.appbar.AppBarLayout$ScrollingViewBehavior"
         android:layout_height="match_parent"
-        app:layoutDescription="@xml/fragment_representative_scene">
+        app:layoutDescription="@xml/fragment_representative_scene"
+        app:layout_behavior="com.google.android.material.appbar.AppBarLayout$ScrollingViewBehavior">
+
 
         <!-- TODO: Add visual styling and content -->
         <TextView
@@ -35,11 +34,11 @@
         <EditText
             android:id="@+id/address_line_1"
             android:layout_width="match_parent"
-android:text="@={viewModel.edLine1}"
             android:layout_height="wrap_content"
             android:autofillHints="streetAddress"
             android:hint="@string/address_line_1_hint"
             android:inputType="textPostalAddress"
+            android:text="@={viewModel.edLine1}"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/search_title" />
 
@@ -52,11 +51,10 @@ android:text="@={viewModel.edLine1}"
             android:id="@+id/address_line_2"
             android:layout_width="match_parent"
             android:layout_height="0dp"
-            android:text="@={viewModel.edLine2}"
             android:autofillHints="extendedAddress"
             android:hint="@string/address_line_2_hint"
             android:inputType="textPostalAddress"
-
+            android:text="@={viewModel.edLine2}"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/address_line_1" />
 
@@ -66,8 +64,8 @@ android:text="@={viewModel.edLine1}"
             android:layout_height="wrap_content"
             android:autofillHints="extendedPostalCode"
             android:hint="@string/city_hint"
-            android:text="@={viewModel.edCity}"
             android:inputType="textPostalAddress"
+            android:text="@={viewModel.edCity}"
             app:layout_constraintEnd_toStartOf="@id/state"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/address_line_2" />
@@ -99,8 +97,8 @@ android:text="@={viewModel.edLine1}"
             android:autofillHints="extendedPostalCode"
             android:hint="@string/zip_code_hint"
             android:inputType="number"
-            android:text="@={viewModel.edZipCode}"
             android:maxLength="5"
+            android:text="@={viewModel.edZipCode}"
             app:layout_constraintEnd_toEndOf="@id/city"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/city" />
@@ -113,7 +111,8 @@ android:text="@={viewModel.edLine1}"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="@string/find_my_reps_text"
-            app:layout_constraintTop_toBottomOf="@id/zip" />
+            app:layout_constraintTop_toBottomOf="@id/zip"
+            motion:layout_editor_absoluteX="104dp" />
 
         <!--motion:layout_editor_absoluteX="104dp"-->
         <!-- TODO: Add visual styling and content -->
@@ -123,7 +122,8 @@ android:text="@={viewModel.edLine1}"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="@string/use_my_locations_text"
-            app:layout_constraintTop_toBottomOf="@id/button_search" />
+            app:layout_constraintTop_toBottomOf="@id/button_search"
+            motion:layout_editor_absoluteX="0dp" />
 
         <!--motion:layout_editor_absoluteX="0dp"-->
         <TextView
@@ -146,7 +146,9 @@ android:text="@={viewModel.edLine1}"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/representative_title"
-            app:repsRecyclerViewData="@{viewModel.reps}" />
+            app:repsRecyclerViewData="@{viewModel.reps}"
+            motion:layout_editor_absoluteX="157dp"
+            motion:layout_editor_absoluteY="364dp" />
 
         <!--motion:layout_editor_absoluteX="157dp"
             motion:layout_editor_absoluteY="364dp"-->
@@ -159,14 +161,15 @@ android:text="@={viewModel.edLine1}"
             android:textAlignment="center"
             android:visibility="gone"
             app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/representative_title" />
+            app:layout_constraintTop_toBottomOf="@id/representative_title"
+            motion:visibilityMode="ignore" />
 
         <!--motion:visibilityMode="ignore"-->
 
         <ImageView
+            android:id="@+id/statusImageView"
             android:layout_width="192dp"
             android:layout_height="192dp"
-            android:id="@+id/statusImageView"
             app:apiStatus="@{viewModel.status}"
             app:layout_constraintBottom_toBottomOf="@+id/reps_recyclerview"
             app:layout_constraintEnd_toEndOf="@id/reps_recyclerview"
