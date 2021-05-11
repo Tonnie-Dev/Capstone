@@ -170,7 +170,7 @@
             android:id="@+id/statusImageView"
             android:layout_width="192dp"
             android:layout_height="192dp"
-            app:apiStatus="@{viewModel.status}"
+            app:apiLoadingStatus="@{viewModel.status}"
             app:layout_constraintBottom_toBottomOf="@+id/reps_recyclerview"
             app:layout_constraintEnd_toEndOf="@id/reps_recyclerview"
             app:layout_constraintStart_toStartOf="@id/reps_recyclerview"

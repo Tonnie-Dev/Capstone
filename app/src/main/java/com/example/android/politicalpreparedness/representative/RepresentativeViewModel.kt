@@ -65,6 +65,7 @@ class RepresentativeViewModel(application: Application) : AndroidViewModel(appli
       try {Timber.i("Entering Try-Catch Block")
 
         _status.value = LoadingStatus.LOADING
+        Timber.i("the state at inside catch is ${ _status.value}")
 
         //switch to background thread
         withContext(IO) {
@@ -72,10 +73,14 @@ class RepresentativeViewModel(application: Application) : AndroidViewModel(appli
           val (offices, officials) = CivicsApi.retrofitService.representativeInfoByAddress(address)
           _reps.postValue(offices.flatMap { office -> office.getRepresentatives(officials) })
 
-         // _status.postValue(LoadingStatus.FINISHED)
+          _status.postValue(LoadingStatus.FINISHED)
           Timber.i("Leaving IO Block")
+          Timber.i("the state at IO is ${ _status.value}")
+
         }
-        _status.value = LoadingStatus.FINISHED
+
+
+
 
       } catch (e: Exception) {
 
@@ -83,7 +88,7 @@ class RepresentativeViewModel(application: Application) : AndroidViewModel(appli
       }
 
     }
-
+    Timber.i("the state outside scope  is ${ _status.value}")
   }
 
   /**

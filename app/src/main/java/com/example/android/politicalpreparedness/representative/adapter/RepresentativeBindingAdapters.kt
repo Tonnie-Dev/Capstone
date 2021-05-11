@@ -37,7 +37,6 @@ inline fun <reified T> toTypedAdapter(adapter: ArrayAdapter<*>): ArrayAdapter<T>
 
 
 @BindingAdapter("repsRecyclerViewData")
-
 fun RecyclerView.populateRecyclerView(reps: List<Representative>?){
 
 
@@ -102,9 +101,31 @@ fun ImageView.getApiLoadingStatus (status: LoadingStatus?){
     }
 
 
-
-
 }
+
+
+@BindingAdapter("apiLoadingStatus")
+
+fun ImageView.setApiLoadingStatus(status:LoadingStatus?){
+
+    when(status){
+
+        LoadingStatus.LOADING -> {
+
+            setImageResource(R.drawable.loading_animation)
+        }
+        LoadingStatus.FINISHED -> {
+
+            this.visibility = View.GONE
+        }
+        LoadingStatus.ERROR -> {
+
+            setImageResource(R.drawable.ic_broken_image)
+        }
+
+    }
+}
+
 /*
 @BindingAdapter("spinnerStateValue")
 
