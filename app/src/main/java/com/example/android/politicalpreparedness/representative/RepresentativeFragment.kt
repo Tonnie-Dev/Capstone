@@ -44,7 +44,7 @@ class DetailFragment : Fragment() {
     private val locationRequest =
         LocationRequest().apply {
             priority = LocationRequest.PRIORITY_HIGH_ACCURACY
-            interval = TimeUnit.SECONDS.toMillis(3)
+            interval = TimeUnit.MINUTES.toMillis(3)
             fastestInterval = TimeUnit.SECONDS.toMillis(1)
         }
 
@@ -59,7 +59,7 @@ class DetailFragment : Fragment() {
 
                     lastKnownLocation = locationResult.lastLocation
 
-                    getLastKnownLocation()
+                   getLastKnownLocation()
                 }
             }
         }
@@ -124,6 +124,12 @@ class DetailFragment : Fragment() {
             // request for permission if not already granted
             fineLocationPermissionLauncher.launch(Manifest.permission.ACCESS_FINE_LOCATION)
             clearForm()
+        }
+
+
+        viewModel.status.observe(viewLifecycleOwner){
+
+            Timber.i("the status on observation is $it")
         }
 
         return binding.root

@@ -54,50 +54,31 @@ class RepresentativeViewModel(application: Application) : AndroidViewModel(appli
   get() = _zipcode
   var edZipCode = ""
 
-  fun fetchRepsFromNetwork(address: String) {
 
-    viewModelScope.launch {
-      try {
-
-        _status.value = LoadingStatus.LOADING
-        withContext(IO) {
-          val (offices, officials) = CivicsApi.retrofitService.representativeInfoByAddress(address)
-          _reps.postValue(offices.flatMap { office -> office.getRepresentatives(officials) })
-          _status.postValue(LoadingStatus.FINISHED)
-        }
-      } catch (e: Exception) {
-
-        _status.value = LoadingStatus.ERROR
-      }
-    }
-  }
 
 
 
 
   // Create function to fetch representatives from API from a provided address
 
- /* fun fetchRepsFromNetwork(address: String) {
+  fun fetchRepsFromNetwork(address: String) {
 
     viewModelScope.launch {
-      try {Timber.i("Entering Try-Catch Block")
+      try {
 
         _status.value = LoadingStatus.LOADING
-        Timber.i("the state at inside catch is ${ _status.value}")
+
 
         //switch to background thread
         withContext(IO) {
-          Timber.i("Entering IO Block")
+
           val (offices, officials) = CivicsApi.retrofitService.representativeInfoByAddress(address)
           _reps.postValue(offices.flatMap { office -> office.getRepresentatives(officials) })
 
           _status.postValue(LoadingStatus.FINISHED)
-          Timber.i("Leaving IO Block")
-          Timber.i("the state at IO is ${ _status.value}")
+
 
         }
-
-
 
 
       } catch (e: Exception) {
@@ -106,8 +87,8 @@ class RepresentativeViewModel(application: Application) : AndroidViewModel(appli
       }
 
     }
-    Timber.i("the state outside scope  is ${ _status.value}")
-  }*/
+
+  }
 
   /**
    * The following code will prove helpful in constructing a representative from the API. This code
@@ -124,18 +105,16 @@ class RepresentativeViewModel(application: Application) : AndroidViewModel(appli
     _address.value = Address()
     _showSnackbarValue.value = message
     _reps.value = listOf()
-    _stateSpinnerValue.value = "Invalid"
     _status.value = LoadingStatus.ERROR
 
-    Timber.i("Following Invalidate the spinner points to ${_stateSpinnerValue.value}")
-    Timber.i("Following Invalidate address is now ${_address.value}")
+
   }
   // TODO: Create function get address from geo location
   fun getAddressFromGeoLocation(address: Address) {
     _address.value = address
     _stateSpinnerValue.value = address.state
 
-    Timber.i("The Spinner is pointiing to ${_stateSpinnerValue.value}")
+
   }
 
   // TODO: Create function to get address from individual fields
@@ -150,7 +129,6 @@ class RepresentativeViewModel(application: Application) : AndroidViewModel(appli
     //construct a new address
 
     _address.value = Address(edLine1, edLine2, edCity, _stateSpinnerValue.value, edZipCode)
-
 
   }
 }

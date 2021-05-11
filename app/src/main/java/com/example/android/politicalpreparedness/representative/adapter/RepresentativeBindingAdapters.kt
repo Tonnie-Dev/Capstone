@@ -71,7 +71,7 @@ fun ImageView.getImageFromCoil(imageUrl:String?){
 
 }
 
-/*@BindingAdapter("apiStatus")
+@BindingAdapter("apiStatus")
 fun ImageView.getApiLoadingStatus (status: LoadingStatus?){
 
 
@@ -79,17 +79,14 @@ fun ImageView.getApiLoadingStatus (status: LoadingStatus?){
 
 
         LoadingStatus.LOADING -> {
-
             visibility = View.VISIBLE
             setImageResource(R.drawable.loading_animation)
             Timber.i("The status is $status")
         }
 
 
-        
         LoadingStatus.FINISHED -> {
-
-            this.visibility = View.GONE
+            this.visibility = View.INVISIBLE
             Timber.i("The status is $status")
         }
 
@@ -101,7 +98,7 @@ fun ImageView.getApiLoadingStatus (status: LoadingStatus?){
     }
 
 
-}*/
+}
 
 
 @BindingAdapter("apiLoadingStatus")
