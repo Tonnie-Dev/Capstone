@@ -75,7 +75,7 @@
         <!-- TODO: Add visual styling and content -->
 
 
-        <Spinner
+      <!--  <Spinner
             android:id="@+id/state"
             android:layout_width="0dp"
             android:layout_height="0dp"
@@ -86,11 +86,11 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toEndOf="@id/city"
             app:layout_constraintTop_toTopOf="@id/city"
-            app:stateValue="@{viewModel.stateSpinnerValue}" />
+            app:stateValue="@{viewModel.stateSpinnerValue}" />-->
 
         <!-- TODO: Add data binding value -->
         <!-- TODO: Add visual styling and content -->
-        <EditText
+      <!--  <EditText
             android:id="@+id/zip"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
@@ -101,7 +101,7 @@
             android:text="@={viewModel.edZipCode}"
             app:layout_constraintEnd_toEndOf="@id/city"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/city" />
+            app:layout_constraintTop_toBottomOf="@id/city" />-->
 
         <!-- TODO: Add visual styling and label -->
 
@@ -135,20 +135,20 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/button_location" />
 
-        <!-- TODO: Add Representatives RecyclerView -->
-        <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/reps_recyclerview"
-            android:layout_width="match_parent"
-            android:layout_height="0dp"
-            android:layout_margin="20dp"
-            android:background="@color/colorAccent"
-            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/representative_title"
-            app:repsRecyclerViewData="@{viewModel.reps}"
-            motion:layout_editor_absoluteX="157dp"
-            motion:layout_editor_absoluteY="364dp" />
+        <!--  &lt;!&ndash; TODO: Add Representatives RecyclerView &ndash;&gt;
+          <androidx.recyclerview.widget.RecyclerView
+              android:id="@+id/reps_recyclerview"
+              android:layout_width="match_parent"
+              android:layout_height="0dp"
+              android:layout_margin="20dp"
+              android:background="@color/colorAccent"
+              app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+              app:layout_constraintBottom_toBottomOf="parent"
+              app:layout_constraintStart_toStartOf="parent"
+              app:layout_constraintTop_toBottomOf="@+id/representative_title"
+              app:repsRecyclerViewData="@{viewModel.reps}"
+              motion:layout_editor_absoluteX="157dp"
+              motion:layout_editor_absoluteY="364dp" />-->
 
         <!--motion:layout_editor_absoluteX="157dp"
             motion:layout_editor_absoluteY="364dp"-->
@@ -166,7 +166,7 @@
 
         <!--motion:visibilityMode="ignore"-->
 
-        <ImageView
+        <!--<ImageView
             android:id="@+id/statusImageView"
             android:layout_width="192dp"
             android:layout_height="192dp"
@@ -174,7 +174,7 @@
             app:layout_constraintBottom_toBottomOf="@+id/reps_recyclerview"
             app:layout_constraintEnd_toEndOf="@id/reps_recyclerview"
             app:layout_constraintStart_toStartOf="@id/reps_recyclerview"
-            app:layout_constraintTop_toTopOf="@+id/reps_recyclerview" />
+            app:layout_constraintTop_toTopOf="@+id/reps_recyclerview" />-->
 
     </androidx.constraintlayout.motion.widget.MotionLayout>
 </layout>
