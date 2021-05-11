@@ -71,7 +71,7 @@ fun ImageView.getImageFromCoil(imageUrl:String?){
 
 }
 
-@BindingAdapter("apiStatus")
+/*@BindingAdapter("apiStatus")
 fun ImageView.getApiLoadingStatus (status: LoadingStatus?){
 
 
@@ -101,7 +101,7 @@ fun ImageView.getApiLoadingStatus (status: LoadingStatus?){
     }
 
 
-}
+}*/
 
 
 @BindingAdapter("apiLoadingStatus")
@@ -115,6 +115,7 @@ fun ImageView.setApiLoadingStatus(status:LoadingStatus?){
             setImageResource(R.drawable.loading_animation)
         }
         LoadingStatus.FINISHED -> {
+
 
             this.visibility = View.GONE
         }

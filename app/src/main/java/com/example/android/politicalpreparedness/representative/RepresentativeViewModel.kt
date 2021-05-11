@@ -54,12 +54,30 @@ class RepresentativeViewModel(application: Application) : AndroidViewModel(appli
   get() = _zipcode
   var edZipCode = ""
 
+  fun fetchRepsFromNetwork(address: String) {
+
+    viewModelScope.launch {
+      try {
+
+        _status.value = LoadingStatus.LOADING
+        withContext(IO) {
+          val (offices, officials) = CivicsApi.retrofitService.representativeInfoByAddress(address)
+          _reps.postValue(offices.flatMap { office -> office.getRepresentatives(officials) })
+          _status.postValue(LoadingStatus.FINISHED)
+        }
+      } catch (e: Exception) {
+
+        _status.value = LoadingStatus.ERROR
+      }
+    }
+  }
+
 
 
 
   // Create function to fetch representatives from API from a provided address
 
-  fun fetchRepsFromNetwork(address: String) {
+ /* fun fetchRepsFromNetwork(address: String) {
 
     viewModelScope.launch {
       try {Timber.i("Entering Try-Catch Block")
@@ -89,7 +107,7 @@ class RepresentativeViewModel(application: Application) : AndroidViewModel(appli
 
     }
     Timber.i("the state outside scope  is ${ _status.value}")
-  }
+  }*/
 
   /**
    * The following code will prove helpful in constructing a representative from the API. This code
