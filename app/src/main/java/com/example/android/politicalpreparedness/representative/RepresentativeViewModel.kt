@@ -57,24 +57,33 @@ class RepresentativeViewModel(application: Application) : AndroidViewModel(appli
 
 
 
-  // TODO: Create function to fetch representatives from API from a provided address
+  // Create function to fetch representatives from API from a provided address
 
   fun fetchRepsFromNetwork(address: String) {
 
     viewModelScope.launch {
-      try {
+      try {Timber.i("Entering Try-Catch Block")
 
         _status.value = LoadingStatus.LOADING
+
+        //switch to background thread
         withContext(IO) {
+          Timber.i("Entering IO Block")
           val (offices, officials) = CivicsApi.retrofitService.representativeInfoByAddress(address)
           _reps.postValue(offices.flatMap { office -> office.getRepresentatives(officials) })
-          _status.postValue(LoadingStatus.FINISHED)
+
+         // _status.postValue(LoadingStatus.FINISHED)
+          Timber.i("Leaving IO Block")
         }
+        _status.value = LoadingStatus.FINISHED
+
       } catch (e: Exception) {
 
         _status.value = LoadingStatus.ERROR
       }
+
     }
+
   }
 
   /**
