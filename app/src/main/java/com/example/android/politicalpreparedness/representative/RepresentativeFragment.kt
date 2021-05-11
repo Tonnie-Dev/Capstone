@@ -23,7 +23,7 @@ import com.example.android.politicalpreparedness.BuildConfig
 import com.example.android.politicalpreparedness.R
 import com.example.android.politicalpreparedness.databinding.FragmentRepresentativeBinding
 import com.example.android.politicalpreparedness.network.models.Address
-import com.example.android.politicalpreparedness.representative.adapter.RepClickListener
+
 import com.example.android.politicalpreparedness.representative.adapter.RepresentativeListAdapter
 import com.google.android.gms.location.*
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
@@ -67,8 +67,8 @@ class DetailFragment : Fragment() {
   private val fineLocationPermissionLauncher =
       registerForActivityResult(ActivityResultContracts.RequestPermission()) { isGranted ->
         if (isGranted) {
-          // get last known location permission
 
+          // get last known location permission
           getLastKnownLocation()
         } else {
 
@@ -76,16 +76,17 @@ class DetailFragment : Fragment() {
         }
       }
 
-  // TODO: Declare ViewModel
+  // Declare ViewModel
 
   private val viewModel: RepresentativeViewModel by viewModels()
+
   override fun onCreateView(
       inflater: LayoutInflater,
       container: ViewGroup?,
       savedInstanceState: Bundle?
   ): View {
 
-    // TODO: Establish bindings
+    // Establish bindings
     binding = FragmentRepresentativeBinding.inflate(inflater)
 
     // make binding observe LiveData
@@ -98,7 +99,7 @@ class DetailFragment : Fragment() {
     fusedLocationProviderClient = LocationServices.getFusedLocationProviderClient(requireActivity())
 
     // Define and assign Representative adapter
-    binding.repsRecyclerview.adapter = RepresentativeListAdapter(RepClickListener {})
+    binding.repsRecyclerview.adapter = RepresentativeListAdapter( )
 
     viewModel.showSnackBar.observe(viewLifecycleOwner) { message ->
       Snackbar.make(binding.root, message, Snackbar.LENGTH_LONG).show()
