@@ -75,18 +75,16 @@
         <!-- TODO: Add visual styling and content -->
 
 
-      <!--  <Spinner
+        <Spinner
             android:id="@+id/state"
             android:layout_width="0dp"
             android:layout_height="0dp"
-            android:autofillHints=""
             android:entries="@array/states"
-            android:inputType="textPostalAddress"
             app:layout_constraintBottom_toBottomOf="@id/city"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toEndOf="@id/city"
             app:layout_constraintTop_toTopOf="@id/city"
-            app:stateValue="@{viewModel.stateSpinnerValue}" />-->
+            app:stateValue="@{viewModel.stateSpinnerValue}" />
 
         <!-- TODO: Add data binding value -->
         <!-- TODO: Add visual styling and content -->
@@ -106,24 +104,24 @@
         <!-- TODO: Add visual styling and label -->
 
         <!-- TODO: Add visual styling and content -->
-        <Button
+       <!-- <Button
             android:id="@+id/button_search"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="@string/find_my_reps_text"
             app:layout_constraintTop_toBottomOf="@id/zip"
-            motion:layout_editor_absoluteX="104dp" />
+            motion:layout_editor_absoluteX="104dp" />-->
 
         <!--motion:layout_editor_absoluteX="104dp"-->
         <!-- TODO: Add visual styling and content -->
 
-        <Button
+        <!--<Button
             android:id="@+id/button_location"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="@string/use_my_locations_text"
             app:layout_constraintTop_toBottomOf="@id/button_search"
-            motion:layout_editor_absoluteX="0dp" />
+            motion:layout_editor_absoluteX="0dp" />-->
 
         <!--motion:layout_editor_absoluteX="0dp"-->
         <TextView
@@ -153,7 +151,7 @@
         <!--motion:layout_editor_absoluteX="157dp"
             motion:layout_editor_absoluteY="364dp"-->
         <!-- TODO: Add visual styling and content -->
-        <TextView
+       <!-- <TextView
             android:id="@+id/list_placeholder"
             android:layout_width="match_parent"
             android:layout_height="0dp"
@@ -162,7 +160,7 @@
             android:visibility="gone"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintTop_toBottomOf="@id/representative_title"
-            motion:visibilityMode="ignore" />
+            motion:visibilityMode="ignore" />-->
 
         <!--motion:visibilityMode="ignore"-->
 
