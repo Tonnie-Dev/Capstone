@@ -44,8 +44,9 @@ class DetailFragment : Fragment() {
     private val locationRequest =
         LocationRequest().apply {
             priority = LocationRequest.PRIORITY_HIGH_ACCURACY
+
+            fastestInterval = TimeUnit.SECONDS.toMillis(100)
             interval = TimeUnit.MINUTES.toMillis(5)
-            fastestInterval = TimeUnit.SECONDS.toMillis(1)
         }
 
     private val locationCallback =
