@@ -14,7 +14,7 @@
         <item name="android:layout_height">wrap_content</item>
         <item name="android:layout_marginStart">24dp</item>
         <item name="android:layout_marginEnd">24dp</item>
-        <item name="android:background">@drawable/custom_election_button</item>
+        <item name="android:background">@color/quantum_lightblue</item>
         <item name="android:fontFamily">@fonts/stoke</item>
         <item name="android:textAllCaps">true</item>
         <item name="android:textAppearance">@style/TextAppearance.MaterialComponents.Subtitle1
@@ -23,5 +23,4 @@
     </style>
 
     <!-- TODO: Add necessary styles -->
-
-</resources>
+</resources><!--<item name="android:background">@drawable/custom_election_button</item>-->
