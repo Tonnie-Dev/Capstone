@@ -108,6 +108,7 @@
         <!-- TODO: Add visual styling and content -->
         <Button
             android:id="@+id/button_search"
+            style="@style/omega_button_style"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="@string/find_my_reps_text"
@@ -120,6 +121,7 @@
         <Button
             android:id="@+id/button_location"
             android:layout_width="match_parent"
+            style="@style/omega_button_style"
             android:layout_height="wrap_content"
             android:text="@string/use_my_locations_text"
             app:layout_constraintTop_toBottomOf="@id/button_search"
@@ -170,7 +172,6 @@
             android:id="@+id/statusImageView"
             android:layout_width="192dp"
             android:layout_height="192dp"
-
             app:apiLoadingStatus="@{viewModel.status}"
             app:layout_constraintBottom_toBottomOf="@+id/reps_recyclerview"
             app:layout_constraintEnd_toEndOf="@id/reps_recyclerview"

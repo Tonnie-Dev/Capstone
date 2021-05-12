@@ -23,22 +23,19 @@
 
         <Button
             android:id="@+id/upcomingElectionsButton"
+            style="@style/omega_button_style"
             android:layout_marginBottom="24dp"
             android:text="@string/upcoming_elections_text"
             app:layout_constraintBottom_toTopOf="@+id/findRepsButton"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.0"
-            app:layout_constraintStart_toStartOf="parent"
-            style="@style/omega_button_style" />
+            app:layout_constraintStart_toStartOf="parent" />
 
         <Button
             android:id="@+id/findRepsButton"
             style="@style/omega_button_style"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="24dp"
             android:layout_marginEnd="24dp"
-            android:layout_marginBottom="52dp"
+            android:layout_marginBottom="24dp"
             android:text="@string/find_my_reps_text"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
