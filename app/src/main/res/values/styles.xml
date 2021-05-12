@@ -7,21 +7,35 @@
         <item name="colorPrimary">@color/primaryColor</item>
         <item name="colorPrimaryDark">@color/primaryDarkColor</item>
         <item name="colorAccent">@color/secondaryColor</item>
-        <item name="fontFamily">@font/stoke</item>
+        <item name="fontFamily">@font/cambo</item>
     </style>
+
+    <style name="ThemeOverlay.Red.UnitedStates" parent="">
+        <item name="colorPrimary">@color/secondaryColor</item>
+
+
+    </style>
+
+
+
 
     <style name="omega_button_style">
         <item name="android:layout_width">0dp</item>
         <item name="android:layout_height">wrap_content</item>
         <item name="android:layout_marginStart">24dp</item>
+
         <item name="android:layout_marginEnd">24dp</item>
-        <item name="android:background">@color/quantum_lightblue</item>
+        <item name="android:theme">@style/ThemeOverlay.Red.UnitedStates</item>
+        <item name="android:background">@drawable/custom_election_button</item>
         <item name="android:fontFamily">@fonts/stoke</item>
-        <item name="android:textAllCaps">true</item>
-        <item name="android:textAppearance">@style/TextAppearance.MaterialComponents.Subtitle1
+        <item name="android:textAllCaps">false</item>
+        <item name="android:textAppearance">@style/TextAppearance.MaterialComponents.Headline6
         </item>
         <item name="android:textStyle">bold</item>
     </style>
+
+
+
 
     <!-- TODO: Add necessary styles -->
 </resources><!--<item name="android:background">@drawable/custom_election_button</item>-->

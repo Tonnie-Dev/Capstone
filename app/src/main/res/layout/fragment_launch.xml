@@ -5,6 +5,7 @@
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
+        android:background="@color/gray50"
         android:layout_height="match_parent"
         tools:context="com.example.android.politicalpreparedness.MainActivity">
 
@@ -26,7 +27,7 @@
             style="@style/omega_button_style"
             android:layout_marginBottom="24dp"
             android:text="@string/upcoming_elections_text"
-            android:background="@color/gray50"
+
             app:layout_constraintBottom_toTopOf="@+id/findRepsButton"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.0"
