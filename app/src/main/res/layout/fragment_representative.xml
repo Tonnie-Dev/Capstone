@@ -24,18 +24,25 @@
         <TextView
             android:id="@+id/search_title"
             android:layout_width="wrap_content"
-            android:textStyle="bold"
             android:layout_height="wrap_content"
             android:text="@string/rep_search_title"
+            android:textStyle="bold"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
         <!-- TODO: Add data binding value -->
         <!-- TODO: Add visual styling and content -->
+
+        <!-- TODO: Add data binding value -->
+        <!-- TODO: Add visual styling and content -->
+
+        <!-- TODO: Add data binding value -->
+        <!-- TODO: Add visual styling and content -->
+
         <EditText
             android:id="@+id/address_line_1"
+            style="@style/edittexts_styling"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
             android:autofillHints="streetAddress"
             android:hint="@string/address_line_1_hint"
             android:inputType="textPostalAddress"
@@ -43,15 +50,10 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/search_title" />
 
-        <!-- TODO: Add data binding value -->
-        <!-- TODO: Add visual styling and content -->
-
-        <!-- TODO: Add data binding value -->
-        <!-- TODO: Add visual styling and content -->
         <EditText
             android:id="@+id/address_line_2"
+            style="@style/edittexts_styling"
             android:layout_width="match_parent"
-            android:layout_height="0dp"
             android:autofillHints="extendedAddress"
             android:hint="@string/address_line_2_hint"
             android:inputType="textPostalAddress"
@@ -61,8 +63,9 @@
 
         <EditText
             android:id="@+id/city"
+            style="@style/edittexts_styling"
             android:layout_width="0dp"
-            android:layout_height="wrap_content"
+
             android:autofillHints="extendedPostalCode"
             android:hint="@string/city_hint"
             android:inputType="textPostalAddress"
@@ -92,8 +95,8 @@
         <!-- TODO: Add visual styling and content -->
         <EditText
             android:id="@+id/zip"
+            style="@style/edittexts_styling"
             android:layout_width="0dp"
-            android:layout_height="wrap_content"
             android:autofillHints="extendedPostalCode"
             android:hint="@string/zip_code_hint"
             android:inputType="number"
@@ -120,8 +123,8 @@
 
         <Button
             android:id="@+id/button_location"
-            android:layout_width="match_parent"
             style="@style/omega_button_style"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="@string/use_my_locations_text"
             app:layout_constraintTop_toBottomOf="@id/button_search"
@@ -168,7 +171,7 @@
 
         <!--motion:visibilityMode="ignore"-->
 
-      <ImageView
+        <ImageView
             android:id="@+id/statusImageView"
             android:layout_width="192dp"
             android:layout_height="192dp"
@@ -177,9 +180,6 @@
             app:layout_constraintEnd_toEndOf="@id/reps_recyclerview"
             app:layout_constraintStart_toStartOf="@id/reps_recyclerview"
             app:layout_constraintTop_toTopOf="@+id/reps_recyclerview" />
-
-
-
 
 
     </androidx.constraintlayout.motion.widget.MotionLayout>
