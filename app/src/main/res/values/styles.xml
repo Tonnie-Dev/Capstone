@@ -42,5 +42,17 @@
         <item name="android:paddingEnd">12dp</item>
         <item name="android:background">@drawable/custom_edittexts_background</item>
     </style>
+
+
+    <style name="headers_styling">
+        <item name="android:layout_margin">8dp</item>
+        <item name="android:textStyle">bold</item>
+        <item name="android:textAllCaps">true</item>
+
+        <item name="android:textAlignment">center</item>
+        <item name="android:textAppearance">@style/TextAppearance.MaterialComponents.Headline5</item>>
+
+
+    </style>
     <!-- TODO: Add necessary styles -->
 </resources><!--<item name="android:background">@drawable/custom_election_button</item>-->
