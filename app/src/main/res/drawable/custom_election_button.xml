@@ -5,7 +5,7 @@
     <item android:state_pressed="false">
 
         <shape>
-            <solid android:color="@color/secondaryColor" />
+            <solid android:color="@color/primaryColor" />
             <stroke android:color="@color/primaryColor" android:width="@dimen/stroke_width"/>
             <corners android:radius="@dimen/corner_radius" />
 

@@ -5,7 +5,7 @@
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:background="@color/gray50"
+
         android:layout_height="match_parent"
         tools:context="com.example.android.politicalpreparedness.MainActivity">
 
@@ -14,10 +14,10 @@
             android:layout_width="0dp"
             android:layout_height="160dp"
             android:layout_marginStart="128dp"
-            android:layout_marginTop="84dp"
             android:layout_marginEnd="128dp"
+            app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintHorizontal_bias="0.5"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             app:srcCompat="@drawable/ballot_logo" />
@@ -25,9 +25,9 @@
         <Button
             android:id="@+id/upcomingElectionsButton"
             style="@style/omega_button_style"
-            android:layout_marginBottom="24dp"
-            android:text="@string/upcoming_elections_text"
+            android:layout_marginBottom="32dp"
 
+            android:text="@string/upcoming_elections_text"
             app:layout_constraintBottom_toTopOf="@+id/findRepsButton"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.0"
@@ -37,7 +37,7 @@
             android:id="@+id/findRepsButton"
             style="@style/omega_button_style"
             android:layout_marginEnd="24dp"
-            android:layout_marginBottom="24dp"
+            android:layout_marginBottom="72dp"
             android:text="@string/find_my_reps_text"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
