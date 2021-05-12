@@ -28,6 +28,7 @@
             android:layout_marginStart="24dp"
             android:layout_marginEnd="24dp"
             android:layout_marginBottom="24dp"
+            android:background="@drawable/custom_election_button"
             android:text="@string/upcoming_elections_text"
             app:layout_constraintBottom_toTopOf="@+id/findRepsButton"
             app:layout_constraintEnd_toEndOf="parent"
