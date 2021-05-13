@@ -85,7 +85,6 @@
             android:layout_width="0dp"
             android:layout_height="0dp"
             android:entries="@array/states"
-           android:background="@drawable/spinner_outline"
             android:spinnerMode="dropdown"
             android:layout_marginEnd="8dp"
             android:inputType="textPostalAddress"
