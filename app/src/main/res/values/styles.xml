@@ -56,4 +56,8 @@
 
     </style>
     <!-- TODO: Add necessary styles -->
+
+    <style name="spinnerTheme" parent= "Widget.MaterialComponents.TextInputLayout.FilledBox.ExposedDropdownMenu">
+        <item name="strokeColor">@color/primaryColor</item>
+    </style>
 </resources><!--<item name="android:background">@drawable/custom_election_button</item>-->
