@@ -4,7 +4,7 @@
     <item android:state_pressed="false">
         <shape>
             <solid android:color="@color/primaryColor" />
-            <stroke android:color="@color/primaryDarkColor" android:width="@dimen/stroke_width"/>
+            <stroke android:color="@color/secondaryLightColor" android:width="@dimen/stroke_width"/>
             <corners android:radius="@dimen/corner_radius" />
 
         </shape>
@@ -12,13 +12,5 @@
     </item>
 
 
-    <item android:state_pressed="true">
-        <shape>
-            <solid android:color="@color/secondaryColor" />
-            <stroke android:color="@color/secondaryLightColor" android:width="@dimen/stroke_width" />
-            <corners android:radius="@dimen/corner_radius" />
 
-        </shape>
-
-    </item>
 </selector>
