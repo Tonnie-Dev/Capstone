@@ -114,6 +114,7 @@
             android:id="@+id/button_search"
             style="@style/omega_button_style"
             android:layout_width="match_parent"
+            app:backgroundTint="@drawable/custom_button_selector"
             android:layout_height="wrap_content"
             android:text="@string/find_my_reps_text"
             app:layout_constraintTop_toBottomOf="@id/zip"
@@ -127,6 +128,7 @@
             style="@style/omega_button_style"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            app:backgroundTint="@drawable/custom_button_selector"
             android:text="@string/use_my_locations_text"
             app:layout_constraintTop_toBottomOf="@id/button_search"
             motion:layout_editor_absoluteX="0dp" />
