@@ -7,7 +7,7 @@
     <dimen name="stroke_width">2dp</dimen>
     <dimen name="edittexts_heights">50dp</dimen>
     <dimen name="spinner_radius">5dp</dimen>
-    <dimen name="default_margin_start">10dp</dimen>
+    <dimen name="default_margin">8dp</dimen>
     <!-- TODO: Add necessary dimension values -->s
 
 </resources>
