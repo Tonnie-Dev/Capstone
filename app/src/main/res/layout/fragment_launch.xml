@@ -27,7 +27,7 @@
             android:id="@+id/upcomingElectionsButton"
             style="@style/omega_button_style"
             android:layout_marginBottom="32dp"
-
+            app:backgroundTint="@drawable/custom_button_selector"
             android:text="@string/upcoming_elections_text"
             app:layout_constraintBottom_toTopOf="@+id/findRepsButton"
             app:layout_constraintEnd_toEndOf="parent"
