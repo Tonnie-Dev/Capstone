@@ -43,7 +43,6 @@
             android:id="@+id/address_line_1"
             style="@style/edittexts_styling"
             android:layout_width="match_parent"
-
             android:autofillHints="streetAddress"
             android:hint="@string/address_line_1_hint"
             android:inputType="textPostalAddress"

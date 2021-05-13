@@ -24,7 +24,9 @@
     <style name="omega_button_style">
         <item name="android:layout_width">0dp</item>
         <item name="android:layout_height">50dp</item>
-        <item name="android:layout_margin">8dp</item>
+        <item name="android:layout_marginEnd">8dp</item>
+        <item name="android:layout_marginStart">8dp</item>
+        <item name="android:layout_marginTop">8dp</item>
         <item name="android:backgroundTint">@drawable/custom_button_selector</item>
         <item name="android:theme">@style/ThemeOverlay.Red.UnitedStates</item>
         <item name="android:background">@drawable/custom_election_button</item>
