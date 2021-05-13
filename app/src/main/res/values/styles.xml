@@ -48,16 +48,21 @@
     <style name="headers_styling">
         <item name="android:layout_margin">8dp</item>
         <item name="android:textStyle">bold</item>
+        <item name="android:textColor">@color/primaryColor</item>
         <item name="android:textAllCaps">true</item>
-
         <item name="android:textAlignment">center</item>
-        <item name="android:textAppearance">@style/TextAppearance.MaterialComponents.Headline5</item>>
+        <item name="android:textAppearance">
+            @style/TextAppearance.MaterialComponents.Headline5</item>>
 
 
     </style>
-    <!-- TODO: Add necessary styles -->
 
-    <style name="spinnerTheme" parent= "Widget.MaterialComponents.TextInputLayout.FilledBox.ExposedDropdownMenu">
-        <item name="strokeColor">@color/primaryColor</item>
+
+    <style name="recycler_subheaders">
+        <item name="android:textStyle">bold</item>
+        <item name="android:textColor">@color/secondaryLightColor</item>
+
+
+
     </style>
 </resources><!--<item name="android:background">@drawable/custom_election_button</item>-->
