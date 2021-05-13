@@ -116,6 +116,7 @@ class DetailFragment : Fragment() {
 
             viewModel.getAddressFromForm()
             setUpAddressAndGetReps(viewModel.address.value!!)
+            hideKeyboard()
         }
 
         // perform search using geolocation
@@ -123,6 +124,7 @@ class DetailFragment : Fragment() {
 
             // request for permission if not already granted
             fineLocationPermissionLauncher.launch(Manifest.permission.ACCESS_FINE_LOCATION)
+            hideKeyboard()
             clearForm()
         }
 

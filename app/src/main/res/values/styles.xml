@@ -17,9 +17,7 @@
     </style>
 
     <style name="ThemeOverlay.Red.UnitedStates" parent="">
-       <item name="android:colorAccent">@color/secondaryColor</item>
-        <item name="android:colorPrimary">@color/secondaryColor</item>
-        <item name="android:colorSecondary">@color/secondaryColor</item>
+
     </style>
 
 
