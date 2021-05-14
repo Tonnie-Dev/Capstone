@@ -50,7 +50,7 @@ class ElectionsFragment : Fragment() {
 
        findNavController().navigate(ElectionsFragmentDirections.actionElectionsFragmentToVoterInfoFragment
        (it.id, it.division))
-
+            Timber.i("there is an error caught")
 
         })
 
