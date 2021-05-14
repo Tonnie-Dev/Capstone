@@ -74,8 +74,15 @@ class VoterInfoViewModel(private val dao: ElectionDao, private val division: Div
         viewModelScope.launch {
 
             withContext(IO) {
-                _voterInfoResponse.postValue(CivicsApi.retrofitService.voterInfoQuery(address,
-                                                                                      electionId))
+                try {
+
+                    _voterInfoResponse.postValue(CivicsApi.retrofitService.voterInfoQuery(address,
+                                                                                          electionId))
+                }catch (e: Exception) {
+
+                    Timber.i("A second exception detected")
+                }
+
             }
 
         }

@@ -46,9 +46,9 @@ class VoterInfoFragment : Fragment() {
          */
 
         //Handle loading of URLs
-
+        Timber.i("onCreate called for VoterInfoFragment")
         viewModel.votingLocationURL.observe(viewLifecycleOwner) { url ->
-
+            Timber.i("observing the URL")
             loadUrl(url)
         }
 
