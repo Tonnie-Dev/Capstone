@@ -13,6 +13,7 @@ import com.example.android.politicalpreparedness.network.models.VoterInfoRespons
 import kotlinx.coroutines.Dispatchers.IO
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
+import retrofit2.HttpException
 import timber.log.Timber
 import java.net.UnknownHostException
 
@@ -86,7 +87,11 @@ class VoterInfoViewModel(private val dao: ElectionDao, private val division: Div
                 }catch (e: UnknownHostException) {
 
                     _noConnection.postValue(true)
+
+                }
+                catch (e: HttpException) {
                     Timber.i("Caught 2nd Error - somthing Unkown")
+
                 }
 
 

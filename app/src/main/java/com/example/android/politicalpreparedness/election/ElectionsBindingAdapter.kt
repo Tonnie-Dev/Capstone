@@ -1,5 +1,7 @@
 package com.example.android.politicalpreparedness.election
 
+import android.view.View
+import android.widget.ImageView
 import android.widget.TextView
 import androidx.databinding.BindingAdapter
 import androidx.recyclerview.widget.RecyclerView
@@ -44,4 +46,16 @@ simpleDateFormat.timeZone = TimeZone.getTimeZone("GMT")
 
 
 
+}
+
+@BindingAdapter("noConnectionImageView")
+
+fun ImageView.showErrorImage(showError:Boolean) {
+
+
+    if (showError ){
+
+        this.visibility = View.VISIBLE
+    }
+    else{this.visibility = View.GONE}
 }

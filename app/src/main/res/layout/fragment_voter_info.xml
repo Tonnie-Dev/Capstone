@@ -21,13 +21,13 @@
             android:id="@+id/election_name"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:padding="@dimen/default_padding"
             android:layout_margin="@dimen/default_margin"
             android:background="@color/primaryLightColor"
-            app:titleTextColor="@color/primaryTextColor"
+            android:padding="@dimen/default_padding"
             android:singleLine="true"
             app:layout_constraintTop_toTopOf="parent"
-            app:title="@{viewModel.election.name}" />
+            app:title="@{viewModel.election.name}"
+            app:titleTextColor="@color/primaryTextColor" />
 
         <!-- TODO: Add visual styling -->
         <TextView
@@ -44,9 +44,11 @@
         <!-- TODO: Add visual styling and content -->
         <TextView
             android:id="@+id/state_header"
+            style="@style/headers_styling"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/election_info_text"
+
             android:textStyle="bold"
             app:layout_constraintStart_toStartOf="@id/election_date"
             app:layout_constraintTop_toBottomOf="@id/election_date" />
@@ -57,10 +59,11 @@
             android:id="@+id/state_locations"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:autoLink="web"
             android:linksClickable="true"
-            android:textColorLink="@color/quantum_amber600"
+            android:onClick="@{()-> viewModel.onVotingLocationLinkClick()}"
             android:text="@string/voting_locations_text"
-           android:onClick="@{()-> viewModel.onVotingLocationLinkClick()}"
+            android:textColorLink="@color/quantum_amber600"
             app:layout_constraintStart_toStartOf="@id/election_date"
             app:layout_constraintTop_toBottomOf="@id/state_header" />
 
@@ -69,9 +72,10 @@
         <TextView
             android:id="@+id/state_ballot"
             android:layout_width="wrap_content"
-            android:text="@string/ballot_info_text"
-            android:onClick="@{()-> viewModel.onBallotInfoLinkClick()}"
             android:layout_height="wrap_content"
+            android:autoLink="all"
+            android:onClick="@{()-> viewModel.onBallotInfoLinkClick()}"
+            android:text="@string/ballot_info_text"
             app:layout_constraintStart_toStartOf="@id/election_date"
             app:layout_constraintTop_toBottomOf="@id/state_locations" />
 
@@ -99,17 +103,32 @@
 
         <Button
             android:id="@+id/followElectionButton"
+            style="@style/omega_button_style"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginStart="8dp"
             android:layout_marginEnd="8dp"
             android:layout_marginBottom="16dp"
-            style="@style/omega_button_style"
             app:backgroundTint="@drawable/custom_button_selector"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             tools:text="@string/follow_election_text" />
+
+        <ImageView
+            android:id="@+id/errorImageView"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_marginStart="64dp"
+            android:layout_marginTop="64dp"
+            android:layout_marginEnd="64dp"
+            android:layout_marginBottom="64dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:srcCompat="@drawable/ic_broken_image" />
 
         <!-- TODO: Add button to save election to Room -->
 

@@ -93,6 +93,13 @@ class VoterInfoFragment : Fragment() {
 
                 Snackbar.make(binding.root, getString(R.string.no_connection_string), Snackbar
                     .LENGTH_SHORT).show()
+
+                binding.electionDate.visibility = View.GONE
+                binding.stateHeader.visibility = View.GONE
+                binding.electionName.title = getString(R.string.error)
+                binding.stateLocations.visibility = View.GONE
+                binding.stateBallot.visibility = View.GONE
+                binding.followElectionButton.visibility = View.GONE
             }
 
         }
