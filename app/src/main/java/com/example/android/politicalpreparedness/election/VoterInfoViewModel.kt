@@ -45,9 +45,9 @@ class VoterInfoViewModel(private val dao: ElectionDao, private val division: Div
     val isElectionFollowed: LiveData<Boolean>
         get() = _isElectionFollowed
 
-    private val _noInternet = MutableLiveData<Boolean>()
-    val noInternet: LiveData<Boolean>
-    get() = _noInternet
+    private val _noConnection = MutableLiveData<Boolean>(false)
+    val noConnection: LiveData<Boolean>
+    get() = _noConnection
 
     private var buttonModeFollow: Boolean? = null
 
@@ -85,6 +85,7 @@ class VoterInfoViewModel(private val dao: ElectionDao, private val division: Div
                                                                                           electionId))
                 }catch (e: UnknownHostException) {
 
+                    _noConnection.postValue(true)
                     Timber.i("Caught 2nd Error - somthing Unkown")
                 }
 

@@ -12,6 +12,7 @@ import androidx.navigation.fragment.navArgs
 import com.example.android.politicalpreparedness.R
 import com.example.android.politicalpreparedness.database.ElectionDatabase
 import com.example.android.politicalpreparedness.databinding.FragmentVoterInfoBinding
+import com.google.android.material.snackbar.Snackbar
 import timber.log.Timber
 
 class VoterInfoFragment : Fragment() {
@@ -81,6 +82,19 @@ class VoterInfoFragment : Fragment() {
         binding.followElectionButton.setOnClickListener {
 
             viewModel.onClickFollowElectionButton()
+        }
+
+        //observe for connection
+
+        viewModel.noConnection.observe(viewLifecycleOwner) {
+
+            noInternet ->
+            if (noInternet){
+
+                Snackbar.make(binding.root, getString(R.string.no_connection_string), Snackbar
+                    .LENGTH_SHORT).show()
+            }
+
         }
 
         return binding.root
