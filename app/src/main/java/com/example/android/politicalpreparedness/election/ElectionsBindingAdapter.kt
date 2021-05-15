@@ -38,13 +38,17 @@ fun RecyclerView.getFollowedElections(electionData: List<Election>?){
 }
 
 @BindingAdapter("dateToString")
-fun TextView.dateToStringConverter(election:Election){
+fun TextView.dateToStringConverter(election:Election?){
 
-    val simpleDateFormat = SimpleDateFormat("E, MMM dd, 00:mm:ss z yyyy",Locale.US)
+    val simpleDateFormat = SimpleDateFormat("E, MMM dd yyyy",Locale.US)
 simpleDateFormat.timeZone = TimeZone.getTimeZone("GMT")
-    this.text = simpleDateFormat.format(election.electionDay)
 
 
+    //this.text = simpleDateFormat.format(election.electionDay)
+
+election?.electionDay?.let {
+    this.text = simpleDateFormat.format(it)
+}
 
 }
 
