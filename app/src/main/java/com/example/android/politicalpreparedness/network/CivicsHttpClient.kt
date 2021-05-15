@@ -9,7 +9,7 @@ class CivicsHttpClient: OkHttpClient() {
 //  https://www.googleapis.com/civicinfo/v2/voterinfo?key=AIzaSyBVi-yCWfTYpr2lqclNWtfawdpNmSxkVvc
 //  https://www.googleapis.com/civicinfo/v2/representatives?key=AIzaSyBVi-yCWfTYpr2lqclNWtfawdpNmSxkVvc
 
-        const val API_KEY = "AIzaSyBVi-yCWfTYpr2lqclNWtfawdpNmSxkVvc" //TODO: Place your API Key Here
+        const val API_KEY = "" //TODO: Place your API Key Here
        /* We need to prepare a custom OkHttp client because need to use
        our custom call interceptor to be able to authenticate our requests.*/
         fun getClient(): OkHttpClient {
