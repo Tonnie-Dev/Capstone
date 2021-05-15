@@ -80,20 +80,19 @@
             android:layout_marginStart="16dp"
             android:layout_marginEnd="16dp"
             android:autoLink="web"
-            android:linksClickable="true"
-            android:onClick="@{()-> viewModel.onVotingLocationLinkClick()}"
             android:text="@string/voting_locations_text"
-            android:textColorLink="@color/quantum_amber600"
+            android:onClick="@{()-> viewModel.onVotingLocationLinkClick()}"
+            android:textColorLink="@color/primaryColor"
             app:layout_constraintBottom_toBottomOf="@+id/voting_location_icon"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toEndOf="@+id/voting_location_icon" />
-
+        
         <TextView
             android:id="@+id/state_ballot"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="16dp"
-            android:autoLink="all"
+            android:autoLink="web"
             android:onClick="@{()-> viewModel.onBallotInfoLinkClick()}"
             android:text="@string/ballot_info_text"
             app:layout_constraintBottom_toBottomOf="@+id/ballot_info_icon"

@@ -4,9 +4,16 @@ import android.content.Intent
 import android.net.Uri
 import android.os.Bundle
 import android.text.Html
+import android.text.SpannableString
 import android.text.Spanned
+import android.text.SpannedString
+import android.text.method.LinkMovementMethod
+import android.text.style.ForegroundColorSpan
+import android.text.util.Linkify
 import android.view.*
+import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.navArgs
@@ -44,6 +51,17 @@ class VoterInfoFragment : Fragment() {
 
         //link binding's viewModel to ViewModel
         binding.viewModel = viewModel
+
+
+       /* val fullText = getText(R.string.hyperlink) as SpannedString
+        val spannableString = SpannableString(fullText)
+        // ????
+        binding.stateLocations.text = spannableString
+        ForegroundColorSpan(
+            ContextCompat.getColor(requireActivity(), R.color.primaryColor))
+        binding.stateLocations.movementMethod = LinkMovementMethod.getInstance()*/
+
+
         //TODO: Populate voter info -- hide views without provided data.
         /**
         Hint: You will need to ensure proper data is provided from previous fragment.
@@ -52,6 +70,8 @@ class VoterInfoFragment : Fragment() {
         //Handle loading of URLs
 
         viewModel.votingLocationURL.observe(viewLifecycleOwner) { url ->
+
+
 
             loadUrl(url)
         }
@@ -117,14 +137,8 @@ class VoterInfoFragment : Fragment() {
     }
 
     private fun formatText(text: String): Spanned {
-        val sb = StringBuilder()
 
-        sb.apply {
-            append(text)
-            
-        }
-
-        return  ( Html.fromHtml(sb.toString(), Html.FROM_HTML_MODE_LEGACY))
+        return  ( Html.fromHtml(text, Html.FROM_HTML_MODE_LEGACY))
 
 
 

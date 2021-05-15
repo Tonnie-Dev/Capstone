@@ -6,8 +6,8 @@
     <string name="saved_elections_text">Saved Elections</string>
     <string name="my_representatives_text">My Representatives</string>
     <string name="election_info_text">Election Information</string>
-    <string name="voting_locations_text">Voting Locations</string>
-    <string name="ballot_info_text">Ballot Information</string>
+    <string name="voting_locations_text"><u>Voting Locations</u></string>
+    <string name="ballot_info_text"><u>Ballot Information</u></string>
     <string name="follow_election_text">Follow Election</string>
     <string name="unfollow_election_text">Unfollow Election</string>
     <string name="followed_elections_header_text" >Followed Elections</string>
@@ -35,6 +35,8 @@
     <string name="voter_info_fragment">Voter Info Screen </string>
     <string name="launch_fragment_string">Launch Screen</string>
 
-
+    <string name="styled_voting_location"><![CDATA[pot]]> </string>
+    <string name="styled_ballot_info"><![CDATA[<b>Description:</b>]]></string>
+    <string name="hyperlink">Follow me </string>
 
 </resources>
