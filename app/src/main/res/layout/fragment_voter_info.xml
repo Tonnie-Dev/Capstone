@@ -22,9 +22,14 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_margin="@dimen/default_margin"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="16dp"
+            android:layout_marginEnd="16dp"
             android:background="@color/primaryColor"
             android:padding="@dimen/default_padding"
             android:singleLine="true"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             app:title="@{viewModel.election.name}"
             app:titleTextColor="@color/primaryTextColor" />
@@ -32,10 +37,15 @@
         <!-- TODO: Add visual styling -->
         <TextView
             android:id="@+id/election_date"
-            android:layout_width="match_parent"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_margin="@dimen/default_padding"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="16dp"
+            android:layout_marginEnd="16dp"
             android:text="@{viewModel.election.electionDay.toString()}"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/election_name"
             tools:text="12 November 2055" />
         <!-- app:dateToString="@{viewModel.election}"-->
@@ -45,39 +55,49 @@
         <TextView
             android:id="@+id/state_header"
             style="@style/headers_styling"
-            android:layout_width="wrap_content"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="16dp"
+            android:layout_marginEnd="16dp"
             android:text="@string/election_info_text"
-
+            android:textAlignment="textStart"
             android:textStyle="bold"
-            app:layout_constraintStart_toStartOf="@id/election_date"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/election_date" />
 
         <!-- TODO: Add click binding to open web URL -->
         <!-- TODO: Add visual styling and content -->
+
+        <!-- TODO: Add click binding to open web URL -->
+        <!-- TODO: Add visual styling and content -->
+
         <TextView
             android:id="@+id/state_locations"
-            android:layout_width="wrap_content"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginEnd="16dp"
             android:autoLink="web"
             android:linksClickable="true"
             android:onClick="@{()-> viewModel.onVotingLocationLinkClick()}"
             android:text="@string/voting_locations_text"
             android:textColorLink="@color/quantum_amber600"
-            app:layout_constraintStart_toStartOf="@id/election_date"
-            app:layout_constraintTop_toBottomOf="@id/state_header" />
+            app:layout_constraintBottom_toBottomOf="@+id/voting_location_icon"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/voting_location_icon" />
 
-        <!-- TODO: Add click binding to open web URL -->
-        <!-- TODO: Add visual styling and content -->
         <TextView
             android:id="@+id/state_ballot"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
             android:autoLink="all"
             android:onClick="@{()-> viewModel.onBallotInfoLinkClick()}"
             android:text="@string/ballot_info_text"
-            app:layout_constraintStart_toStartOf="@id/election_date"
-            app:layout_constraintTop_toBottomOf="@id/state_locations" />
+            app:layout_constraintBottom_toBottomOf="@+id/ballot_info_icon"
+            app:layout_constraintStart_toEndOf="@+id/ballot_info_icon" />
 
         <androidx.constraintlayout.widget.Group
             android:id="@+id/address_group"
@@ -120,16 +140,36 @@
             android:layout_width="0dp"
             android:layout_height="0dp"
             android:layout_marginStart="64dp"
-            android:layout_marginTop="64dp"
+            android:layout_marginTop="196dp"
             android:layout_marginEnd="64dp"
-            app:noConnectionImageView="@{viewModel.noConnection}"
-            android:layout_marginBottom="64dp"
+            android:layout_marginBottom="196dp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.5"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
+            app:noConnectionImageView="@{viewModel.noConnection}"
             app:srcCompat="@drawable/ic_broken_image" />
+
+        <ImageView
+            android:id="@+id/voting_location_icon"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="24dp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/state_header"
+            app:srcCompat="@drawable/where_to_vote" />
+
+        <ImageView
+            android:id="@+id/ballot_info_icon"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="32dp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/voting_location_icon"
+            app:srcCompat="@drawable/ballot_icon" />
 
         <!-- TODO: Add button to save election to Room -->
 

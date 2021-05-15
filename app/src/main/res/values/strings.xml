@@ -30,10 +30,10 @@
     <string name="rep_search_title">Representative Search</string>
     <string name="no_connection_string">Connection Error, please check your Network Settings and try again</string>
     <string name="error">Error</string>
-    <string name="elections_fragment_string">Elections</string>
-    <string name="reps_fragment_string">Representatives</string>
-    <string name="voter_info_fragment">Voter Info</string>
-    <string name="launch_fragment_string">Launch</string>
+    <string name="elections_fragment_string">Elections Screen</string>
+    <string name="reps_fragment_string">Representatives Screen</string>
+    <string name="voter_info_fragment">Voter Info Screen </string>
+    <string name="launch_fragment_string">Launch Screen</string>
 
 
 
