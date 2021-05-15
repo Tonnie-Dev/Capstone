@@ -14,6 +14,7 @@ import kotlinx.coroutines.Dispatchers.IO
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
 import timber.log.Timber
+import java.net.UnknownHostException
 
 class VoterInfoViewModel(private val dao: ElectionDao, private val division: Division,
                          private val electionId: Int) :
@@ -43,6 +44,10 @@ class VoterInfoViewModel(private val dao: ElectionDao, private val division: Div
     private val _isElectionFollowed = MutableLiveData(false)
     val isElectionFollowed: LiveData<Boolean>
         get() = _isElectionFollowed
+
+    private val _noInternet = MutableLiveData<Boolean>()
+    val noInternet: LiveData<Boolean>
+    get() = _noInternet
 
     private var buttonModeFollow: Boolean? = null
 
@@ -78,10 +83,12 @@ class VoterInfoViewModel(private val dao: ElectionDao, private val division: Div
 
                     _voterInfoResponse.postValue(CivicsApi.retrofitService.voterInfoQuery(address,
                                                                                           electionId))
-                }catch (e: Exception) {
+                }catch (e: UnknownHostException) {
 
-                    Timber.i("A second exception detected")
+                    Timber.i("Caught 2nd Error - somthing Unkown")
                 }
+
+
 
             }
 
