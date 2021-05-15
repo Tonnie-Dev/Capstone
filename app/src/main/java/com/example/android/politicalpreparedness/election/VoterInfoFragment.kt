@@ -95,8 +95,8 @@ class VoterInfoFragment : Fragment() {
                     .LENGTH_LONG).show()
 
                 binding.electionDate.visibility = View.GONE
-                binding.stateHeader.visibility = View.GONE
-                binding.electionName.title = getString(R.string.error)
+
+                binding.stateHeader.text = getString(R.string.error)
                 binding.stateLocations.visibility = View.GONE
                 binding.stateBallot.visibility = View.GONE
                 binding.followElectionButton.visibility = View.GONE
