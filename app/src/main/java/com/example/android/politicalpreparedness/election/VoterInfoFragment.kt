@@ -92,7 +92,7 @@ class VoterInfoFragment : Fragment() {
             if (noInternet){
 
                 Snackbar.make(binding.root, getString(R.string.no_connection_string), Snackbar
-                    .LENGTH_SHORT).show()
+                    .LENGTH_LONG).show()
 
                 binding.electionDate.visibility = View.GONE
                 binding.stateHeader.visibility = View.GONE
