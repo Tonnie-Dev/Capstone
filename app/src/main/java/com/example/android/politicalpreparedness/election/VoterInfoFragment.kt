@@ -3,18 +3,17 @@ package com.example.android.politicalpreparedness.election
 import android.content.Intent
 import android.net.Uri
 import android.os.Bundle
-import android.text.method.LinkMovementMethod
+import android.text.Html
+import android.text.Spanned
 import android.view.*
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
-import androidx.lifecycle.ViewModelProviders
 import androidx.navigation.fragment.navArgs
 import com.example.android.politicalpreparedness.R
 import com.example.android.politicalpreparedness.database.ElectionDatabase
 import com.example.android.politicalpreparedness.databinding.FragmentVoterInfoBinding
 import com.google.android.material.snackbar.Snackbar
-import timber.log.Timber
 
 class VoterInfoFragment : Fragment() {
 
@@ -51,9 +50,9 @@ class VoterInfoFragment : Fragment() {
          */
 
         //Handle loading of URLs
-        Timber.i("onCreate called for VoterInfoFragment")
+
         viewModel.votingLocationURL.observe(viewLifecycleOwner) { url ->
-            Timber.i("observing the URL")
+
             loadUrl(url)
         }
 
@@ -72,7 +71,6 @@ class VoterInfoFragment : Fragment() {
                 binding.followElectionButton.text = getString(R.string.unfollow_election_text)
 
             }
-
 
             //set text to 'Follow Election'
             else {
@@ -116,6 +114,20 @@ class VoterInfoFragment : Fragment() {
     private fun loadUrl(url: String) {
         val intent = Intent(Intent.ACTION_VIEW, Uri.parse(url))
         startActivity(intent)
+    }
+
+    private fun formatText(text: String): Spanned {
+        val sb = StringBuilder()
+
+        sb.apply {
+            append(text)
+            
+        }
+
+        return  ( Html.fromHtml(sb.toString(), Html.FROM_HTML_MODE_LEGACY))
+
+
+
     }
 
 }
