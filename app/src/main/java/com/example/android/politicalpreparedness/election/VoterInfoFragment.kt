@@ -5,6 +5,7 @@ import android.net.Uri
 import android.os.Bundle
 import android.text.method.LinkMovementMethod
 import android.view.*
+import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.ViewModelProviders
@@ -26,6 +27,9 @@ class VoterInfoFragment : Fragment() {
     override fun onCreateView(inflater: LayoutInflater,
                               container: ViewGroup?,
                               savedInstanceState: Bundle?): View {
+
+        //rename action bar
+        (activity as AppCompatActivity).supportActionBar?.title =getString(R.string.voter_info_fragment)
 
         binding = FragmentVoterInfoBinding.inflate(inflater)
         //TODO: Add ViewModel values and create ViewModel

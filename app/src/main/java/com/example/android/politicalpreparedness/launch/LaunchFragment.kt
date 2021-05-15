@@ -2,6 +2,7 @@ package com.example.android.politicalpreparedness.launch
 
 import android.os.Bundle
 import android.view.*
+import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
@@ -16,6 +17,9 @@ class LaunchFragment : Fragment() {
     override fun onCreateView(inflater: LayoutInflater,
                               container: ViewGroup?,
                               savedInstanceState: Bundle?): View {
+
+        //rename the actionBar
+        (activity as AppCompatActivity).supportActionBar?.title = getString(R.string.launch_fragment_string)
         val binding = FragmentLaunchBinding.inflate(inflater)
 
         //make binding observe LiveData

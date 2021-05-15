@@ -17,6 +17,7 @@ import android.view.inputmethod.InputMethodManager
 import android.widget.Toast
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.annotation.RequiresApi
+import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import com.example.android.politicalpreparedness.BuildConfig
@@ -86,6 +87,9 @@ class DetailFragment : Fragment() {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
+
+        //rename the title bar
+        (activity as AppCompatActivity).supportActionBar?.title = getString(R.string.reps_fragment_string)
 
         // Establish bindings
         binding = FragmentRepresentativeBinding.inflate(inflater)

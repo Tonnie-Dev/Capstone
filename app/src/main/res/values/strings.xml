@@ -32,8 +32,8 @@
     <string name="error">Error</string>
     <string name="elections_fragment_string">Elections</string>
     <string name="reps_fragment_string">Representatives</string>
-    <string name="error">Error</string>
-    <string name="error">Error</string>
+    <string name="voter_info_fragment">Voter Info</string>
+    <string name="launch_fragment_string">Launch</string>
 
 
 
