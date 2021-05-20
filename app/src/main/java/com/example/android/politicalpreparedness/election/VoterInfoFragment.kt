@@ -145,3 +145,5 @@ class VoterInfoFragment : Fragment() {
     }
 
 }
+
+class Empty
