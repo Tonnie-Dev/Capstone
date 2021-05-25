@@ -30,18 +30,23 @@ class VoterInfoFragment : Fragment() {
 
 
     private lateinit var binding: FragmentVoterInfoBinding
-    override fun onCreateView(inflater: LayoutInflater,
-                              container: ViewGroup?,
-                              savedInstanceState: Bundle?): View {
+    override fun onCreateView(
+        inflater: LayoutInflater,
+        container: ViewGroup?,
+        savedInstanceState: Bundle?
+    ): View {
 
         //rename action bar
-        (activity as AppCompatActivity).supportActionBar?.title =getString(R.string.voter_info_fragment)
+        (activity as AppCompatActivity).supportActionBar?.title =
+            getString(R.string.voter_info_fragment)
 
         binding = FragmentVoterInfoBinding.inflate(inflater)
 
         val database = ElectionDatabase.getInstance(requireContext())
-        val factory = VoterInfoViewModelFactory(database.electionDao, args.argDivision, args
-                .argElectionId)
+        val factory = VoterInfoViewModelFactory(
+            database.electionDao, args.argDivision, args
+                .argElectionId
+        )
         viewModel = ViewModelProvider(this, factory).get(VoterInfoViewModel::class.java)
 
 
@@ -51,7 +56,7 @@ class VoterInfoFragment : Fragment() {
         //link binding's viewModel to ViewModel
         binding.viewModel = viewModel
 
-        
+
         viewModel.votingLocationURL.observe(viewLifecycleOwner) { url ->
 
             loadUrl(url)
@@ -91,12 +96,11 @@ class VoterInfoFragment : Fragment() {
 
         viewModel.noConnection.observe(viewLifecycleOwner) {
 
-            noInternet ->
-            if (noInternet){
+                noInternet ->
+            if (noInternet) {
 
-                Snackbar.make(binding.root, getString(R.string.no_connection_string), Snackbar
-                    .LENGTH_LONG).show()
-
+                val msg = getString(R.string.no_connection_string)
+                showSnackBar(msg)
                 binding.electionDate.visibility = View.GONE
 
                 binding.stateHeader.text = getString(R.string.error)
@@ -105,6 +109,16 @@ class VoterInfoFragment : Fragment() {
                 binding.followElectionButton.visibility = View.GONE
             }
 
+        }
+
+        viewModel.isSiteInvalid.observe(viewLifecycleOwner) {
+
+                notValidURL ->
+            if (notValidURL) {
+
+                val msg = getString(R.string.invalid_url_msg)
+                showSnackBar(msg)
+            }
         }
 
         return binding.root
@@ -118,6 +132,10 @@ class VoterInfoFragment : Fragment() {
     }
 
 
+    private fun showSnackBar(message: String) {
+
+        Snackbar.make(binding.root, message, Snackbar.LENGTH_SHORT).show()
+    }
 
 }
 
