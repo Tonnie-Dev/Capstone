@@ -9,13 +9,13 @@
 
         <variable
             name="viewModel"
-            type="com.example.android.politicalpreparedness.election.ElectionsViewModel" />
+            type="com.androidshowtime.election.ElectionsViewModel" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        tools:context="com.example.android.politicalpreparedness.MainActivity">
+        tools:context="com.androidshowtime.MainActivity">
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/upcoming_recycler"

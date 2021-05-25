@@ -8,7 +8,7 @@
 
         <variable
             name="rep"
-            type="com.example.android.politicalpreparedness.representative.model.Representative" />
+            type="com.androidshowtime.representative.model.Representative" />
 
     </data>
 

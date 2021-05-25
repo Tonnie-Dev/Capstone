@@ -8,13 +8,13 @@
 
         <variable
             name="viewModel"
-            type="com.example.android.politicalpreparedness.election.VoterInfoViewModel" />
+            type="com.androidshowtime.election.VoterInfoViewModel" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        tools:context="com.example.android.politicalpreparedness.MainActivity">
+        tools:context="com.androidshowtime.MainActivity">
 
         <!-- TODO: Add title to toolbar -->
         <androidx.appcompat.widget.Toolbar
