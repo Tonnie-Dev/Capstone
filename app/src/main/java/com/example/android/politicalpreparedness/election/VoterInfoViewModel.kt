@@ -24,7 +24,6 @@ class VoterInfoViewModel(
     ViewModel() {
 
 
-
     private val _voterInfoResponse = MutableLiveData<VoterInfoResponse>()
     val voterInfoResponse: LiveData<VoterInfoResponse>
         get() = _voterInfoResponse
@@ -54,7 +53,7 @@ class VoterInfoViewModel(
 
     private val _isSiteInvalid = MutableLiveData<Boolean>(false)
     val isSiteInvalid: LiveData<Boolean>
-    get() = _isSiteInvalid
+        get() = _isSiteInvalid
 
     init {
 
@@ -124,9 +123,9 @@ class VoterInfoViewModel(
         try {
             _votingLocationURL.value =
                 _voterInfoResponse.value?.state?.get(0)?.electionAdministrationBody?.votingLocationFinderUrl!!
-        }catch (e: NullPointerException){
+        } catch (e: NullPointerException) {
 
-_isSiteInvalid.value = true
+            _isSiteInvalid.value = true
 
         }
 
@@ -139,11 +138,10 @@ _isSiteInvalid.value = true
                 _voterInfoResponse.value?.state?.get(0)?.electionAdministrationBody?.ballotInfoUrl!!
 
 
-        }catch (e:NullPointerException){
+        } catch (e: NullPointerException) {
 
             _isSiteInvalid.value = true
         }
-
 
 
     }

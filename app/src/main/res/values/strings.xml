@@ -35,8 +35,6 @@
     <string name="voter_info_fragment">Voter Info Screen </string>
     <string name="launch_fragment_string">Launch Screen</string>
 
-    <string name="styled_voting_location"><![CDATA[pot]]> </string>
-    <string name="styled_ballot_info"><![CDATA[<b>Description:</b>]]></string>
-    <string name="hyperlink">Follow me </string>
+
 
 </resources>
