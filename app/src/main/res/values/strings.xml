@@ -34,6 +34,7 @@
     <string name="reps_fragment_string">Representatives Screen</string>
     <string name="voter_info_fragment">Voter Info Screen </string>
     <string name="launch_fragment_string">Launch Screen</string>
+    <string name="invalid_url_msg">Sorry, site found for this election</string>
 
 
 

@@ -38,13 +38,12 @@ class VoterInfoFragment : Fragment() {
         (activity as AppCompatActivity).supportActionBar?.title =getString(R.string.voter_info_fragment)
 
         binding = FragmentVoterInfoBinding.inflate(inflater)
-        //TODO: Add ViewModel values and create ViewModel
+
         val database = ElectionDatabase.getInstance(requireContext())
         val factory = VoterInfoViewModelFactory(database.electionDao, args.argDivision, args
                 .argElectionId)
         viewModel = ViewModelProvider(this, factory).get(VoterInfoViewModel::class.java)
 
-        //TODO: Add binding values
 
         //make binding observe LiveData
         binding.lifecycleOwner = viewLifecycleOwner
@@ -52,26 +51,8 @@ class VoterInfoFragment : Fragment() {
         //link binding's viewModel to ViewModel
         binding.viewModel = viewModel
 
-
-       /* val fullText = getText(R.string.hyperlink) as SpannedString
-        val spannableString = SpannableString(fullText)
-        // ????
-        binding.stateLocations.text = spannableString
-        ForegroundColorSpan(
-            ContextCompat.getColor(requireActivity(), R.color.primaryColor))
-        binding.stateLocations.movementMethod = LinkMovementMethod.getInstance()*/
-
-
-        //TODO: Populate voter info -- hide views without provided data.
-        /**
-        Hint: You will need to ensure proper data is provided from previous fragment.
-         */
-
-        //Handle loading of URLs
-
+        
         viewModel.votingLocationURL.observe(viewLifecycleOwner) { url ->
-
-
 
             loadUrl(url)
         }
@@ -136,14 +117,7 @@ class VoterInfoFragment : Fragment() {
         startActivity(intent)
     }
 
-    private fun formatText(text: String): Spanned {
 
-        return  ( Html.fromHtml(text, Html.FROM_HTML_MODE_LEGACY))
-
-
-
-    }
 
 }
 
-class Empty
