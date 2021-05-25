@@ -23,9 +23,7 @@ class VoterInfoViewModel(
 ) :
     ViewModel() {
 
-    //TODO: Add live data to hold voter info
 
-    private var electionVariable: Election? = null
 
     private val _voterInfoResponse = MutableLiveData<VoterInfoResponse>()
     val voterInfoResponse: LiveData<VoterInfoResponse>
@@ -54,6 +52,9 @@ class VoterInfoViewModel(
 
     private var buttonModeFollow: Boolean? = null
 
+    private val _isSiteInvalid = MutableLiveData<Boolean>(false)
+    val isSiteInvalid: LiveData<Boolean>
+    get() = _isSiteInvalid
 
     init {
 
@@ -71,9 +72,7 @@ class VoterInfoViewModel(
                 _election.postValue(dao.getElectionById(id))
             }
 
-
         }
-
     }
 
     private fun getNetworkVoterInfo() {
@@ -95,7 +94,7 @@ class VoterInfoViewModel(
                     _noConnection.postValue(true)
 
                 } catch (e: HttpException) {
-                    Timber.i("Caught 2nd Error - somthing Unkown")
+
 
                 }
 
@@ -127,7 +126,7 @@ class VoterInfoViewModel(
                 _voterInfoResponse.value?.state?.get(0)?.electionAdministrationBody?.votingLocationFinderUrl!!
         }catch (e: NullPointerException){
 
-
+_isSiteInvalid.value = true
 
         }
 
@@ -135,10 +134,17 @@ class VoterInfoViewModel(
 
     fun onBallotInfoLinkClick() {
 
-        
+        try {
+            _ballotInfoURL.value =
+                _voterInfoResponse.value?.state?.get(0)?.electionAdministrationBody?.ballotInfoUrl!!
 
-        _ballotInfoURL.value =
-            _voterInfoResponse.value?.state?.get(0)?.electionAdministrationBody?.ballotInfoUrl!!
+
+        }catch (e:NullPointerException){
+
+            _isSiteInvalid.value = true
+        }
+
+
 
     }
     //TODO: Add var and methods to populate voter info
