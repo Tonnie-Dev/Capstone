@@ -17,9 +17,11 @@ import retrofit2.HttpException
 import timber.log.Timber
 import java.net.UnknownHostException
 
-class VoterInfoViewModel(private val dao: ElectionDao, private val division: Division,
-                         private val electionId: Int) :
-        ViewModel() {
+class VoterInfoViewModel(
+    private val dao: ElectionDao, private val division: Division,
+    private val electionId: Int
+) :
+    ViewModel() {
 
     //TODO: Add live data to hold voter info
 
@@ -48,7 +50,7 @@ class VoterInfoViewModel(private val dao: ElectionDao, private val division: Div
 
     private val _noConnection = MutableLiveData<Boolean>(false)
     val noConnection: LiveData<Boolean>
-    get() = _noConnection
+        get() = _noConnection
 
     private var buttonModeFollow: Boolean? = null
 
@@ -82,18 +84,20 @@ class VoterInfoViewModel(private val dao: ElectionDao, private val division: Div
             withContext(IO) {
                 try {
 
-                    _voterInfoResponse.postValue(CivicsApi.retrofitService.voterInfoQuery(address,
-                                                                                          electionId))
-                }catch (e: UnknownHostException) {
+                    _voterInfoResponse.postValue(
+                        CivicsApi.retrofitService.voterInfoQuery(
+                            address,
+                            electionId
+                        )
+                    )
+                } catch (e: UnknownHostException) {
 
                     _noConnection.postValue(true)
 
-                }
-                catch (e: HttpException) {
+                } catch (e: HttpException) {
                     Timber.i("Caught 2nd Error - somthing Unkown")
 
                 }
-
 
 
             }
@@ -111,20 +115,30 @@ class VoterInfoViewModel(private val dao: ElectionDao, private val division: Div
             "country:/state:${division.state}"
         }
 
-        Timber.i("The Address is $address")
+
         return address
     }
 
 
     fun onVotingLocationLinkClick() {
-        _votingLocationURL.value = _voterInfoResponse.value?.state?.get(0)?.electionAdministrationBody?.votingLocationFinderUrl!!
 
+        try {
+            _votingLocationURL.value =
+                _voterInfoResponse.value?.state?.get(0)?.electionAdministrationBody?.votingLocationFinderUrl!!
+        }catch (e: NullPointerException){
+
+
+
+        }
 
     }
 
     fun onBallotInfoLinkClick() {
 
-        _ballotInfoURL.value = _voterInfoResponse.value?.state?.get(0)?.electionAdministrationBody?.ballotInfoUrl!!
+        
+
+        _ballotInfoURL.value =
+            _voterInfoResponse.value?.state?.get(0)?.electionAdministrationBody?.ballotInfoUrl!!
 
     }
     //TODO: Add var and methods to populate voter info
@@ -141,13 +155,10 @@ class VoterInfoViewModel(private val dao: ElectionDao, private val division: Div
     fun onClickFollowElectionButton() {
 
 
-
         if (_isElectionFollowed.value == true) {
 
 
             unfollowElection(electionId)
-
-
 
 
         } else {
@@ -157,9 +168,8 @@ class VoterInfoViewModel(private val dao: ElectionDao, private val division: Div
             election?.let {
 
                 followElection(it)
-               // buttonModeFollow = false
+                // buttonModeFollow = false
             }
-
 
 
         }

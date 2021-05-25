@@ -8,11 +8,9 @@ import timber.log.Timber
 
 class MainActivity : AppCompatActivity() {
 
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
-
 
         //initialize Timber
         Timber.plant(Timber.DebugTree())
@@ -23,7 +21,6 @@ class MainActivity : AppCompatActivity() {
         //tie things up
         NavigationUI.setupActionBarWithNavController(this, navController)
     }
-
 
     override fun onSupportNavigateUp(): Boolean {
         //find NavController

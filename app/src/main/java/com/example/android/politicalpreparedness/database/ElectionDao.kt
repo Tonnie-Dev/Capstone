@@ -40,4 +40,7 @@ interface ElectionDao {
     @Query("DELETE FROM election_table")
     fun clearElections()
 
+
+
+
 }
