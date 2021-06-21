@@ -85,19 +85,19 @@ dependencies {
     implementation 'com.jakewharton.timber:timber:4.7.1'
 
     //Activity Result API Dependency for Activity
-    implementation 'androidx.activity:activity-ktx:1.3.0-alpha08'
+    implementation 'androidx.activity:activity-ktx:1.3.0-beta01'
 
     //Activity Result API Dependency for Fragment
     implementation 'androidx.fragment:fragment-ktx:1.3.4'
 
     //Material Design Components for Android
-    implementation 'com.google.android.material:material:1.4.0-beta01'
+    implementation 'com.google.android.material:material:1.4.0-rc01'
 
     //Add Coil(Coroutine Image Loader )
-    implementation "io.coil-kt:coil:0.9.5"
+    implementation "io.coil-kt:coil:1.1.1"
 
     //RecyclerView
-    implementation 'androidx.recyclerview:recyclerview:1.2.0'
+    implementation 'androidx.recyclerview:recyclerview:1.2.1'
 
     //CardView
     implementation 'androidx.cardview:cardview:1.0.0'
