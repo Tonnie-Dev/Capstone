@@ -103,5 +103,5 @@ dependencies {
     implementation 'androidx.cardview:cardview:1.0.0'
 
     //Material Design Components for Android
-    implementation 'com.google.android.material:material:1.4.0-beta01'
+    implementation 'com.google.android.material:material:1.4.0-rc01'
 }
