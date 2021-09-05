@@ -32,7 +32,7 @@ class VoterInfoViewModel(
     val election: LiveData<Election>
         get() = _election
 
-    private var _votingLocationURL = MutableLiveData<String>()
+    private val _votingLocationURL = MutableLiveData<String>()
     val votingLocationURL: LiveData<String>
         get() = _votingLocationURL
 
