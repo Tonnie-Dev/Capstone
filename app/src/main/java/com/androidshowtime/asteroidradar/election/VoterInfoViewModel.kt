@@ -17,6 +17,7 @@ import retrofit2.HttpException
 import timber.log.Timber
 import java.net.UnknownHostException
 
+
 class VoterInfoViewModel(
     private val dao: ElectionDao, private val division: Division,
     private val electionId: Int
