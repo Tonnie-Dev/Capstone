@@ -27,6 +27,7 @@ import com.androidshowtime.network.models.Address
 
 import com.androidshowtime.representative.adapter.RepresentativeListAdapter
 import com.google.android.gms.location.*
+import com.google.android.gms.maps.model.LatLng
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import com.google.android.material.snackbar.Snackbar
 import java.util.*
@@ -352,6 +353,10 @@ class DetailFragment : Fragment() {
             materialAlertDialogBuilder.show()
         }
     }
+
+
+
+
 }
 
 
