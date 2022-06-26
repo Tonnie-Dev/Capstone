@@ -1,21 +1,16 @@
 package com.androidshowtime.election
 
-import android.Manifest
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.activity.result.contract.ActivityResultContracts
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
-import androidx.fragment.app.viewModels
 import androidx.lifecycle.ViewModelProvider
-import androidx.lifecycle.ViewModelProviders
 import androidx.navigation.fragment.findNavController
 import com.androidshowtime.R
 import com.androidshowtime.database.ElectionDatabase
 import com.androidshowtime.databinding.FragmentElectionBinding
-import com.androidshowtime.databinding.FragmentLaunchBinding
 import com.androidshowtime.election.adapter.ElectionListAdapter
 import com.androidshowtime.election.adapter.ElectionListener
 import timber.log.Timber

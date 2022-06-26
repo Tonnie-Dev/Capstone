@@ -10,7 +10,7 @@ class VoterInfoViewModelFactory(private val dataSource: ElectionDao, private val
                                 private val electionId: Int) : ViewModelProvider.NewInstanceFactory() {
 
     @Suppress("UNCHECKED_CAST")
-    override fun <T : ViewModel?> create(modelClass: Class<T>): T {
+    override fun <T : ViewModel> create(modelClass: Class<T>): T {
         return (VoterInfoViewModel(dataSource, division, electionId) as T)
     }
 }
