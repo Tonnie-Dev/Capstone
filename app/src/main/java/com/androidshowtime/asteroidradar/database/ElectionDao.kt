@@ -19,7 +19,8 @@ interface ElectionDao {
 
     @Query("SELECT EXISTS (SELECT 1 FROM followed_elections_table WHERE id = :id)")
     fun isElectionFollowed(id: Int):Boolean
-
+    @Query("DELETE FROM followed_elections_table WHERE id = :id")
+    fun deleteElections(id: Int)
 
     //ALL_ELECTIONS_QUERIES
     @Insert(onConflict = OnConflictStrategy.REPLACE)
@@ -33,9 +34,6 @@ interface ElectionDao {
 
     @Query("SELECT * FROM election_table WHERE id in (SELECT * FROM followed_elections_table) ORDER BY name ASC ")
     fun getFollowedElections(): LiveData<List<Election>>
-
-    @Query("DELETE FROM followed_elections_table WHERE id = :id")
-    fun deleteElections(id: Int)
 
     @Query("DELETE FROM election_table")
     fun clearElections()

@@ -19,14 +19,14 @@ class ElectionsRepo(private val database: ElectionDatabase) {
                 val response = CivicsApi.retrofitService.electionQuery()
                 val elections = response.elections
 
-                Timber.i("The response is $elections")
+
                 //insert elections into database
                 database.electionDao.insertElections(elections)
             }
 
             catch (e:Exception) {
 
-Timber.i("there is an error caught")
+e.printStackTrace()
             }
 
         }
